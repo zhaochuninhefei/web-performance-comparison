@@ -1,33 +1,57 @@
 package config
 
+// app.go 应用配置结构体定义。
+// 注意，本项目采用`github.com/spf13/viper`读取yaml配置文件，字段名不支持下划线风格。
+
+// AppicationConfig 应用配置
 type AppicationConfig struct {
-	App        AppInfo    `yaml:"app"`
+	// 应用信息
+	App AppInfo `yaml:"app"`
+	// 数据源配置
 	Datasource Datasource `yaml:"datasource"`
-	Redis      Redis      `yaml:"redis"`
-	Log        Log        `yaml:"log"`
+	// Redis配置
+	Redis Redis `yaml:"redis"`
+	// 日志配置
+	Log Log `yaml:"log"`
 }
 
+// AppInfo 应用信息
 type AppInfo struct {
-	Name       string `yaml:"name"`
-	Version    string `yaml:"version"`
-	Port       string `yaml:"port"`
+	// 应用名称
+	Name string `yaml:"name"`
+	// 应用版本
+	Version string `yaml:"version"`
+	// 服务端口
+	Port string `yaml:"port"`
+	// 配置文件路径
 	ConfigFile string `yaml:"configFile"`
 }
 
+// Datasource 数据源配置
 type Datasource struct {
-	Host     string `yaml:"host"`
-	Port     string `yaml:"port"`
-	User     string `yaml:"user"`
+	// 数据库域名
+	Host string `yaml:"host"`
+	// 数据库端口
+	Port string `yaml:"port"`
+	// 数据库用户
+	User string `yaml:"user"`
+	// 数据库密码
 	Password string `yaml:"password"`
 }
 
+// Redis Redis配置
 type Redis struct {
-	Host     string `yaml:"host"`
-	Port     string `yaml:"port"`
-	User     string `yaml:"user"`
+	// Redis域名
+	Host string `yaml:"host"`
+	// Redis端口
+	Port string `yaml:"port"`
+	// Redis用户
+	User string `yaml:"user"`
+	// Redis密码
 	Password string `yaml:"password"`
 }
 
+// Log 日志配置
 type Log struct {
 	// 是否需要禁止输出到控制台，默认: false
 	LogForbidStdout bool `yaml:"logForbidStdout"`
