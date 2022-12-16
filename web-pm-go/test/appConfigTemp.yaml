@@ -1,0 +1,17 @@
+app:
+  name: ""
+  version: ""
+  port: ""
+  config_file: ""
+datasource:
+  host: ""
+  port: ""
+  user: ""
+  password: ""
+redis:
+  host: ""
+  port: ""
+  user: ""
+  password: ""
+log:
+  level: ""
