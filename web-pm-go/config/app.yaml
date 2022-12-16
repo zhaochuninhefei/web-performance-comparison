@@ -15,7 +15,7 @@ redis:
   password: ""
 log:
   logForbidStdout: false
-  logFileDir: "test"
+  logFileDir: "logs"
   logFileNamePrefix: "web-pm-go"
   logFileMaxSizeM: 2
   logLevelGlobal: "debug"
