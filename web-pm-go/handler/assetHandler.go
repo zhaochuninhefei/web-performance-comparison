@@ -1,5 +1,7 @@
 package handler
 
+// assetHandler.go 资产处理器
+
 import (
 	"fmt"
 	"gitee.com/zhaochuninhefei/zcgolog/zclog"

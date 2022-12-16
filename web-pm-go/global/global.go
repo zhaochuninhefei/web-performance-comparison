@@ -1,5 +1,7 @@
 package global
 
+// global.go 全局定义
+
 import "github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/config"
 
 //goland:noinspection GoUnusedConst,GoSnakeCaseUsage

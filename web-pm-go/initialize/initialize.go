@@ -9,6 +9,7 @@ import (
 	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/global"
 )
 
+// InitAppConfig 初始化应用配置
 func InitAppConfig(configFilePath string) {
 	var configFile string
 	// 读取配置文件优先级: 命令行 > 默认值
