@@ -5,20 +5,32 @@ import (
 	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/global"
 	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/initialize"
 	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/route"
+	"gopkg.in/yaml.v3"
 )
 
 func main() {
 	// 读取配置文件
 	initialize.InitAppConfig("config/app.yaml")
 
-	zclog.ClearDir("logs")
+	//zclog.ClearDir("logs")
+	logConf := global.AppConfig.Log
 	zcgologConfig := &zclog.Config{
-		LogFileDir:        "logs",
-		LogFileNamePrefix: "tlstest",
-		LogMod:            zclog.LOG_MODE_SERVER,
-		LogLevelGlobal:    zclog.LOG_LEVEL_DEBUG,
+		LogForbidStdout:   logConf.LogForbidStdout,
+		LogFileDir:        logConf.LogFileDir,
+		LogFileNamePrefix: logConf.LogFileNamePrefix,
+		LogFileMaxSizeM:   logConf.LogFileMaxSizeM,
+		LogLevelGlobal:    zclog.GetLogLevelByStr(logConf.LogLevelGlobal),
+		LogLineFormat:     logConf.LogLineFormat,
+		LogMod:            logConf.LogMod,
+		LogChannelCap:     logConf.LogChannelCap,
+		LogChnOverPolicy:  logConf.LogChnOverPolicy,
+		LogLevelCtlHost:   logConf.LogLevelCtlHost,
+		LogLevelCtlPort:   logConf.LogLevelCtlPort,
 	}
 	zclog.InitLogger(zcgologConfig)
+
+	yamlAppConfig, _ := yaml.Marshal(global.AppConfig)
+	zclog.Debugf("当前配置: \n%s\n", string(yamlAppConfig))
 
 	// 注册web路由器
 	router := route.RegisterWebRoute()

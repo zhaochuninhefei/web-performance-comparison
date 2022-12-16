@@ -3,7 +3,7 @@ package test
 import (
 	"fmt"
 	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/config"
-	"gopkg.in/yaml.v2"
+	"gopkg.in/yaml.v3"
 	"io/fs"
 	"io/ioutil"
 	"testing"
@@ -31,7 +31,17 @@ func TestGernateYaml(t *testing.T) {
 			Password: "",
 		},
 		Log: config.Log{
-			Level: "",
+			LogForbidStdout:   false,
+			LogFileDir:        "",
+			LogFileNamePrefix: "",
+			LogFileMaxSizeM:   0,
+			LogLevelGlobal:    "debug",
+			LogLineFormat:     "",
+			LogMod:            0,
+			LogChannelCap:     0,
+			LogChnOverPolicy:  0,
+			LogLevelCtlHost:   "",
+			LogLevelCtlPort:   "",
 		},
 	}
 	yamlData, err := yaml.Marshal(appConfigTemp)

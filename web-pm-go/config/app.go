@@ -38,7 +38,7 @@ type Log struct {
 	// 日志文件大小上限，单位M，默认: 2
 	LogFileMaxSizeM int `yaml:"log_file_max_size_m"`
 	// 全局日志级别，默认:INFO
-	LogLevelGlobal int `yaml:"log_level_global"`
+	LogLevelGlobal string `yaml:"log_level_global"`
 	// 日志格式，默认: "%datetime %level %file %line %func %msg"，目前格式固定，该配置暂时没有使用
 	LogLineFormat string `yaml:"log_line_format"`
 	// 日志模式，默认采用本地模式，以便于本地测试

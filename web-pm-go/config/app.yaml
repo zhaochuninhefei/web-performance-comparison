@@ -14,4 +14,14 @@ redis:
   user: ""
   password: ""
 log:
-  level: "info"
+  log_forbid_stdout: false
+  log_file_dir: "logs"
+  log_file_name_prefix: "web-pm-go"
+  log_file_max_size_m: 2
+  log_level_global: "debug"
+  log_line_format: ""
+  log_mod: 2
+  log_channel_cap: 4096
+  log_chn_over_policy: 1
+  log_level_ctl_host: ""
+  log_level_ctl_port: ""

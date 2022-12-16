@@ -6,7 +6,6 @@ import (
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
 	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/global"
-	"gopkg.in/yaml.v2"
 )
 
 func InitAppConfig(configFilePath string) {
@@ -38,7 +37,4 @@ func InitAppConfig(configFilePath string) {
 	}
 	// 设置配置文件
 	global.AppConfig.App.ConfigFile = configFile
-
-	yamlAppConfig, _ := yaml.Marshal(global.AppConfig)
-	fmt.Printf("当前配置: \n%s\n", string(yamlAppConfig))
 }
