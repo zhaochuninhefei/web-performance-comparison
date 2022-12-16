@@ -1,0 +1,5 @@
+app:
+  name: "web-pm-go"
+  version: "v0.0.1"
+datasource:
+  host: ""
