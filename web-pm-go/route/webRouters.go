@@ -1,17 +1,24 @@
 package route
 
+// webRouters.go 用于注册web请求路由
+
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/handler"
 )
 
+// RegisterWebRoute 注册web路由
 func RegisterWebRoute() *gin.Engine {
+	// 获取路由引擎
 	router := gin.Default()
 
-	// Asset相关资源
+	// 注册Asset相关资源的URI及其对应处理器
 	astRouter := router.Group("/asset")
+	// 查看所有资产URI: `/asset/list`
 	astRouter.GET("/list", handler.QueryAllAssets)
+	// 查看指定资产URI: `/asset/query`, 通过url传参: `/asset/query?id=xxx`
 	astRouter.GET("/query", handler.QueryAssetByID)
+	// 修改指定资产URI: `/asset/modify `, 通过表单提交或json传参
 	astRouter.POST("/modify", handler.ModifyAsset)
 
 	return router
