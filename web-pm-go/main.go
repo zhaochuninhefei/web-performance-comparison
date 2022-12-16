@@ -8,7 +8,7 @@ import (
 
 func main() {
 	// 读取配置文件
-	initialize.InitAppConfig()
+	initialize.InitAppConfig(utils.APP_CONFIG_FILE_PATH)
 	// 注册web路由器
 	router := route.RegisterWebRoute()
 	// 启动http服务，监听端口

@@ -6,16 +6,20 @@ import (
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
 	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/utils"
+	"gopkg.in/yaml.v2"
 )
 
-func InitAppConfig() {
+func InitAppConfig(configFilePath string) {
+
 	var configFile string
 	// 读取配置文件优先级: 命令行 > 默认值
-	flag.StringVar(&configFile, "app_config", utils.APP_CONFIG_FILE_PATH, "应用配置")
+	flag.StringVar(&configFile, "app_config", configFilePath, "应用配置文件路径")
+	flag.Parse()
 	if len(configFile) == 0 {
 		// 读取默认配置文件
 		panic("配置文件不存在！")
 	}
+	fmt.Printf("configFile: %s\n", configFile)
 	// 读取配置文件
 	v := viper.New()
 	v.SetConfigFile(configFile)
@@ -35,4 +39,7 @@ func InitAppConfig() {
 	}
 	// 设置配置文件
 	utils.AppConfig.App.ConfigFile = configFile
+
+	yamlAppConfig, _ := yaml.Marshal(utils.AppConfig)
+	fmt.Printf("当前配置: \n%s\n", string(yamlAppConfig))
 }

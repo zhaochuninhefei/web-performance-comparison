@@ -1,5 +1,17 @@
 app:
   name: "web-pm-go"
   version: "v0.0.1"
+  port: "18080"
+  config_file: ""
 datasource:
-  host: ""
+  host: "localhost"
+  port: "3307"
+  user: "root"
+  password: "overseas"
+redis:
+  host: "localhost"
+  port: ""
+  user: ""
+  password: ""
+log:
+  level: "info"
