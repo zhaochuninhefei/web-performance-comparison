@@ -12,7 +12,7 @@ func main() {
 	// 读取配置文件
 	initialize.InitAppConfig("config/app.yaml")
 
-	//zclog.ClearDir("logs")
+	// 配置zcgolog
 	logConf := global.AppConfig.Log
 	zcgologConfig := &zclog.Config{
 		LogForbidStdout:   logConf.LogForbidStdout,
@@ -37,6 +37,6 @@ func main() {
 	// 启动http服务，监听端口
 	err := router.Run(":" + global.AppConfig.App.Port)
 	if err != nil {
-		return
+		zclog.Error(err)
 	}
 }

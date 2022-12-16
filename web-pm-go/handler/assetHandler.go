@@ -2,8 +2,8 @@ package handler
 
 import (
 	"fmt"
+	"gitee.com/zhaochuninhefei/zcgolog/zclog"
 	"github.com/gin-gonic/gin"
-	"log"
 	"net/http"
 )
 
@@ -21,12 +21,12 @@ func QueryAssetByID(c *gin.Context) {
 
 // ModifyAsset 修改指定资产
 func ModifyAsset(c *gin.Context) {
-	//log.Printf("尝试获取表单字段 desc : %s\n", c.PostForm("Desc"))
+	//zclog.Printf("尝试获取表单字段 desc : %s\n", c.PostForm("Desc"))
 
 	var ast Asset
 	// ShouldBind 支持JSON/XML/form-data，但使用`form-data`传输表单数据时，注意表单字段应与struct字段名保持一致，而并非其json字段名。
 	if c.ShouldBind(&ast) == nil {
-		log.Printf("修改目标: %s\n", ast.String())
+		zclog.Infof("修改目标: %s", ast.String())
 	}
 	c.JSON(http.StatusOK, gin.H{
 		"resCd":  "1",

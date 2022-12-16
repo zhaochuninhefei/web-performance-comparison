@@ -28,12 +28,6 @@ type Redis struct {
 	Password string `yaml:"password"`
 }
 
-//type LogConfig struct {
-//	Dir123 string `yaml:"dir123"`
-//	//LogFileDir string `yaml:"dir"`
-//	Dir string `yaml:"dir"`
-//}
-
 type Log struct {
 	// 是否需要禁止输出到控制台，默认: false
 	LogForbidStdout bool `yaml:"logForbidStdout"`
@@ -58,8 +52,3 @@ type Log struct {
 	// 日志级别控制监听服务的Port，默认:9300
 	LogLevelCtlPort string `yaml:"logLevelCtlPort"`
 }
-
-//type LogSettings struct {
-//	Test   string `yaml:"test"`
-//	LogDir string `yaml:"logdir"`
-//}

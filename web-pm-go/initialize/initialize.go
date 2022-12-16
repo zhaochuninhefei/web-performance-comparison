@@ -3,6 +3,7 @@ package initialize
 import (
 	"flag"
 	"fmt"
+	"gitee.com/zhaochuninhefei/zcgolog/zclog"
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
 	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/global"
@@ -27,7 +28,7 @@ func InitAppConfig(configFilePath string) {
 	// 动态监测配置文件
 	v.WatchConfig()
 	v.OnConfigChange(func(in fsnotify.Event) {
-		fmt.Println("配置文件发生改变")
+		zclog.Info("配置文件发生改变")
 		if err := v.Unmarshal(&global.AppConfig); err != nil {
 			panic(fmt.Errorf("配置重载失败:%s\n", err))
 		}

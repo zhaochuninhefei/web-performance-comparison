@@ -12,7 +12,7 @@ import (
 )
 
 func TestInitAppConfig(t *testing.T) {
-	bytesYaml, _ := ioutil.ReadFile("/home/zhaochun/work/sources/github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/config/app.yaml")
+	bytesYaml, _ := ioutil.ReadFile("../config/app.yaml")
 	tmpConfig := &config.AppicationConfig{}
 	err := yaml.Unmarshal(bytesYaml, &tmpConfig)
 	if err != nil {
@@ -23,7 +23,7 @@ func TestInitAppConfig(t *testing.T) {
 	tmpConfigYaml, _ := yaml.Marshal(tmpConfig)
 	fmt.Printf("应用配置: \n%s\n", tmpConfigYaml)
 
-	InitAppConfig("/home/zhaochun/work/sources/github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/config/app.yaml")
+	InitAppConfig("../config/app.yaml")
 	//fmt.Printf("LogFileDir: %s\n", global.AppConfig.LogConfig.Dir)
 	yamlAppConfig, _ := yaml.Marshal(global.AppConfig)
 	//zclog.Debugf("当前配置: \n%s", string(yamlAppConfig))
@@ -34,7 +34,7 @@ func TestViper(t *testing.T) {
 	tmpConfig := &config.AppicationConfig{}
 
 	v := viper.New()
-	v.SetConfigFile("/home/zhaochun/work/sources/github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/initialize/testdata/app.yaml")
+	v.SetConfigFile("testdata/app.yaml")
 	if err := v.ReadInConfig(); err != nil {
 		panic(fmt.Errorf("配置解析失败:%s\n", err))
 	}
