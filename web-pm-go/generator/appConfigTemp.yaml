@@ -15,7 +15,7 @@ redis:
   password: ""
 log:
   logForbidStdout: false
-  logFileDir: test
+  logFileDir: logs
   logFileNamePrefix: ""
   logFileMaxSizeM: 0
   logLevelGlobal: debug

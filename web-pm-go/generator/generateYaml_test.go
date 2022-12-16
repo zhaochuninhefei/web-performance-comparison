@@ -1,4 +1,4 @@
-package test
+package generator
 
 import (
 	"fmt"
@@ -32,7 +32,7 @@ func TestGernateYaml(t *testing.T) {
 		},
 		Log: config.Log{
 			LogForbidStdout:   false,
-			LogFileDir:        "test",
+			LogFileDir:        "logs",
 			LogFileNamePrefix: "",
 			LogFileMaxSizeM:   0,
 			LogLevelGlobal:    "debug",
