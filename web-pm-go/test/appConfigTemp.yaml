@@ -15,7 +15,7 @@ redis:
     password: ""
 log:
     log_forbid_stdout: false
-    log_file_dir: ""
+    log_file_dir: test
     log_file_name_prefix: ""
     log_file_max_size_m: 0
     log_level_global: debug

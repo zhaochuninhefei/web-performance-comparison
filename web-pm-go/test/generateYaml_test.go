@@ -32,7 +32,7 @@ func TestGernateYaml(t *testing.T) {
 		},
 		Log: config.Log{
 			LogForbidStdout:   false,
-			LogFileDir:        "",
+			LogFileDir:        "test",
 			LogFileNamePrefix: "",
 			LogFileMaxSizeM:   0,
 			LogLevelGlobal:    "debug",

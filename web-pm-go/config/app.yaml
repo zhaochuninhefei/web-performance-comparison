@@ -1,3 +1,42 @@
+#app:
+#  name: "web-pm-go"
+#  version: "v0.0.1"
+#  port: "18080"
+#  config_file: ""
+#datasource:
+#  host: "localhost"
+#  port: "3307"
+#  user: "root"
+#  password: "overseas"
+#redis:
+#  host: "localhost"
+#  port: ""
+#  user: ""
+#  password: ""
+#log:
+#  log_forbid_stdout: "false"
+#  log_file_dir: "logs"
+#  log_file_name_prefix: "web-pm-go"
+#  log_file_max_size_m: "2"
+#  log_level_global: "debug"
+#  log_line_format: ""
+#  log_mod: "2"
+#  log_channel_cap: "4096"
+#  log_chn_over_policy: "1"
+#  log_level_ctl_host: ""
+#  log_level_ctl_port: ""
+log:
+  log_forbid_stdout: false
+  log_file_dir: "logs"
+  log_file_name_prefix: ""
+  log_file_max_size_m: 0
+  log_level_global: debug
+  log_line_format: ""
+  log_mod: 0
+  log_channel_cap: 0
+  log_chn_over_policy: 0
+  log_level_ctl_host: ""
+  log_level_ctl_port: ""
 app:
   name: "web-pm-go"
   version: "v0.0.1"
@@ -6,22 +45,10 @@ app:
 datasource:
   host: "localhost"
   port: "3307"
-  user: "root"
-  password: "overseas"
+  user: ""
+  password: ""
 redis:
-  host: "localhost"
+  host: ""
   port: ""
   user: ""
   password: ""
-log:
-  log_forbid_stdout: false
-  log_file_dir: "logs"
-  log_file_name_prefix: "web-pm-go"
-  log_file_max_size_m: 2
-  log_level_global: "debug"
-  log_line_format: ""
-  log_mod: 2
-  log_channel_cap: 4096
-  log_chn_over_policy: 1
-  log_level_ctl_host: ""
-  log_level_ctl_port: ""

@@ -30,7 +30,7 @@ func main() {
 	zclog.InitLogger(zcgologConfig)
 
 	yamlAppConfig, _ := yaml.Marshal(global.AppConfig)
-	zclog.Debugf("当前配置: \n%s\n", string(yamlAppConfig))
+	zclog.Debugf("当前配置: \n%s", string(yamlAppConfig))
 
 	// 注册web路由器
 	router := route.RegisterWebRoute()
