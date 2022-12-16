@@ -1,4 +1,4 @@
-package utils
+package global
 
 import "github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/config"
 

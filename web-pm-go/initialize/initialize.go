@@ -5,12 +5,11 @@ import (
 	"fmt"
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
-	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/utils"
+	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/global"
 	"gopkg.in/yaml.v2"
 )
 
 func InitAppConfig(configFilePath string) {
-
 	var configFile string
 	// 读取配置文件优先级: 命令行 > 默认值
 	flag.StringVar(&configFile, "app_config", configFilePath, "应用配置文件路径")
@@ -30,16 +29,16 @@ func InitAppConfig(configFilePath string) {
 	v.WatchConfig()
 	v.OnConfigChange(func(in fsnotify.Event) {
 		fmt.Println("配置文件发生改变")
-		if err := v.Unmarshal(&utils.AppConfig); err != nil {
+		if err := v.Unmarshal(&global.AppConfig); err != nil {
 			panic(fmt.Errorf("配置重载失败:%s\n", err))
 		}
 	})
-	if err := v.Unmarshal(&utils.AppConfig); err != nil {
+	if err := v.Unmarshal(&global.AppConfig); err != nil {
 		panic(fmt.Errorf("配置重载失败:%s\n", err))
 	}
 	// 设置配置文件
-	utils.AppConfig.App.ConfigFile = configFile
+	global.AppConfig.App.ConfigFile = configFile
 
-	yamlAppConfig, _ := yaml.Marshal(utils.AppConfig)
+	yamlAppConfig, _ := yaml.Marshal(global.AppConfig)
 	fmt.Printf("当前配置: \n%s\n", string(yamlAppConfig))
 }
