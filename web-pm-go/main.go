@@ -5,7 +5,7 @@ import (
 	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/global"
 	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/initialize"
 	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/route"
-	"gopkg.in/yaml.v3"
+	"gopkg.in/yaml.v2"
 )
 
 func main() {

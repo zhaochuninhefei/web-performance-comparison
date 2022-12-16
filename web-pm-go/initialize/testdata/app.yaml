@@ -2,7 +2,7 @@ app:
   name: "web-pm-go"
   version: "v0.0.1"
   port: "18080"
-  configFile: ""
+  config_file: ""
 datasource:
   host: ""
   port: ""

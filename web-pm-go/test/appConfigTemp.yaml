@@ -1,27 +1,27 @@
 app:
-    name: ""
-    version: ""
-    port: ""
-    config_file: ""
+  name: ""
+  version: ""
+  port: ""
+  configFile: ""
 datasource:
-    host: ""
-    port: ""
-    user: ""
-    password: ""
+  host: ""
+  port: ""
+  user: ""
+  password: ""
 redis:
-    host: ""
-    port: ""
-    user: ""
-    password: ""
+  host: ""
+  port: ""
+  user: ""
+  password: ""
 log:
-    log_forbid_stdout: false
-    log_file_dir: test
-    log_file_name_prefix: ""
-    log_file_max_size_m: 0
-    log_level_global: debug
-    log_line_format: ""
-    log_mod: 0
-    log_channel_cap: 0
-    log_chn_over_policy: 0
-    log_level_ctl_host: ""
-    log_level_ctl_port: ""
+  logForbidStdout: false
+  logFileDir: test
+  logFileNamePrefix: ""
+  logFileMaxSizeM: 0
+  logLevelGlobal: debug
+  logLineFormat: ""
+  logMod: 0
+  logChannelCap: 0
+  logChnOverPolicy: 0
+  logLevelCtlHost: ""
+  logLevelCtlPort: ""

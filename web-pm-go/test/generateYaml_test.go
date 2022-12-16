@@ -3,7 +3,7 @@ package test
 import (
 	"fmt"
 	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/config"
-	"gopkg.in/yaml.v3"
+	"gopkg.in/yaml.v2"
 	"io/fs"
 	"io/ioutil"
 	"testing"
