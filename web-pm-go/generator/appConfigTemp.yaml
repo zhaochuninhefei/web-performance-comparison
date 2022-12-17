@@ -1,15 +1,15 @@
 app:
-  name: ""
-  version: ""
-  port: ""
+  name: web-pm-go
+  version: 0.0.1
+  port: "18080"
   configFile: ""
 datasource:
-  host: ""
-  port: ""
+  host: localhost
+  port: "3307"
   user: ""
   password: ""
 redis:
-  host: ""
+  host: localhost
   port: ""
   user: ""
   password: ""

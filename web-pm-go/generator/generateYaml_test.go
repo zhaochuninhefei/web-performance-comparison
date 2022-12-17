@@ -9,23 +9,24 @@ import (
 	"testing"
 )
 
-func TestGernateYaml(t *testing.T) {
-	fmt.Println("TestGernateYaml")
+// TestGernateAppYaml 用于生成`web-pm-go`的应用配置文件
+func TestGernateAppYaml(t *testing.T) {
+	fmt.Println("TestGernateAppYaml")
 	appConfigTemp := &config.AppicationConfig{
 		App: config.AppInfo{
-			Name:       "",
-			Version:    "",
-			Port:       "",
+			Name:       "web-pm-go",
+			Version:    "0.0.1",
+			Port:       "18080",
 			ConfigFile: "",
 		},
 		Datasource: config.Datasource{
-			Host:     "",
-			Port:     "",
+			Host:     "localhost",
+			Port:     "3307",
 			User:     "",
 			Password: "",
 		},
 		Redis: config.Redis{
-			Host:     "",
+			Host:     "localhost",
 			Port:     "",
 			User:     "",
 			Password: "",
