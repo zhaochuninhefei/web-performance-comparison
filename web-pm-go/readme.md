@@ -41,13 +41,18 @@ go run main.go
 # 容器启动
 使用`docker run`命令启动容器:
 ```shell
-# docker run 启动web-pm-go
+# 使用本地镜像
+img_web_pm_go=web-pm-go:0.0.1
+# 使用仓库镜像
+img_web_pm_go=172.17.4.86:5000/web-pm-go:0.0.1
+
+# 启动web-pm-go
 docker run -it --name web-pm-go \
   -p 18080:18080 \
   -p 9300:9300 \
   -v /data/volumes/github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/config:/src/github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/config \
   -v /data/volumes/github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/logs:/src/github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/logs \
-  web-pm-go:0.0.1
+  ${img_web_pm_go}
 
 # 退出并停止容器：ctrl + c
 # 退出容器但不停止容器: ctrl + p + q
