@@ -11,6 +11,13 @@ services:
     volumes:
       - "/data/volumes/github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/config:/src/github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/config"
       - "/data/volumes/github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/logs:/src/github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/logs"
+    deploy:
+      resources:
+        limits:
+          cpus: '1.00'
+          memory: 1024M
+        reservations:
+          memory: 512M
 
   web-pm-java:
     container_name: web-pm-java
