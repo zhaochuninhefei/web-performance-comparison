@@ -3,8 +3,6 @@ package com.zhaochuninhefei.webpmjava.service;
 import com.zhaochuninhefei.webpmjava.dto.Asset;
 import com.zhaochuninhefei.webpmjava.dto.ResponseMsg;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -41,17 +39,14 @@ public class AssetService {
         astMp.put("2", ast2);
     }
 
-    @GetMapping("/list")
     public List<Asset> queryAllAssets() {
         return assets;
     }
 
-    @GetMapping("/query")
     public Asset queryAssetById(@RequestParam String id) {
         return astMp.get(id);
     }
 
-    @PostMapping("/modify")
     public ResponseMsg modifyAsset(@RequestBody Asset asset) {
         System.out.println("修改目标: " + asset.toString());
         ResponseMsg responseMsg = new ResponseMsg();
