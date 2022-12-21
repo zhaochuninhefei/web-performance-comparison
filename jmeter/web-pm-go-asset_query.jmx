@@ -14,12 +14,12 @@
     <hashTree>
       <kg.apc.jmeter.threads.UltimateThreadGroup guiclass="kg.apc.jmeter.threads.UltimateThreadGroupGui" testclass="kg.apc.jmeter.threads.UltimateThreadGroup" testname="jp@gc - Ultimate Thread Group" enabled="true">
         <collectionProp name="ultimatethreadgroupdata">
-          <collectionProp name="280485303">
-            <stringProp name="52469">500</stringProp>
+          <collectionProp name="-1886135591">
+            <stringProp name="1507423">1000</stringProp>
             <stringProp name="0">0</stringProp>
-            <stringProp name="1567">10</stringProp>
+            <stringProp name="1598">20</stringProp>
             <stringProp name="48625">100</stringProp>
-            <stringProp name="10">10</stringProp>
+            <stringProp name="1598">20</stringProp>
           </collectionProp>
         </collectionProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
@@ -31,20 +31,20 @@
       <hashTree>
         <kg.apc.jmeter.timers.VariableThroughputTimer guiclass="kg.apc.jmeter.timers.VariableThroughputTimerGui" testclass="kg.apc.jmeter.timers.VariableThroughputTimer" testname="jp@gc - Throughput Shaping Timer" enabled="true">
           <collectionProp name="load_profile">
-            <collectionProp name="-1363463286">
-              <stringProp name="52469">500</stringProp>
-              <stringProp name="1567005">3000</stringProp>
-              <stringProp name="1567">10</stringProp>
+            <collectionProp name="-32072909">
+              <stringProp name="1507423">1000</stringProp>
+              <stringProp name="46730161">10000</stringProp>
+              <stringProp name="1598">20</stringProp>
             </collectionProp>
-            <collectionProp name="214745314">
-              <stringProp name="1567005">3000</stringProp>
-              <stringProp name="1567005">3000</stringProp>
+            <collectionProp name="-615087070">
+              <stringProp name="46730161">10000</stringProp>
+              <stringProp name="46730161">10000</stringProp>
               <stringProp name="48625">100</stringProp>
             </collectionProp>
-            <collectionProp name="1900439734">
-              <stringProp name="1567005">3000</stringProp>
-              <stringProp name="52469">500</stringProp>
-              <stringProp name="1567">10</stringProp>
+            <collectionProp name="-1076429705">
+              <stringProp name="46730161">10000</stringProp>
+              <stringProp name="1507423">1000</stringProp>
+              <stringProp name="1598">20</stringProp>
             </collectionProp>
           </collectionProp>
         </kg.apc.jmeter.timers.VariableThroughputTimer>
