@@ -17,7 +17,11 @@ web-performance-comparison
 ```
 web-performance-comparison
 ├── deploy            docker编排文件目录
+├── jmeter            JMeter测试计划与结果
 ├── web-pm-go         go的web测试项目
 └── web-pm-java       java的web测试项目
 ```
+
+# 性能测试报告
+<a href="./性能测试报告.md" target="_blank">性能测试报告</a>
 
