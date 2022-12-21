@@ -4,6 +4,9 @@ services:
   web-pm-go:
     container_name: web-pm-go
     image: 172.17.4.86:5000/web-pm-go:0.0.1
+    extra_hosts:
+      - "redis-brood-base:172.17.4.118"
+      - "mysql-brood-base:172.17.13.13"
     restart: on-failure
     ports:
       - "18080:18080"
