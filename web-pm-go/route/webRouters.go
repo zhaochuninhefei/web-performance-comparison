@@ -21,5 +21,10 @@ func RegisterWebRoute() *gin.Engine {
 	// 修改指定资产URI: `/asset/modify `, 通过表单提交或json传参
 	astRouter.POST("/modify", handler.ModifyAsset)
 
+	// 注册Account相关资源的URI及其对应处理器
+	actRouter := router.Group("/account")
+	// 查看所有帐户URI: `/account/list`
+	actRouter.GET("/list", handler.QueryAllAccounts)
+
 	return router
 }
