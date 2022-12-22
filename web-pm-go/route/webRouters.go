@@ -25,6 +25,10 @@ func RegisterWebRoute() *gin.Engine {
 	actRouter := router.Group("/account")
 	// 查看所有帐户URI: `/account/list`
 	actRouter.GET("/list", handler.QueryAllAccounts)
+	// 查询指定帐户URI: `/account/query`, 通过url传参: `/account/query?id=xxx`
+	actRouter.GET("/query", handler.QueryAccountByID)
+	// 新增帐户: `/account/add`, 通过表单提交或json传参
+	actRouter.POST("/add", handler.AddNewAccount)
 
 	return router
 }
