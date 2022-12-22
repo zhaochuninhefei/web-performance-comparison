@@ -2,6 +2,7 @@ package main
 
 import (
 	"gitee.com/zhaochuninhefei/zcgolog/zclog"
+	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/db/mysql"
 	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/global"
 	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/initialize"
 	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/route"
@@ -31,6 +32,9 @@ func main() {
 
 	yamlAppConfig, _ := yaml.Marshal(global.AppConfig)
 	zclog.Debugf("当前配置: \n%s", string(yamlAppConfig))
+
+	// 初始化MySQL客户端
+	mysql.InitMySQLClient()
 
 	// 注册web路由器
 	router := route.RegisterWebRoute()
