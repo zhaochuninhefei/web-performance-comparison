@@ -9,6 +9,7 @@ type AppicationConfig struct {
 	App AppInfo `yaml:"app"`
 	// 数据源配置
 	Datasource Datasource `yaml:"datasource"`
+	DBConnPool DBConnPool `yaml:"dbConnPool"`
 	// Redis配置
 	Redis Redis `yaml:"redis"`
 	// 日志配置
@@ -37,6 +38,18 @@ type Datasource struct {
 	User string `yaml:"user"`
 	// 数据库密码
 	Password string `yaml:"password"`
+}
+
+// DBConnPool 数据库连接池配置
+type DBConnPool struct {
+	// 最大连接数
+	MaxOpenConns int64 `yaml:"maxOpenConns"`
+	// 最大空闲连接数
+	MaxIdleConns int64 `yaml:"maxIdleConns"`
+	// 连接可复用最大时间(分钟)
+	ConnMaxLifetimeMin int64 `yaml:"ConnMaxLifetimeMin"`
+	// 连接空闲最大时间(分钟)
+	ConnMaxIdleTimeMin int64 `yaml:"ConnMaxIdleTimeMin"`
 }
 
 // Redis Redis配置

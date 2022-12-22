@@ -9,7 +9,8 @@ import (
 )
 
 func InitMySQLClient() {
-	zclog.Info("初始化mysql客户端")
+	zclog.Info("初始化mysql客户端开始")
+
 	mysqlClient, err := ConnectMysqlByDefault("172.17.13.44", "3306", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
 	if err != nil {
 		zclog.Errorln(err)
@@ -28,6 +29,7 @@ func InitMySQLClient() {
 	sqlDB.SetConnMaxLifetime(time.Hour)
 	// 连接空闲最大时间
 	sqlDB.SetConnMaxIdleTime(time.Minute * 10)
+	zclog.Info("初始化mysql客户端结束")
 }
 
 // ConnectMysqlByDefault MySQL默认连接

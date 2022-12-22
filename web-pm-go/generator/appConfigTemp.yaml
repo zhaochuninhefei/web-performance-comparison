@@ -4,10 +4,15 @@ app:
   port: "18080"
   configFile: ""
 datasource:
-  host: localhost
-  port: "3307"
-  user: ""
-  password: ""
+  host: 172.17.13.44
+  port: "3306"
+  user: zhaochun1
+  password: zhaochun@GITHUB
+dbConnPool:
+  maxOpenConns: 100
+  maxIdleConns: 10
+  ConnMaxLifetimeMin: 60
+  ConnMaxIdleTimeMin: 10
 redis:
   host: localhost
   port: ""
@@ -16,12 +21,12 @@ redis:
 log:
   logForbidStdout: false
   logFileDir: logs
-  logFileNamePrefix: ""
-  logFileMaxSizeM: 0
+  logFileNamePrefix: web-pm-go
+  logFileMaxSizeM: 2
   logLevelGlobal: debug
   logLineFormat: ""
-  logMod: 0
-  logChannelCap: 0
-  logChnOverPolicy: 0
+  logMod: 2
+  logChannelCap: 4096
+  logChnOverPolicy: 1
   logLevelCtlHost: ""
   logLevelCtlPort: ""
