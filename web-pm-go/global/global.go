@@ -2,7 +2,10 @@ package global
 
 // global.go 全局定义
 
-import "github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/config"
+import (
+	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/config"
+	"gorm.io/gorm"
+)
 
 //goland:noinspection GoUnusedConst,GoSnakeCaseUsage
 const (
@@ -13,4 +16,6 @@ const (
 var (
 	// AppConfig 应用配置
 	AppConfig config.AppicationConfig
+	// MySQLClient MySQL客户端
+	MySQLClient *gorm.DB
 )
