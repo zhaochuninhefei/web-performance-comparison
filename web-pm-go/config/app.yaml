@@ -1,24 +1,31 @@
 app:
-  name: "web-pm-go"
-  version: "v0.0.1"
+  name: web-pm-go
+  version: 0.0.1
   port: "18080"
   configFile: ""
 datasource:
-  host: ""
-  port: ""
-  user: ""
-  password: ""
+  dbType: mysql
+  host: 172.17.13.44
+  port: "3306"
+  dbName: db_web_pm
+  user: zhaochun1
+  password: zhaochun@GITHUB
+dbConnPool:
+  maxOpenConns: 100
+  maxIdleConns: 10
+  ConnMaxLifetimeMin: 60
+  ConnMaxIdleTimeMin: 10
 redis:
-  host: ""
+  host: localhost
   port: ""
   user: ""
   password: ""
 log:
   logForbidStdout: false
-  logFileDir: "logs"
-  logFileNamePrefix: "web-pm-go"
+  logFileDir: logs
+  logFileNamePrefix: web-pm-go
   logFileMaxSizeM: 2
-  logLevelGlobal: "debug"
+  logLevelGlobal: debug
   logLineFormat: ""
   logMod: 2
   logChannelCap: 4096
