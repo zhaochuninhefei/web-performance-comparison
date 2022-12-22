@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhaochuninhefei.webpmjava.db.dao.AccountsMapper">
+  <resultMap id="BaseResultMap" type="com.zhaochuninhefei.webpmjava.db.po.Accounts">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="created_at" jdbcType="OTHER" property="createdAt" typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler" />
+    <result column="updated_at" jdbcType="OTHER" property="updatedAt" typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler" />
+    <result column="deleted_at" jdbcType="OTHER" property="deletedAt" typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler" />
+    <result column="act_name" jdbcType="VARCHAR" property="actName" />
+    <result column="act_pwd" jdbcType="VARCHAR" property="actPwd" />
+    <result column="act_nick_name" jdbcType="VARCHAR" property="actNickName" />
+    <result column="act_introduction" jdbcType="VARCHAR" property="actIntroduction" />
+    <result column="act_status" jdbcType="TINYINT" property="actStatus" />
+    <result column="act_register_date" jdbcType="OTHER" property="actRegisterDate" typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.createdAtCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler} and #{criterion.secondValue,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.updatedAtCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler} and #{criterion.secondValue,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.deletedAtCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler} and #{criterion.secondValue,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.actRegisterDateCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler} and #{criterion.secondValue,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.createdAtCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler} and #{criterion.secondValue,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.updatedAtCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler} and #{criterion.secondValue,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.deletedAtCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler} and #{criterion.secondValue,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.actRegisterDateCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler} and #{criterion.secondValue,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, created_at, updated_at, deleted_at, act_name, act_pwd, act_nick_name, act_introduction, 
+    act_status, act_register_date
+  </sql>
+  <select id="selectByExample" parameterType="com.zhaochuninhefei.webpmjava.db.po.AccountsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from accounts
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from accounts
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from accounts
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zhaochuninhefei.webpmjava.db.po.AccountsExample">
+    delete from accounts
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zhaochuninhefei.webpmjava.db.po.Accounts">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into accounts (created_at, 
+      updated_at, 
+      deleted_at, 
+      act_name, act_pwd, act_nick_name, 
+      act_introduction, act_status, act_register_date
+      )
+    values (now(), 
+      now(), 
+      #{deletedAt,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}, 
+      #{actName,jdbcType=VARCHAR}, #{actPwd,jdbcType=VARCHAR}, #{actNickName,jdbcType=VARCHAR}, 
+      #{actIntroduction,jdbcType=VARCHAR}, #{actStatus,jdbcType=TINYINT}, #{actRegisterDate,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhaochuninhefei.webpmjava.db.po.Accounts">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into accounts
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="deletedAt != null">
+        deleted_at,
+      </if>
+      <if test="actName != null">
+        act_name,
+      </if>
+      <if test="actPwd != null">
+        act_pwd,
+      </if>
+      <if test="actNickName != null">
+        act_nick_name,
+      </if>
+      <if test="actIntroduction != null">
+        act_introduction,
+      </if>
+      <if test="actStatus != null">
+        act_status,
+      </if>
+      <if test="actRegisterDate != null">
+        act_register_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler},
+      </if>
+      <if test="deletedAt != null">
+        #{deletedAt,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler},
+      </if>
+      <if test="actName != null">
+        #{actName,jdbcType=VARCHAR},
+      </if>
+      <if test="actPwd != null">
+        #{actPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="actNickName != null">
+        #{actNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="actIntroduction != null">
+        #{actIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="actStatus != null">
+        #{actStatus,jdbcType=TINYINT},
+      </if>
+      <if test="actRegisterDate != null">
+        #{actRegisterDate,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zhaochuninhefei.webpmjava.db.po.AccountsExample" resultType="java.lang.Long">
+    select count(*) from accounts
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update accounts
+    <set>
+      <if test="row.id != null">
+        id = #{row.id,jdbcType=BIGINT},
+      </if>
+      <if test="row.createdAt != null">
+        created_at = #{row.createdAt,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler},
+      </if>
+      <if test="row.updatedAt != null">
+        updated_at = #{row.updatedAt,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler},
+      </if>
+      <if test="row.deletedAt != null">
+        deleted_at = #{row.deletedAt,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler},
+      </if>
+      <if test="row.actName != null">
+        act_name = #{row.actName,jdbcType=VARCHAR},
+      </if>
+      <if test="row.actPwd != null">
+        act_pwd = #{row.actPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="row.actNickName != null">
+        act_nick_name = #{row.actNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="row.actIntroduction != null">
+        act_introduction = #{row.actIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="row.actStatus != null">
+        act_status = #{row.actStatus,jdbcType=TINYINT},
+      </if>
+      <if test="row.actRegisterDate != null">
+        act_register_date = #{row.actRegisterDate,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update accounts
+    set id = #{row.id,jdbcType=BIGINT},
+      updated_at = now(),
+      act_name = #{row.actName,jdbcType=VARCHAR},
+      act_pwd = #{row.actPwd,jdbcType=VARCHAR},
+      act_nick_name = #{row.actNickName,jdbcType=VARCHAR},
+      act_introduction = #{row.actIntroduction,jdbcType=VARCHAR},
+      act_status = #{row.actStatus,jdbcType=TINYINT},
+      act_register_date = #{row.actRegisterDate,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhaochuninhefei.webpmjava.db.po.Accounts">
+    update accounts
+    <set>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler},
+      </if>
+      <if test="deletedAt != null">
+        deleted_at = #{deletedAt,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler},
+      </if>
+      <if test="actName != null">
+        act_name = #{actName,jdbcType=VARCHAR},
+      </if>
+      <if test="actPwd != null">
+        act_pwd = #{actPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="actNickName != null">
+        act_nick_name = #{actNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="actIntroduction != null">
+        act_introduction = #{actIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="actStatus != null">
+        act_status = #{actStatus,jdbcType=TINYINT},
+      </if>
+      <if test="actRegisterDate != null">
+        act_register_date = #{actRegisterDate,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhaochuninhefei.webpmjava.db.po.Accounts">
+    update accounts
+    set created_at = #{createdAt,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler},
+      updated_at = now(),
+      act_name = #{actName,jdbcType=VARCHAR},
+      act_pwd = #{actPwd,jdbcType=VARCHAR},
+      act_nick_name = #{actNickName,jdbcType=VARCHAR},
+      act_introduction = #{actIntroduction,jdbcType=VARCHAR},
+      act_status = #{actStatus,jdbcType=TINYINT},
+      act_register_date = #{actRegisterDate,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
