@@ -1,3 +1,6 @@
+mybatis:
+  mapper-locations: "classpath:com/zhaochuninhefei/webpmjava/db/mapper/*.xml"
+
 server:
   port: "18081"
 

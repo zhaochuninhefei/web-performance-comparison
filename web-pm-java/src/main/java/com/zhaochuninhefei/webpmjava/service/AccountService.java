@@ -2,6 +2,7 @@ package com.zhaochuninhefei.webpmjava.service;
 
 import com.zhaochuninhefei.webpmjava.db.dao.AccountsMapper;
 import com.zhaochuninhefei.webpmjava.db.po.Accounts;
+import com.zhaochuninhefei.webpmjava.db.po.AccountsExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,8 @@ public class AccountService {
     private AccountsMapper accountsMapper;
 
     public List<Accounts> queryAllAccounts() {
-        return accountsMapper.selectByExample(null);
+        AccountsExample example = new AccountsExample();
+        return accountsMapper.selectByExample(example);
     }
 
     public Accounts queryActByID(Long id) {

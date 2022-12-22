@@ -3,6 +3,7 @@ package com.zhaochuninhefei.webpmjava.controller;
 import com.zhaochuninhefei.webpmjava.db.po.Accounts;
 import com.zhaochuninhefei.webpmjava.dto.ResponseMsg;
 import com.zhaochuninhefei.webpmjava.service.AccountService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
 @RequestMapping("/account")
 public class AccountController {
 
+    @Autowired
     private AccountService accountService;
 
     @GetMapping("/list")

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--suppress SqlNoDataSourceInspection -->
 <mapper namespace="com.zhaochuninhefei.webpmjava.db.dao.AccountsMapper">
   <resultMap id="BaseResultMap" type="com.zhaochuninhefei.webpmjava.db.po.Accounts">
     <id column="id" jdbcType="BIGINT" property="id" />
