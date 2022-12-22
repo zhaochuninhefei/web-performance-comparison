@@ -13,8 +13,8 @@ spring:
       auto-commit: true
       connection-test-query: "select 1"
       connection-timeout: 30000
-      idle-timeout: 180000
-      max-lifetime: 1800000
+      idle-timeout: 600000
+      max-lifetime: 3600000
       maximum-pool-size: 100
       minimum-idle: 10
       pool-name: "HikariCP-web-pm-java"
