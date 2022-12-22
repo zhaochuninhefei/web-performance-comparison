@@ -9,7 +9,7 @@ import (
 )
 
 func TestConnectMysqlByDefault(t *testing.T) {
-	mysqlClient, err := ConnectMysqlByDefault("172.17.13.44", "3306", "root", "overseas", "db_web_pm")
+	mysqlClient, err := ConnectMysqlByDefault("172.17.13.44", "3306", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
 	if err != nil {
 		zclog.Errorln(err)
 		return
@@ -28,7 +28,7 @@ func TestConnectMysqlByDefault(t *testing.T) {
 }
 
 func TestCreatTable(t *testing.T) {
-	mysqlClient, err := ConnectMysqlByDefault("172.17.13.44", "3306", "root", "overseas", "db_web_pm")
+	mysqlClient, err := ConnectMysqlByDefault("172.17.13.44", "3306", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
 	if err != nil {
 		zclog.Errorln(err)
 		return
@@ -42,7 +42,7 @@ func TestCreatTable(t *testing.T) {
 }
 
 func TestInsert(t *testing.T) {
-	mysqlClient, err := ConnectMysqlByDefault("172.17.13.44", "3306", "root", "overseas", "db_web_pm")
+	mysqlClient, err := ConnectMysqlByDefault("172.17.13.44", "3306", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
 	if err != nil {
 		zclog.Errorln(err)
 		return
@@ -62,7 +62,9 @@ func TestInsert(t *testing.T) {
 	zclog.Infof("Insert Result: %s", result)
 	zclog.Infof("Insert ID: %d", act.ID)
 	zclog.Infof("Insert 件数: %d", result.RowsAffected)
-	zclog.Infof("Insert 错误: %d", result.Error)
+	if result.Error != nil {
+		zclog.Infof("Insert 错误: %s", result.Error.Error())
+	}
 
 	var acts []model.Account
 	result = mysqlClient.Select("*").Find(&acts)
