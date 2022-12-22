@@ -1,33 +1,46 @@
 web-pm-go
 =====
 
-`web-pm-go`是一个使用gin开发的web项目，用于web框架性能比较测试。
+`web-pm-go`是一个使用`gin+gorm`开发的web项目，用于web框架性能比较测试。
 
 # 项目结构
 `web-pm-go`的项目结构目前如下所示:
 
 ```
 web-pm-go
-├── build_docker.sh // docker编译脚本
-├── config // 应用配置包
-├── Dockerfile // docker编译文件
-├── generator // 代码生成包
-├── global // 全局配置包
-├── go.mod // 应用依赖配置
-├── handler // web处理器包
-├── initialize // 初始化处理包
-├── logs // 日志文件目录
-├── main.go // 应用启动入口
-├── readme.md
-├── route // web路由器包
-├── start.sh // 应用启动脚本
-└── utils // 通用处理包
+├── config        // 应用配置包
+├── db            // 数据库连接与数据模型
+├── generator     // 代码生成包
+├── global        // 全局配置包
+├── handler       // web处理器包
+├── initialize    // 初始化处理包
+├── route         // web路由器包
+├── utils         // 通用处理包
+└── main.go       // 应用启动入口
 ```
+
+其中项目配置文件是`config/app.yaml`，目前项目的端口配置为`18080`。
+
+# API一览
+目前提供以下HttpAPI:
+- GET    /asset/list               --> /handler.QueryAllAssets
+- GET    /asset/query              --> /handler.QueryAssetByID
+- POST   /asset/modify             --> /handler.ModifyAsset
+- GET    /account/list             --> /handler.QueryAllAccounts
+- GET    /account/query            --> /handler.QueryAccountByID
+- POST   /account/add              --> /handler.AddNewAccount
+
+其中，`/asset/*`是单纯的HttpAPI，没有任何读写数据库或其他磁盘IO操作，`/account/*`是单表读写操作的API。
 
 # 本地运行
 本地安装好go环境后，可直接本地运行:
 ```shell
 go run main.go
+```
+
+服务启动后，可访问httpAPI，例如:
+```shell
+curl http://localhost:18080/asset/list
 ```
 
 # 编译
