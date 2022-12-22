@@ -1,9 +1,11 @@
 package mysql
 
 import (
+	"database/sql"
 	"gitee.com/zhaochuninhefei/zcgolog/zclog"
 	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/db/model"
 	"testing"
+	"time"
 )
 
 func TestConnectMysqlByDefault(t *testing.T) {
@@ -37,4 +39,35 @@ func TestCreatTable(t *testing.T) {
 		return
 	}
 	zclog.Info("TestCreatTable over.")
+}
+
+func TestInsert(t *testing.T) {
+	mysqlClient, err := ConnectMysqlByDefault("172.17.13.44", "3306", "root", "overseas", "db_web_pm")
+	if err != nil {
+		zclog.Errorln(err)
+		return
+	}
+	act := &model.Account{
+		ActName:         "libai",
+		ActPwd:          "libai@DATANG",
+		ActNickName:     "诗仙太白",
+		ActIntroduction: "李白，唐朝诗人，字太白，号青莲居士，世称诗仙。",
+		ActStatus:       0,
+		ActRegisterDate: sql.NullTime{
+			Time:  time.Now(),
+			Valid: true,
+		},
+	}
+	result := mysqlClient.Create(act)
+	zclog.Infof("Insert Result: %s", result)
+	zclog.Infof("Insert ID: %d", act.ID)
+	zclog.Infof("Insert 件数: %d", result.RowsAffected)
+	zclog.Infof("Insert 错误: %d", result.Error)
+
+	var acts []model.Account
+	result = mysqlClient.Select("*").Find(&acts)
+	for _, act := range acts {
+		//zclog.Infof("id:%d, act_name:%s, act_nick_name:%s", act.ID, act.ActName, act.ActNickName)
+		zclog.Infof("account: %s", act.String())
+	}
 }

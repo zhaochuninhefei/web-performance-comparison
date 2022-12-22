@@ -2,6 +2,7 @@ package model
 
 import (
 	"database/sql"
+	"fmt"
 	"gorm.io/gorm"
 )
 
@@ -13,4 +14,10 @@ type Account struct {
 	ActIntroduction string       `gorm:"type:varchar(255);comment:帐户介绍"`
 	ActStatus       uint8        `gorm:"comment:帐户状态"`
 	ActRegisterDate sql.NullTime `gorm:"comment:帐户注册时间"`
+}
+
+func (act *Account) String() string {
+	return fmt.Sprintf(
+		"Account{ID:%d, ActName:%s, ActPwd:%s, ActNickName:%s, ActIntroduction:%s, ActStatus:%d, ActRegisterDate:%s}",
+		act.ID, act.ActName, act.ActPwd, act.ActNickName, act.ActIntroduction, act.ActStatus, act.ActRegisterDate.Time)
 }
