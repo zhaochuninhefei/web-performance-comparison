@@ -1,7 +1,6 @@
 package mysql
 
 import (
-	"database/sql"
 	"gitee.com/zhaochuninhefei/zcgolog/zclog"
 	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/db/model"
 	"testing"
@@ -53,10 +52,7 @@ func TestInsert(t *testing.T) {
 		ActNickName:     "诗仙太白",
 		ActIntroduction: "李白，唐朝诗人，字太白，号青莲居士，世称诗仙。",
 		ActStatus:       0,
-		ActRegisterDate: sql.NullTime{
-			Time:  time.Now(),
-			Valid: true,
-		},
+		ActRegisterDate: time.Now(),
 	}
 	result := mysqlClient.Create(act)
 	zclog.Infof("Insert Result: %s", result)
