@@ -4,9 +4,6 @@ services:
   web-pm-go:
     container_name: web-pm-go
     image: 172.17.4.86:5000/web-pm-go:0.0.1
-    extra_hosts:
-      - "redis-brood-base:172.17.4.118"
-      - "mysql-brood-base:172.17.13.13"
     restart: on-failure
     ports:
       - "18080:18080"
@@ -25,11 +22,7 @@ services:
   web-pm-java:
     container_name: web-pm-java
     image: 172.17.4.86:5000/web-pm-java:0.0.1-SNAPSHOT
-    extra_hosts:
-      - "redis-brood-base:172.17.4.118"
-      - "mysql-brood-base:172.17.13.13"
-    environment:
-      brood_redis_mode: "standalone"
+
     restart: on-failure
     ports:
       - "18081:18081"
@@ -42,4 +35,3 @@ services:
           memory: 2048M
         reservations:
           memory: 512M
-
