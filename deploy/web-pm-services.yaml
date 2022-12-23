@@ -22,7 +22,6 @@ services:
   web-pm-java:
     container_name: web-pm-java
     image: 172.17.4.86:5000/web-pm-java:0.0.1-SNAPSHOT
-
     restart: on-failure
     ports:
       - "18081:18081"
