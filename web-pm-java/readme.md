@@ -1,7 +1,7 @@
 web-pm-java
 =====
 
-`web-pm-java`是一个使用`springboot+mybatis`开发的web项目，用于web框架性能比较测试。
+`web-pm-java`是一个使用`springboot + mybatis`开发的web项目，用于web框架性能比较测试。
 
 # 项目结构
 `web-pm-java`的项目结构目前如下所示:
@@ -73,4 +73,3 @@ docker run -it --name web-pm-java \
 
 # over
 ```
-
