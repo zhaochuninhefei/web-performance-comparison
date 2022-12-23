@@ -87,7 +87,7 @@
         </HTTPSamplerProxy>
         <hashTree>
           <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="JSON Assertion" enabled="true">
-            <stringProp name="JSON_PATH">$.ID</stringProp>
+            <stringProp name="JSON_PATH">$.id</stringProp>
             <stringProp name="EXPECTED_VALUE">101</stringProp>
             <boolProp name="JSONVALIDATION">true</boolProp>
             <boolProp name="EXPECT_NULL">false</boolProp>
