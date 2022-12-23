@@ -28,5 +28,10 @@ web-performance-comparison
 ```
 
 # 性能测试报告
+在相同的硬件与数据库环境下，同样的高并发压力下，`go+gin+gorm`的性能表现明显好于`java+springboot+mybatis`的性能表现。
+> 也许可以这样描述：如果将并发压力简化为一个正整数`M`，硬件资源简化为另一个正整数`N`，那么`M/N`的值越大，`go+gin+gorm`相比`java+springboot+mybatis`的优势就越明显。
+
+具体的性能测试报告参考:
+
 <a href="./性能测试报告.md" target="_blank">性能测试报告</a>
 
