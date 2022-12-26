@@ -21,8 +21,8 @@ func TestGernateAppYaml(t *testing.T) {
 		},
 		Datasource: config.Datasource{
 			DBType:   "mysql",
-			Host:     "172.17.13.44",
-			Port:     "3306",
+			Host:     "172.17.13.13",
+			Port:     "3307",
 			DBName:   "db_web_pm",
 			User:     "zhaochun1",
 			Password: "zhaochun@GITHUB",

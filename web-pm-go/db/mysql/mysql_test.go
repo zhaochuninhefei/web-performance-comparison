@@ -8,7 +8,7 @@ import (
 )
 
 func TestConnectMysqlByDefault(t *testing.T) {
-	mysqlClient, err := ConnectMysqlByDefault("172.17.13.44", "3306", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
+	mysqlClient, err := ConnectMysqlByDefault("172.17.13.13", "3307", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
 	if err != nil {
 		zclog.Errorln(err)
 		return
@@ -27,7 +27,7 @@ func TestConnectMysqlByDefault(t *testing.T) {
 }
 
 func TestCreatTable(t *testing.T) {
-	mysqlClient, err := ConnectMysqlByDefault("172.17.13.44", "3306", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
+	mysqlClient, err := ConnectMysqlByDefault("172.17.13.13", "3307", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
 	if err != nil {
 		zclog.Errorln(err)
 		return
@@ -41,7 +41,7 @@ func TestCreatTable(t *testing.T) {
 }
 
 func TestInsert(t *testing.T) {
-	mysqlClient, err := ConnectMysqlByDefault("172.17.13.44", "3306", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
+	mysqlClient, err := ConnectMysqlByDefault("172.17.13.13", "3307", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
 	if err != nil {
 		zclog.Errorln(err)
 		return
