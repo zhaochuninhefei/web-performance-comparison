@@ -1,24 +1,24 @@
 mybatis:
-  mapper-locations: "classpath:com/zhaochuninhefei/webpmjava/db/mapper/*.xml"
+  mapper-locations: "${mybatis_mapper_locations:classpath:com/zhaochuninhefei/webpmjava/db/mapper/*.xml}"
 
 server:
-  port: "18081"
+  port: "${server_port:18081}"
 
 spring:
   application:
-    name: "web-pm-java"
+    name: "${spring_application_name:web-pm-java}"
   datasource:
-    driver-class-name: "com.mysql.cj.jdbc.Driver"
+    driver-class-name: "${spring_datasource_driver_class_name:com.mysql.cj.jdbc.Driver}"
     hikari:
-      auto-commit: true
-      connection-test-query: "select 1"
-      connection-timeout: 30000
-      idle-timeout: 600000
-      max-lifetime: 3600000
-      maximum-pool-size: 100
-      minimum-idle: 10
-      pool-name: "HikariCP-web-pm-java"
-    url: "jdbc:mysql://172.17.13.44:3306/db_web_pm?useUnicode=true&characterEncoding=UTF-8&useSSL=false&rewriteBatchedStatements=true"
-    type: "com.zaxxer.hikari.HikariDataSource"
-    username: "zhaochun1"
-    password: "zhaochun@GITHUB"
+      auto-commit: "${spring_datasource_hikari_auto_commit:true}"
+      connection-test-query: "${spring_datasource_hikari_connection_test_query:SELECT 1}"
+      connection-timeout: "${spring_datasource_hikari_connection_timeout:30000}"
+      idle-timeout: "${spring_datasource_hikari_idle_timeout:180000}"
+      max-lifetime: "${spring_datasource_hikari_max_lifetime:1800000}"
+      maximum-pool-size: "${spring_datasource_hikari_maximum_pool_size:100}"
+      minimum-idle: "${spring_datasource_hikari_minimum_idle:10}"
+      pool-name: "${spring_datasource_hikari_pool_name:HikariCP-web-pm-java}"
+    url: "${spring_datasource_url:jdbc:mysql://172.17.13.44:3306/db_web_pm?useUnicode=true&characterEncoding=UTF-8&useSSL=false&rewriteBatchedStatements=true}"
+    type: "${spring_datasource_type:com.zaxxer.hikari.HikariDataSource}"
+    username: "${spring_datasource_username:zhaochun1}"
+    password: "${spring_datasource_password:zhaochun@GITHUB}"
