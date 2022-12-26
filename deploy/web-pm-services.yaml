@@ -44,3 +44,24 @@ services:
         reservations:
           memory: 512M
 
+  web-pm-quarkus:
+    container_name: web-pm-quarkus
+    image: 172.17.4.86:5000/yjl/web-pm-quarkus:0.0.1
+    environment:
+      TZ: Asia/Shanghai
+    restart: on-failure
+    ports:
+      - "18082:18082"
+    command:
+      - "./application"
+      - "-Dsmallrye.config.locations=./config/external.yml"
+    volumes: 
+      - "/data/volumes/github.com/zhaochuninhefei/web-performance-comparison/web-pm-quarkus/logs:/work/log"
+    deploy:
+      resources:
+        limits:
+          cpus: '4.00'
+          memory: 2048M
+        reservations:
+          memory: 512M
+
