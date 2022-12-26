@@ -48,7 +48,7 @@
     <!--然后定义loggers，只有定义了logger并引入的appender，appender才会生效-->
     <loggers>
 
-        <Logger name="com.zhaochuninhefei" level="debug" additivity="false">
+        <Logger name="com.zhaochuninhefei" level="info" additivity="false">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="RollingFileDebug"/>
         </Logger>
