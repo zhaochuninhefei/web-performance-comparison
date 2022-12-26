@@ -1,9 +1,9 @@
 version: '3'
 services:
   pa-api:
-    image: yjl/quarkus-test:1.1
+    image: yjl/web-pm-quarkus:0.0.1
     ports:
-      - "18082:8082"
+      - "18082:18082"
     environment:
       TZ: Asia/Shanghai
     command:

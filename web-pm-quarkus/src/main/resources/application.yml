@@ -6,8 +6,8 @@ quarkus:
     container-build: true
   container-image:
     group: yjl
-    name: quarkus-test
-    tag: 1.1
+    name: web-pm-quarkus
+    tag: 0.0.1
   datasource:
     jdbc: false
     db-kind: mysql
