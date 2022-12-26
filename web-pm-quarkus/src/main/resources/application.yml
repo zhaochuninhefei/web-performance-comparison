@@ -7,7 +7,7 @@ quarkus:
   container-image:
     group: yjl
     name: web-pm-quarkus
-    tag: 0.0.1
+    tag: 0.0.3
   datasource:
     jdbc: false
     db-kind: mysql
