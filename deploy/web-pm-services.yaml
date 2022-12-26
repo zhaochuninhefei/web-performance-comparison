@@ -3,13 +3,17 @@ version: '3'
 services:
   web-pm-go:
     container_name: web-pm-go
-    image: 172.17.4.86:5000/web-pm-go:0.0.1
+    image: 172.17.4.86:5000/web-pm-go:0.0.2
+    environment:
+      DB_CONN_POOL_MAX_OPEN_CONNS: 100
+      DB_CONN_POOL_MAX_IDLE_CONNS: 10
+      DB_CONN_POOL_CONN_MAX_LIFETIME_MIN: 30
+      DB_CONN_POOL_CONN_MAX_IDLE_TIME_MIN: 3
     restart: on-failure
     ports:
       - "18080:18080"
       - "9300:9300"
     volumes:
-      - "/data/volumes/github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/config:/src/github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/config"
       - "/data/volumes/github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/logs:/src/github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/logs"
     deploy:
       resources:
@@ -21,12 +25,17 @@ services:
 
   web-pm-java:
     container_name: web-pm-java
-    image: 172.17.4.86:5000/web-pm-java:0.0.1-SNAPSHOT
+    image: 172.17.4.86:5000/web-pm-java:0.0.2-SNAPSHOT
+    environment:
+      spring_datasource_hikari_idle_timeout: "180000"
+      spring_datasource_hikari_max_lifetime: "1800000"
+      spring_datasource_hikari_maximum_pool_size: "100"
+      spring_datasource_hikari_minimum_idle: "10"
     restart: on-failure
     ports:
       - "18081:18081"
     volumes: 
-      - "/data/volumes/web-pm-java:/home/web-pm-java"
+      - "/data/volumes/github.com/zhaochuninhefei/web-performance-comparison/web-pm-java:/home/web-pm-java"
     deploy:
       resources:
         limits:
@@ -34,3 +43,4 @@ services:
           memory: 2048M
         reservations:
           memory: 512M
+

@@ -1,0 +1,14 @@
+version: '3'
+services:
+  pa-api:
+    image: yjl/quarkus-test:1.1
+    ports:
+      - "18082:8082"
+    environment:
+      TZ: Asia/Shanghai
+    command:
+      - "./application"
+      - "-Dsmallrye.config.locations=./config/external.yml"
+    volumes:
+      - "./config/external.yml:/work/config/external.yml"
+      - "./log/:/work/log/"

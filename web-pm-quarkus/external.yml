@@ -1,0 +1,32 @@
+quarkus:
+  http:
+    port: 8083
+  datasource:
+    jdbc: false
+    db-kind: mysql
+    username: zhaochun1
+    password: zhaochun@GITHUB
+    reactive:
+      idle-timeout: PT5M
+      url: vertx-reactive:mysql://172.17.13.44:3306/db_web_pm
+      max-size: 20
+      mysql:
+        charset: utf8
+  log:
+    level: INFO
+    file:
+      enable: true
+      path: ./log/test.log
+      rotation:
+        max-file-size: 100M
+        max-backup-index: 100
+    category:
+      "org.hibernate.hql.internal.ast.QueryTranslatorImpl":
+        level: INFO
+      "cn.yjl":
+        level: DEBUG
+  hibernate-orm:
+    dialect: org.hibernate.dialect.MySQL8Dialect
+    "dialect.storage-engine": InnoDB
+    packages:
+      - cn.yjl.operation.entity
