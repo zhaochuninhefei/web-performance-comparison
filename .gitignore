@@ -6,3 +6,6 @@ web-pm-java/.idea/
 web-pm-java/target/
 web-pm-java/src/main/resources/mybatis-generator/
 web-pm-java/mybatis_generate.sh
+web-pm-quarkus/log/
+web-pm-quarkus/.idea/
+web-pm-quarkus/target/
