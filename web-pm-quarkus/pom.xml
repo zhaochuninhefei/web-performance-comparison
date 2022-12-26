@@ -9,6 +9,7 @@
     <compiler-plugin.version>3.10.1</compiler-plugin.version>
     <kotlin.version>1.7.21</kotlin.version>
     <maven.compiler.release>17</maven.compiler.release>
+    <maven.home>/opt/apache-maven-3.6.3</maven.home>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>

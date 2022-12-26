@@ -1,6 +1,6 @@
 quarkus:
   http:
-    port: 8082
+    port: 18082
   native:
     native-image-xmx: 10000M
     container-build: true
@@ -16,7 +16,7 @@ quarkus:
     reactive:
       idle-timeout: PT5M
       url: vertx-reactive:mysql://172.17.13.44:3306/db_web_pm
-      max-size: 20
+      max-size: 100
       mysql:
         charset: utf8
   log:
