@@ -7,6 +7,7 @@ import (
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
 	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/global"
+	"strings"
 )
 
 // InitAppConfig 初始化应用配置
@@ -22,6 +23,8 @@ func InitAppConfig(configFilePath string) {
 	fmt.Printf("configFile: %s\n", configFile)
 	// 读取配置文件
 	v := viper.New()
+	v.AutomaticEnv()
+	v.SetEnvKeyReplacer(strings.NewReplacer(".", "_", "-", "_"))
 	v.SetConfigFile(configFile)
 	if err := v.ReadInConfig(); err != nil {
 		panic(fmt.Errorf("配置解析失败:%s\n", err))

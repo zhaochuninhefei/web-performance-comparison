@@ -30,6 +30,8 @@ func main() {
 	}
 	zclog.InitLogger(zcgologConfig)
 
+	zclog.Infof("app_name: %s", global.AppConfig.App.Name)
+
 	yamlAppConfig, _ := yaml.Marshal(global.AppConfig)
 	zclog.Debugf("当前配置: \n%s", string(yamlAppConfig))
 

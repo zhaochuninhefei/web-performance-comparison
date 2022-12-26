@@ -8,6 +8,7 @@ import (
 	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/global"
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
+	"os"
 	"testing"
 )
 
@@ -52,4 +53,20 @@ func TestViper(t *testing.T) {
 
 	tmpConfigYaml, _ := yaml.Marshal(tmpConfig)
 	fmt.Printf("应用配置: \n%s\n", tmpConfigYaml)
+}
+
+func TestEnvAndYaml(t *testing.T) {
+	err := os.Setenv("APP_NAME", "test")
+	if err != nil {
+		return
+	}
+	err = os.Setenv("LOG_LOG_CHANNEL_CAP", "9999")
+	if err != nil {
+		return
+	}
+
+	InitAppConfig("testdata/app.yaml")
+
+	yamlAppConfig, _ := yaml.Marshal(global.AppConfig)
+	fmt.Printf("应用配置: \n%s\n", yamlAppConfig)
 }
