@@ -18,7 +18,7 @@ spring:
       maximum-pool-size: "${spring_datasource_hikari_maximum_pool_size:100}"
       minimum-idle: "${spring_datasource_hikari_minimum_idle:10}"
       pool-name: "${spring_datasource_hikari_pool_name:HikariCP-web-pm-java}"
-    url: "${spring_datasource_url:jdbc:mysql://172.17.13.44:3306/db_web_pm?useUnicode=true&characterEncoding=UTF-8&useSSL=false&rewriteBatchedStatements=true}"
+    url: "${spring_datasource_url:jdbc:mysql://172.17.13.13:3307/db_web_pm?useUnicode=true&characterEncoding=UTF-8&useSSL=false&rewriteBatchedStatements=true}"
     type: "${spring_datasource_type:com.zaxxer.hikari.HikariDataSource}"
     username: "${spring_datasource_username:zhaochun1}"
     password: "${spring_datasource_password:zhaochun@GITHUB}"
