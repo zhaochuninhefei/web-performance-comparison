@@ -1,7 +1,11 @@
 package config
 
 // app.go 应用配置结构体定义。
-// 注意，本项目采用`github.com/spf13/viper`读取yaml配置文件，字段名不支持下划线风格。
+// 注意，本项目采用`github.com/spf13/viper`读取yaml配置文件，可使用环境变量覆盖配置文件中的对应值。
+// 环境变量名为yaml各层名称转大写后用"_"连接。
+// 例如，"LOG_LOG_CHANNEL_CAP"表示如下的yaml配置:
+// log:
+//   log_channel_cap: "4096"
 
 // AppicationConfig 应用配置
 type AppicationConfig struct {
