@@ -5,8 +5,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>cn.yjl</groupId>
-  <artifactId>vertx-test</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <artifactId>web-pm-vertx</artifactId>
+  <version>0.0.1</version>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
