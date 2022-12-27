@@ -1,0 +1,16 @@
+FROM alpine:3.14
+
+WORKDIR /src/github.com/zhaochuninhefei/web-performance-comparison/web-pm-vertx-native
+
+COPY ["conf/application.json", "target/web-pm-vertx", "/src/github.com/zhaochuninhefei/web-performance-comparison/web-pm-vertx-native/"]
+
+ENV TIME_ZONE=Asia/Shanghai LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
+
+RUN sed -i "s?dl-cdn.alpinelinux.org?mirrors.aliyun.com?g" /etc/apk/repositories \
+    && apk add --no-cache tzdata bash \
+	&& echo "${TIME_ZONE}" > /etc/timezone \
+	&& ln -sf /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime
+
+EXPOSE 18083
+
+ENTRYPOINT ./web-pm-vertx run cn.yjl.vertx.MainVerticle -conf ./application.json
