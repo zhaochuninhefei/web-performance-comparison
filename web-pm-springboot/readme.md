@@ -63,7 +63,7 @@ img_web_pm_springboot=web-pm-springboot:0.0.1
 # 使用仓库镜像
 img_web_pm_springboot=172.17.4.86:5000/web-pm-springboot:0.0.1
 
-# 启动web-pm-java
+# 启动web-pm-springboot
 docker run -it --name web-pm-springboot \
   -p 18081:18081 \
   ${img_web_pm_springboot}
