@@ -3,11 +3,12 @@
     "port": 18083
   },
   "mysql": {
-    "port": 3306,
+    "port": 3307,
     "host": "172.17.13.13",
     "db": "db_web_pm",
     "user": "zhaochun1",
     "password": "zhaochun@GITHUB",
-    "poolSize": 100
+    "poolSize": 100,
+    "idleTimeout": 3
   }
 }

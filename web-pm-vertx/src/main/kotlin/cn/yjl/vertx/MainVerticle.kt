@@ -6,6 +6,7 @@ import io.vertx.kotlin.coroutines.CoroutineVerticle
 import io.vertx.mysqlclient.MySQLConnectOptions
 import io.vertx.mysqlclient.MySQLPool
 import io.vertx.sqlclient.PoolOptions
+import java.util.concurrent.TimeUnit
 
 class MainVerticle : CoroutineVerticle() {
 
@@ -23,6 +24,8 @@ class MainVerticle : CoroutineVerticle() {
         // 连接池
         val poolOptions = PoolOptions()
             .setMaxSize(mysqlConf.getInteger("poolSize", 5))
+            .setIdleTimeout(mysqlConf.getInteger("idleTimeout", 3))
+            .setIdleTimeoutUnit(TimeUnit.MINUTES)
 
         // 创建mysql连接池
         val mysqlClient = MySQLPool.pool(vertx, connectOptions, poolOptions)
