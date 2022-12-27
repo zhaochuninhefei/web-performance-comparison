@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jmeterTestPlan version="1.2" properties="5.0" jmeter="5.1.1 r1855137">
   <hashTree>
-    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="web-pm-java-account_query" enabled="true">
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="web-pm-vertx-native-account_add" enabled="true">
       <stringProp name="TestPlan.comments"></stringProp>
       <boolProp name="TestPlan.functional_mode">false</boolProp>
       <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
@@ -41,9 +41,9 @@
               <stringProp name="46730161">10000</stringProp>
               <stringProp name="48625">100</stringProp>
             </collectionProp>
-            <collectionProp name="-1076429705">
+            <collectionProp name="157019025">
               <stringProp name="46730161">10000</stringProp>
-              <stringProp name="1507423">1000</stringProp>
+              <stringProp name="52469">500</stringProp>
               <stringProp name="1598">20</stringProp>
             </collectionProp>
           </collectionProp>
@@ -59,23 +59,28 @@
         </HeaderManager>
         <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request account_add" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
-              <elementProp name="id" elementType="HTTPArgument">
+              <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">101</stringProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;actName&quot;: &quot;libai&quot;,&#xd;
+    &quot;actPwd&quot;: &quot;libai@DATANG&quot;,&#xd;
+    &quot;actNickName&quot;: &quot;诗仙太白&quot;,&#xd;
+    &quot;actIntroduction&quot;: &quot;李白，唐朝诗人，字太白，号青莲居士，世称诗仙。&quot;,&#xd;
+    &quot;actStatus&quot;: 0&#xd;
+}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">id</stringProp>
               </elementProp>
             </collectionProp>
           </elementProp>
           <stringProp name="HTTPSampler.domain">172.17.13.44</stringProp>
-          <stringProp name="HTTPSampler.port">18081</stringProp>
+          <stringProp name="HTTPSampler.port">18084</stringProp>
           <stringProp name="HTTPSampler.protocol">http</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-          <stringProp name="HTTPSampler.path">/account/query</stringProp>
-          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <stringProp name="HTTPSampler.path">/account/add</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -87,8 +92,8 @@
         </HTTPSamplerProxy>
         <hashTree>
           <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="JSON Assertion" enabled="true">
-            <stringProp name="JSON_PATH">$.id</stringProp>
-            <stringProp name="EXPECTED_VALUE">101</stringProp>
+            <stringProp name="JSON_PATH">$.resCd</stringProp>
+            <stringProp name="EXPECTED_VALUE">1</stringProp>
             <boolProp name="JSONVALIDATION">true</boolProp>
             <boolProp name="EXPECT_NULL">false</boolProp>
             <boolProp name="INVERT">false</boolProp>

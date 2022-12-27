@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jmeterTestPlan version="1.2" properties="5.0" jmeter="5.1.1 r1855137">
   <hashTree>
-    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="web-pm-java-asset_query" enabled="true">
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="web-pm-vertx-native-asset_query" enabled="true">
       <stringProp name="TestPlan.comments"></stringProp>
       <boolProp name="TestPlan.functional_mode">false</boolProp>
       <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
@@ -71,7 +71,7 @@
             </collectionProp>
           </elementProp>
           <stringProp name="HTTPSampler.domain">172.17.13.44</stringProp>
-          <stringProp name="HTTPSampler.port">18081</stringProp>
+          <stringProp name="HTTPSampler.port">18084</stringProp>
           <stringProp name="HTTPSampler.protocol">http</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
           <stringProp name="HTTPSampler.path">/asset/query</stringProp>
