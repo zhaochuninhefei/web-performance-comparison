@@ -2,10 +2,10 @@ package main
 
 import (
 	"gitee.com/zhaochuninhefei/zcgolog/zclog"
-	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/db/mysql"
-	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/global"
-	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/initialize"
-	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/route"
+	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-gin/db/mysql"
+	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-gin/global"
+	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-gin/initialize"
+	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-gin/route"
 	"gopkg.in/yaml.v2"
 )
 

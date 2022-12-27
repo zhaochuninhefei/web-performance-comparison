@@ -6,7 +6,7 @@ import (
 	"gitee.com/zhaochuninhefei/zcgolog/zclog"
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
-	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/global"
+	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-gin/global"
 	"strings"
 )
 

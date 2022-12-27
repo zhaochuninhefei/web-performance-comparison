@@ -2,19 +2,19 @@ package generator
 
 import (
 	"fmt"
-	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/config"
+	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-gin/config"
 	"gopkg.in/yaml.v2"
 	"io/fs"
 	"io/ioutil"
 	"testing"
 )
 
-// TestGernateAppYaml 用于生成`web-pm-go`的应用配置文件
+// TestGernateAppYaml 用于生成`web-pm-gin`的应用配置文件
 func TestGernateAppYaml(t *testing.T) {
 	fmt.Println("TestGernateAppYaml")
 	appConfigTemp := &config.AppicationConfig{
 		App: config.AppInfo{
-			Name:       "web-pm-go",
+			Name:       "web-pm-gin",
 			Version:    "0.0.1",
 			Port:       "18080",
 			ConfigFile: "",
@@ -42,7 +42,7 @@ func TestGernateAppYaml(t *testing.T) {
 		Log: config.Log{
 			LogForbidStdout:   false,
 			LogFileDir:        "logs",
-			LogFileNamePrefix: "web-pm-go",
+			LogFileNamePrefix: "web-pm-gin",
 			LogFileMaxSizeM:   2,
 			LogLevelGlobal:    "debug",
 			LogLineFormat:     "",

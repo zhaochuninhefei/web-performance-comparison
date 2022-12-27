@@ -2,7 +2,7 @@ package mysql
 
 import (
 	"gitee.com/zhaochuninhefei/zcgolog/zclog"
-	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/db/model"
+	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-gin/db/model"
 	"testing"
 	"time"
 )

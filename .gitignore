@@ -1,7 +1,7 @@
 web-pm-gin/.idea/
 web-pm-gin/go.sum
 web-pm-gin/logs
-web-pm-gin/web-pm-go
+web-pm-gin/web-pm-gin
 web-pm-springboot/.idea/
 web-pm-springboot/target/
 web-pm-springboot/src/main/resources/mybatis-generator/

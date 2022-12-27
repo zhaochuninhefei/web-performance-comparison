@@ -3,7 +3,7 @@ package mysql
 import (
 	"fmt"
 	"gitee.com/zhaochuninhefei/zcgolog/zclog"
-	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/global"
+	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-gin/global"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"time"

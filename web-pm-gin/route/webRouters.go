@@ -4,7 +4,7 @@ package route
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/handler"
+	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-gin/handler"
 )
 
 // RegisterWebRoute 注册web路由

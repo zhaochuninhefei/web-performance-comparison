@@ -3,7 +3,7 @@ package global
 // global.go 全局定义
 
 import (
-	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/config"
+	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-gin/config"
 	"gorm.io/gorm"
 )
 

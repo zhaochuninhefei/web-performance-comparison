@@ -10,4 +10,4 @@ then
   cp ./app.yaml config/
 fi
 
-./web-pm-go --app_config=/src/github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/config/app.yaml
+./web-pm-gin --app_config=/src/github.com/zhaochuninhefei/web-performance-comparison/web-pm-gin/config/app.yaml

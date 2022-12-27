@@ -1,4 +1,4 @@
-module github.com/zhaochuninhefei/web-performance-comparison/web-pm-go
+module github.com/zhaochuninhefei/web-performance-comparison/web-pm-gin
 
 go 1.17
 

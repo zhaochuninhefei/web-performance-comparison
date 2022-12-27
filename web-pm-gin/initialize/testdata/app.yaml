@@ -1,5 +1,5 @@
 app:
-  name: web-pm-go
+  name: web-pm-gin
   version: 0.0.1
   port: "18080"
   config_file: ""
@@ -23,7 +23,7 @@ redis:
 log:
   log_forbid_stdout: false
   log_file_dir: logs
-  log_file_name_prefix: web-pm-go
+  log_file_name_prefix: web-pm-gin
   log_file_max_size_m: 2
   log_level_global: debug
   log_line_format: ""

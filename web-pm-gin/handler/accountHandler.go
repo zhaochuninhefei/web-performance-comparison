@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"gitee.com/zhaochuninhefei/zcgolog/zclog"
 	"github.com/gin-gonic/gin"
-	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/db/model"
-	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-go/global"
+	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-gin/db/model"
+	"github.com/zhaochuninhefei/web-performance-comparison/web-pm-gin/global"
 	"net/http"
 	"time"
 )

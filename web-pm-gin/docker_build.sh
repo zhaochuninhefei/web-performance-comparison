@@ -2,7 +2,7 @@
 
 set -e
 
-DEFAULT_APP_NAME=web-pm-go
+DEFAULT_APP_NAME=web-pm-gin
 DEFAULT_APP_VERSION=0.0.1
 
 echo "您现在位于: "
