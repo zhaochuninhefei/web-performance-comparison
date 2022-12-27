@@ -10,3 +10,4 @@ web-pm-java/mybatis_generate.sh
 web-pm-quarkus/log/
 web-pm-quarkus/.idea/
 web-pm-quarkus/target/
+web-pm-vertx/.idea/
