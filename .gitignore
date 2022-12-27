@@ -11,3 +11,4 @@ web-pm-quarkus/log/
 web-pm-quarkus/.idea/
 web-pm-quarkus/target/
 web-pm-vertx/.idea/
+web-pm-vertx/target/

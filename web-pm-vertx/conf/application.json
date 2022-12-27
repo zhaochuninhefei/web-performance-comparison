@@ -1,13 +1,13 @@
 {
   "api": {
-    "port": 8082
+    "port": 18083
   },
   "mysql": {
     "port": 3306,
-    "host": "127.0.0.1",
-    "db": "quarkus_test",
-    "user": "root",
-    "password": "yinjiaolong",
-    "poolSize": 5
+    "host": "172.17.13.13",
+    "db": "db_web_pm",
+    "user": "zhaochun1",
+    "password": "zhaochun@GITHUB",
+    "poolSize": 100
   }
 }
