@@ -1,13 +1,13 @@
-web-pm-java
+web-pm-springboot
 =====
 
-`web-pm-java`是一个使用`springboot + mybatis`开发的web项目，用于web框架性能比较测试。
+`web-pm-springboot`是一个使用`springboot + mybatis`开发的web项目，用于web框架性能比较测试。
 
 # 项目结构
-`web-pm-java`的项目结构目前如下所示:
+`web-pm-springboot`的项目结构目前如下所示:
 
 ```
-web-pm-java
+web-pm-springboot
 ├── src
 │   ├── main
 │   │   ├── java
@@ -26,7 +26,7 @@ web-pm-java
 └── pom.xml
 ```
 
-其中项目配置文件是`web-pm-java/src/main/resources/application.yaml`，目前项目的端口配置为`18081`。
+其中项目配置文件是`web-pm-springboot/src/main/resources/application.yaml`，目前项目的端口配置为`18081`。
 
 # API一览
 目前提供以下HttpAPI:
@@ -59,14 +59,14 @@ curl http://localhost:18081/asset/list
 使用`docker run`命令启动容器:
 ```shell
 # 使用本地镜像
-img_web_pm_java=web-pm-java:0.0.1-SNAPSHOT
+img_web_pm_springboot=web-pm-springboot:0.0.1
 # 使用仓库镜像
-img_web_pm_java=172.17.4.86:5000/web-pm-java:0.0.1-SNAPSHOT
+img_web_pm_springboot=172.17.4.86:5000/web-pm-springboot:0.0.1
 
 # 启动web-pm-java
-docker run -it --name web-pm-java \
+docker run -it --name web-pm-springboot \
   -p 18081:18081 \
-  ${img_web_pm_java}
+  ${img_web_pm_springboot}
 
 # 退出并停止容器：ctrl + c
 # 退出容器但不停止容器: ctrl + p + q
