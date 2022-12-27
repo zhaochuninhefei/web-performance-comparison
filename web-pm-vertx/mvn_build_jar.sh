@@ -1,5 +1,6 @@
 #!/bin/bash
 
 export JAVA_HOME=/usr/java/jdk-17.0.3+7
+mvn -version
 
-./mvnw clean package
+mvn clean package -Pjar

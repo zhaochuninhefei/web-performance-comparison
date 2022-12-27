@@ -1,5 +1,7 @@
 #!/bin/bash
 
-export JAVA_HOME=/usr/java/jdk-17.0.3+7
+export GRAALVM_HOME=/opt/graalvm-ce-java17-22.3.0
+export JAVA_HOME=/opt/graalvm-ce-java17-22.3.0
+mvn -version
 
-./mvnw clean package
+mvn clean package -Pnative

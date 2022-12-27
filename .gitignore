@@ -12,3 +12,4 @@ web-pm-quarkus/.idea/
 web-pm-quarkus/target/
 web-pm-vertx/.idea/
 web-pm-vertx/target/
+web-pm-vertx/Dockerfile
