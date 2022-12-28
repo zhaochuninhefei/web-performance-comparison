@@ -7,6 +7,11 @@ web-performance-comparison
 - kotlin + quarkus + hibernate
 - kotlin + vertx
 
+> 本项目只是个玩票性质的web性能比较，专业的还是去看techempower的测试结果：
+> 
+> <a href="https://www.techempower.com/benchmarks" target="_blank">https://www.techempower.com/benchmarks</a>
+
+
 # 性能比较思路
 分别使用golang、java以及kotlin的流行web框架开发简单的HttpAPI应用，使用JMeter比较它们的性能表现。
 
