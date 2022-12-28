@@ -36,27 +36,27 @@ web-performance-comparison
 ```
 
 # 性能测试报告
-`2022/12/27`追记: 性能测试报告准备更新。
+
+**以下结论仅针对本次测试的环境与数据:**
+
+在相同的硬件与数据库环境下，同样的高并发压力下，几种web框架都不做任何额外的调优措施的前提下，综合来看目前`go+gin+gorm`的性能表现是最好的。
+
+具体的性能测试报告请参考:
+
+<a href="./性能测试报告.md" target="_blank">性能测试报告</a>
+
+-----------------
+
+`2022/12/28`追记 : 发生以下变更:
 - 为了去除数据库服务对应用服务的影响(主要是CPU)，更改了测试环境，将数据库迁移到另一台单独的MySQL服务器上。
 - 添加了quarkus与vertx的测试项目(来自<a href="https://github.com/aaavieri" target="_blank">aaavieri</a>的贡献)，为其增加了测试计划，并完成测试。
 - 增加了测试期间CPU上下文切换次数的监视。
 - go与java项目重命名为gin与springboot。
 
 
-
-在相同的硬件与数据库环境下，同样的高并发压力下，`go+gin+gorm`的性能表现明显好于`java+springboot+mybatis`的性能表现。
-> 也许可以这样描述：如果将并发压力简化为一个正整数`M`，硬件资源简化为另一个正整数`N`，那么`M/N`的值越大，`go+gin+gorm`相比`java+springboot+mybatis`的优势就越明显。
-
-这应该主要是由于golang的goroutine相比java的多线程，能使用更少的CPU提供更高的并发能力。
-
-具体的性能测试报告参考:
-
-<a href="./性能测试报告.md" target="_blank">性能测试报告</a>
-
-
 # 感谢
 
-感谢<a href="https://github.com/aaavieri" target="_blank">aaavieri</a>提供了`web-pm-quarkus`与`web-pm-vertx`的代码。
+感谢<a href="https://github.com/aaavieri" target="_blank">aaavieri</a>提供了`web-pm-quarkus`与`web-pm-vertx`项目。
 
 
 # JetBrains support
