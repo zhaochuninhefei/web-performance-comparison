@@ -42,9 +42,9 @@ else
   then
    exit 1
   fi
-#  echo
-#  echo "开始编译二进制文件"
-#  ./mvn_build_native.sh
+  echo
+  echo "开始编译二进制文件"
+  ./mvn_build_native.sh
   echo
   echo "native镜像编译开始..."
   rm -rf ./Dockerfile
