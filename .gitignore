@@ -13,3 +13,5 @@ web-pm-quarkus/target/
 web-pm-vertx/.idea/
 web-pm-vertx/target/
 web-pm-vertx/Dockerfile
+web-pm-vertx-java/.idea/
+web-pm-vertx-java/target/

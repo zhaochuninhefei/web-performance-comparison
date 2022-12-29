@@ -8,7 +8,7 @@ import (
 )
 
 func TestConnectMysqlByDefault(t *testing.T) {
-	mysqlClient, err := ConnectMysqlByDefault("172.17.13.13", "3307", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
+	mysqlClient, err := ConnectMysqlByDefault("localhost", "3307", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
 	if err != nil {
 		zclog.Errorln(err)
 		return
@@ -27,7 +27,7 @@ func TestConnectMysqlByDefault(t *testing.T) {
 }
 
 func TestCreatTable(t *testing.T) {
-	mysqlClient, err := ConnectMysqlByDefault("172.17.13.13", "3307", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
+	mysqlClient, err := ConnectMysqlByDefault("localhost", "3307", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
 	if err != nil {
 		zclog.Errorln(err)
 		return
@@ -41,7 +41,7 @@ func TestCreatTable(t *testing.T) {
 }
 
 func TestInsert(t *testing.T) {
-	mysqlClient, err := ConnectMysqlByDefault("172.17.13.13", "3307", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
+	mysqlClient, err := ConnectMysqlByDefault("localhost", "3307", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
 	if err != nil {
 		zclog.Errorln(err)
 		return
@@ -68,4 +68,26 @@ func TestInsert(t *testing.T) {
 		//zclog.Infof("id:%d, act_name:%s, act_nick_name:%s", act.ID, act.ActName, act.ActNickName)
 		zclog.Infof("account: %s", act.String())
 	}
+}
+
+func TestInsert1000(t *testing.T) {
+	mysqlClient, err := ConnectMysqlByDefault("localhost", "3307", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
+	if err != nil {
+		zclog.Errorln(err)
+		return
+	}
+	var acts [1000]model.Account
+	for i := 0; i < 1000; i++ {
+		act := model.Account{
+			ActName:         "libai",
+			ActPwd:          "libai@DATANG",
+			ActNickName:     "诗仙太白",
+			ActIntroduction: "李白，唐朝诗人，字太白，号青莲居士，世称诗仙。",
+			ActStatus:       0,
+			ActRegisterDate: time.Now(),
+		}
+		acts[i] = act
+	}
+	result := mysqlClient.Create(&acts)
+	zclog.Infof("Insert 件数: %d", result.RowsAffected)
 }

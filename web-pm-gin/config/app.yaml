@@ -5,16 +5,16 @@ app:
   config_file: ""
 datasource:
   db_type: mysql
-  host: 172.17.13.13
+  host: localhost
   port: "3307"
   db_name: db_web_pm
   user: zhaochun1
   password: zhaochun@GITHUB
 db_conn_pool:
-  max_open_conns: 100
-  max_idle_conns: 10
-  conn_max_lifetime_min: 60
-  conn_max_idle_time_min: 10
+  max_open_conns: 20
+  max_idle_conns: 5
+  conn_max_lifetime_min: 30
+  conn_max_idle_time_min: 3
 redis:
   host: localhost
   port: ""

@@ -14,9 +14,9 @@ quarkus:
     username: zhaochun1
     password: zhaochun@GITHUB
     reactive:
-      idle-timeout: PT5M
-      url: vertx-reactive:mysql://172.17.13.13:3307/db_web_pm
-      max-size: 100
+      idle-timeout: PT3M
+      url: vertx-reactive:mysql://localhost:3307/db_web_pm
+      max-size: 20
       mysql:
         charset: utf8
   log:
