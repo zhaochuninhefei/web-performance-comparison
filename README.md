@@ -58,6 +58,7 @@ web-performance-comparison
 - 增加了测试期间CPU上下文切换次数的监视。
 - go与java项目重命名为gin与springboot。
 
+`2022/12/29`追记 : 增加了`/account/list`接口的部分测试计划。
 
 # 感谢
 
