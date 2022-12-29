@@ -37,7 +37,8 @@ web-performance-comparison
 ├── web-pm-gin          go+gin+gorm WEB测试项目
 ├── web-pm-quarkus      kotlin+quarkus+hibernate WEB测试项目
 ├── web-pm-springboot   java+springboot+mybatis WEB测试项目
-└── web-pm-vertx        kotlin+vertx WEB测试项目
+├── web-pm-vertx        kotlin+vertx WEB测试项目
+└── web-pm-vertx-java   java+vertx WEB测试项目
 ```
 
 # 性能测试报告
@@ -62,7 +63,7 @@ web-performance-comparison
 
 # 感谢
 
-感谢<a href="https://github.com/aaavieri" target="_blank">aaavieri</a>提供了`web-pm-quarkus`与`web-pm-vertx`项目。
+感谢<a href="https://github.com/aaavieri" target="_blank">aaavieri</a>提供了`web-pm-quarkus`、`web-pm-vertx`以及`web-pm-vertx-java`项目。
 
 
 # JetBrains support
