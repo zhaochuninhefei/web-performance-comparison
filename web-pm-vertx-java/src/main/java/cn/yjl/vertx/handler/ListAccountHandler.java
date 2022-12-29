@@ -18,7 +18,7 @@ public class ListAccountHandler extends AbstractHandler {
     @Override
     public void handle(RoutingContext context) {
         mysqlClient
-                .query("select id, created_at, updated_at, deleted_at, act_name, act_pwd, act_nick_name, act_introduction, act_status, act_register_date from accounts")
+                .preparedQuery("select id, created_at, updated_at, deleted_at, act_name, act_pwd, act_nick_name, act_introduction, act_status, act_register_date from accounts")
                 .execute()
                 .map(rows -> {
                     JsonArray array = new JsonArray();
