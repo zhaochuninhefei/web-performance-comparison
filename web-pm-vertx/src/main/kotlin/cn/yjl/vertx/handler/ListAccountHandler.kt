@@ -8,7 +8,7 @@ import io.vertx.sqlclient.SqlClient
 class ListAccountHandler(private val mysqlClient: SqlClient): AbstractHandler {
 
     override suspend fun handle(context: RoutingContext) {
-        val result = mysqlClient.query("select * from accounts").execute().await()
+        val result = mysqlClient.preparedQuery("select * from accounts").execute().await()
         val jsonResult = result.toList().map { it.toJson() }
         context.end(jsonResult.toJsonArray().toBuffer()).await()
     }
