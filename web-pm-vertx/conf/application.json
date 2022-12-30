@@ -4,7 +4,7 @@
   },
   "mysql": {
     "port": 3307,
-    "host": "172.17.13.13",
+    "host": "localhost",
     "db": "db_web_pm",
     "user": "zhaochun1",
     "password": "zhaochun@GITHUB",
