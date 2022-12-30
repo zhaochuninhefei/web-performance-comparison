@@ -29,8 +29,9 @@ public class MainVerticle extends AbstractVerticle {
             .setIdleTimeoutUnit(TimeUnit.MINUTES);
 
         MySQLPool mysqlClient = MySQLPool.pool(vertx, connectOptions, poolOptions);
-        BizVerticle bizVerticle = new BizVerticle(mysqlClient);
-        vertx.deployVerticle(bizVerticle, new DeploymentOptions().setConfig(config().getJsonObject("api", new JsonObject())));
+        vertx.deployVerticle(() -> new BizVerticle(mysqlClient),
+            new DeploymentOptions().setConfig(config().getJsonObject("api", new JsonObject()))
+                .setWorker(true).setInstances(Runtime.getRuntime().availableProcessors()));
         startPromise.complete();
     }
 }
