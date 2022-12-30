@@ -30,6 +30,8 @@ class MainVerticle : CoroutineVerticle() {
 
         // 创建mysql连接池
         val mysqlClient = MySQLPool.pool(vertx, connectOptions, poolOptions)
+
+        // 部署Verticle
         vertx.deployVerticle({ BizVerticle(mysqlClient) },
             DeploymentOptions().setConfig(config.getJsonObject("api", JsonObject()))
                 .setWorker(true).setInstances(Runtime.getRuntime().availableProcessors()))
