@@ -13,7 +13,7 @@ builder.Services.AddDbContext<AccountsContext>(opt =>
     opt.UseMySql(dbConfig.ConnectionString, serverVersion)
                 // The following three options help with debugging, but should
                 // be changed or removed for production.
-                .LogTo(Console.WriteLine, LogLevel.Information)
+                .LogTo(Console.WriteLine, LogLevel.Warning)
                 .EnableSensitiveDataLogging()
                 .EnableDetailedErrors()
 );
