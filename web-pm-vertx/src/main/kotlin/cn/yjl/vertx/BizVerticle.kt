@@ -8,7 +8,6 @@ import cn.yjl.vertx.handler.QueryAccountHandler
 import cn.yjl.vertx.util.toJson
 import cn.yjl.vertx.util.toJsonArray
 import io.vertx.core.Handler
-import io.vertx.core.json.Json
 import io.vertx.core.json.JsonObject
 import io.vertx.ext.web.Router
 import io.vertx.ext.web.RoutingContext
@@ -16,10 +15,10 @@ import io.vertx.ext.web.handler.BodyHandler
 import io.vertx.ext.web.handler.ResponseContentTypeHandler
 import io.vertx.kotlin.coroutines.CoroutineVerticle
 import io.vertx.kotlin.coroutines.await
-import io.vertx.sqlclient.SqlClient
+import io.vertx.mysqlclient.MySQLPool
 import kotlinx.coroutines.launch
 
-class BizVerticle(private val mysqlClient: SqlClient): CoroutineVerticle() {
+class BizVerticle(private val mysqlClient: MySQLPool): CoroutineVerticle() {
 
     private val ast1 = Asset(1, "asset001", "测试资产001")
     private val ast2 = Asset(2, "asset002", "测试资产002")
