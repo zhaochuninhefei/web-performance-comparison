@@ -6,12 +6,11 @@ import cn.yjl.vertx.util.toJson
 import io.vertx.ext.web.RoutingContext
 import io.vertx.kotlin.coroutines.await
 import io.vertx.mysqlclient.MySQLClient
-import io.vertx.mysqlclient.MySQLPool
 import io.vertx.sqlclient.SqlClient
 import io.vertx.sqlclient.Tuple
 import java.util.*
 
-class AddAccountHandler(private val mysqlClient: MySQLPool): AbstractHandler {
+class AddAccountHandler(private val mysqlClient: SqlClient): AbstractHandler {
 
     override suspend fun handle(context: RoutingContext) {
         val account = context.body().asJsonObject()
@@ -27,8 +26,7 @@ class AddAccountHandler(private val mysqlClient: MySQLPool): AbstractHandler {
             account.getInteger("actStatus"),
             now
         )
-        val connection = mysqlClient.connection.await()
-        val result = connection.preparedQuery("""
+        val result = mysqlClient.preparedQuery("""
             insert into accounts (id, created_at, updated_at, deleted_at, act_name, act_pwd, act_nick_name, act_introduction, act_status, act_register_date)
             values (null, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """.trimIndent())

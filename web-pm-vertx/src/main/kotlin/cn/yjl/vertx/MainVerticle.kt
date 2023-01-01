@@ -3,7 +3,6 @@ package cn.yjl.vertx
 import io.vertx.core.DeploymentOptions
 import io.vertx.core.json.JsonObject
 import io.vertx.kotlin.coroutines.CoroutineVerticle
-import io.vertx.mysqlclient.MySQLClient
 import io.vertx.mysqlclient.MySQLConnectOptions
 import io.vertx.mysqlclient.MySQLPool
 import io.vertx.sqlclient.PoolOptions
@@ -30,8 +29,6 @@ class MainVerticle : CoroutineVerticle() {
 
         // 创建mysql连接池
         val mysqlClient = MySQLPool.pool(vertx, connectOptions, poolOptions)
-
-        // 部署Verticle
         vertx.deployVerticle({ BizVerticle(mysqlClient) },
             DeploymentOptions().setConfig(config.getJsonObject("api", JsonObject()))
                 .setWorker(true).setInstances(Runtime.getRuntime().availableProcessors()))
