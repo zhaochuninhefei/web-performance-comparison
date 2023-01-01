@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jmeterTestPlan version="1.2" properties="5.0" jmeter="5.1.1 r1855137">
   <hashTree>
-    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="web-pm-vertx-java-asset_query" enabled="true">
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="web-pm-vertx-native-account_list" enabled="true">
       <stringProp name="TestPlan.comments"></stringProp>
       <boolProp name="TestPlan.functional_mode">false</boolProp>
       <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
@@ -14,8 +14,8 @@
     <hashTree>
       <kg.apc.jmeter.threads.UltimateThreadGroup guiclass="kg.apc.jmeter.threads.UltimateThreadGroupGui" testclass="kg.apc.jmeter.threads.UltimateThreadGroup" testname="jp@gc - Ultimate Thread Group" enabled="false">
         <collectionProp name="ultimatethreadgroupdata">
-          <collectionProp name="-1886135591">
-            <stringProp name="1507423">1000</stringProp>
+          <collectionProp name="2117239482">
+            <stringProp name="1626587">5000</stringProp>
             <stringProp name="0">0</stringProp>
             <stringProp name="1598">20</stringProp>
             <stringProp name="48625">100</stringProp>
@@ -31,19 +31,19 @@
       <hashTree>
         <kg.apc.jmeter.timers.VariableThroughputTimer guiclass="kg.apc.jmeter.timers.VariableThroughputTimerGui" testclass="kg.apc.jmeter.timers.VariableThroughputTimer" testname="jp@gc - Throughput Shaping Timer" enabled="false">
           <collectionProp name="load_profile">
-            <collectionProp name="1792848400">
-              <stringProp name="46730161">10000</stringProp>
-              <stringProp name="1448635039">100000</stringProp>
+            <collectionProp name="1325445082">
+              <stringProp name="1626587">5000</stringProp>
+              <stringProp name="50424245">50000</stringProp>
               <stringProp name="1598">20</stringProp>
             </collectionProp>
-            <collectionProp name="403492738">
-              <stringProp name="1448635039">100000</stringProp>
-              <stringProp name="1448635039">100000</stringProp>
+            <collectionProp name="-244083486">
+              <stringProp name="50424245">50000</stringProp>
+              <stringProp name="50424245">50000</stringProp>
               <stringProp name="48625">100</stringProp>
             </collectionProp>
-            <collectionProp name="-1278764870">
-              <stringProp name="1448635039">100000</stringProp>
-              <stringProp name="46730161">10000</stringProp>
+            <collectionProp name="-1089245072">
+              <stringProp name="50424245">50000</stringProp>
+              <stringProp name="1626587">5000</stringProp>
               <stringProp name="1598">20</stringProp>
             </collectionProp>
           </collectionProp>
@@ -72,23 +72,15 @@
           </collectionProp>
         </HeaderManager>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request asset_query" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request account_list" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="id" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">1</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">id</stringProp>
-              </elementProp>
-            </collectionProp>
+            <collectionProp name="Arguments.arguments"/>
           </elementProp>
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
-          <stringProp name="HTTPSampler.port">18085</stringProp>
+          <stringProp name="HTTPSampler.port">18083</stringProp>
           <stringProp name="HTTPSampler.protocol">http</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-          <stringProp name="HTTPSampler.path">/asset/query</stringProp>
+          <stringProp name="HTTPSampler.path">/account/list</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -99,17 +91,7 @@
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
-        <hashTree>
-          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="JSON Assertion" enabled="false">
-            <stringProp name="JSON_PATH">$.id</stringProp>
-            <stringProp name="EXPECTED_VALUE">1</stringProp>
-            <boolProp name="JSONVALIDATION">true</boolProp>
-            <boolProp name="EXPECT_NULL">false</boolProp>
-            <boolProp name="INVERT">false</boolProp>
-            <boolProp name="ISREGEX">true</boolProp>
-          </JSONPathAssertion>
-          <hashTree/>
-        </hashTree>
+        <hashTree/>
         <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
