@@ -6,13 +6,13 @@ server:
   tomcat:
     threads:
       # 最大工作线程数,默认200
-      max: 200
+      max: "${server_tomcat_threads_max:200}"
       # 最小工作线程数,默认10
-      min-spare: 10
+      min-spare: "${server_tomcat_threads_min_spare:10}"
     # 最大可处理连接数,默认8192
-    max-connections: 8192
+    max-connections: "${server_tomcat_max_connections:8192}"
     # 请求缓冲队列最大长度,默认100
-    accept-count: 100
+    accept-count: "${server_tomcat_accept_count:100}"
 
 spring:
   application:
