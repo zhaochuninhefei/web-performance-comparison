@@ -11,6 +11,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("com.zhaochuninhefei.webpmjava.db.dao")
 public class App {
     public static void main(String[] args) {
-        SpringApplication.run(App.class,args);
+        SpringApplication.run(App.class, args);
     }
 }

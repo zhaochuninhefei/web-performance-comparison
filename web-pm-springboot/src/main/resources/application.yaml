@@ -3,6 +3,16 @@ mybatis:
 
 server:
   port: "${server_port:18081}"
+  tomcat:
+    threads:
+      # 最大工作线程数,默认200
+      max: 200
+      # 最小工作线程数,默认10
+      min-spare: 10
+    # 最大可处理连接数,默认8192
+    max-connections: 8192
+    # 请求缓冲队列最大长度,默认100
+    accept-count: 100
 
 spring:
   application:
@@ -15,10 +25,19 @@ spring:
       connection-timeout: "${spring_datasource_hikari_connection_timeout:30000}"
       idle-timeout: "${spring_datasource_hikari_idle_timeout:180000}"
       max-lifetime: "${spring_datasource_hikari_max_lifetime:1800000}"
-      maximum-pool-size: "${spring_datasource_hikari_maximum_pool_size:100}"
-      minimum-idle: "${spring_datasource_hikari_minimum_idle:10}"
+      maximum-pool-size: "${spring_datasource_hikari_maximum_pool_size:20}"
+      minimum-idle: "${spring_datasource_hikari_minimum_idle:5}"
       pool-name: "${spring_datasource_hikari_pool_name:HikariCP-web-pm-springboot}"
     url: "${spring_datasource_url:jdbc:mysql://localhost:3307/db_web_pm?useUnicode=true&characterEncoding=UTF-8&useSSL=false&rewriteBatchedStatements=true}"
     type: "${spring_datasource_type:com.zaxxer.hikari.HikariDataSource}"
     username: "${spring_datasource_username:zhaochun1}"
     password: "${spring_datasource_password:zhaochun@GITHUB}"
+logging:
+  level:
+    root: info
+    org:
+      apache:
+        tomcat:
+          util:
+            threads:
+              LimitLatch: debug
