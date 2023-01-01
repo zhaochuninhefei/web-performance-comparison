@@ -35,9 +35,3 @@ spring:
 logging:
   level:
     root: info
-    org:
-      apache:
-        tomcat:
-          util:
-            threads:
-              LimitLatch: debug
