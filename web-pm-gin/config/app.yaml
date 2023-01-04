@@ -11,7 +11,7 @@ datasource:
   user: zhaochun1
   password: zhaochun@GITHUB
 db_conn_pool:
-  max_open_conns: 20
+  max_open_conns: 100
   max_idle_conns: 5
   conn_max_lifetime_min: 30
   conn_max_idle_time_min: 3

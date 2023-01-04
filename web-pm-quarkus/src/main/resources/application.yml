@@ -16,7 +16,7 @@ quarkus:
     reactive:
       idle-timeout: PT3M
       url: vertx-reactive:mysql://localhost:3307/db_web_pm
-      max-size: 20
+      max-size: 100
       mysql:
         charset: utf8
   log:

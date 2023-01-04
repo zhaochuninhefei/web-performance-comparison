@@ -25,7 +25,7 @@ spring:
       connection-timeout: "${spring_datasource_hikari_connection_timeout:30000}"
       idle-timeout: "${spring_datasource_hikari_idle_timeout:180000}"
       max-lifetime: "${spring_datasource_hikari_max_lifetime:1800000}"
-      maximum-pool-size: "${spring_datasource_hikari_maximum_pool_size:20}"
+      maximum-pool-size: "${spring_datasource_hikari_maximum_pool_size:100}"
       minimum-idle: "${spring_datasource_hikari_minimum_idle:5}"
       pool-name: "${spring_datasource_hikari_pool_name:HikariCP-web-pm-springboot}"
     url: "${spring_datasource_url:jdbc:mysql://localhost:3307/db_web_pm?useUnicode=true&characterEncoding=UTF-8&useSSL=false&rewriteBatchedStatements=true}"
