@@ -1,0 +1,3 @@
+Label,# Samples,Average,Median,90% Line,95% Line,99% Line,Min,Max,Error %,Throughput,Received KB/sec,Sent KB/sec
+HTTP Request account_add,1151270,761,760,874,888,910,27,3171,0.000%,6374.34251,1207.86,0.00
+TOTAL,1151270,761,760,874,888,910,27,3171,0.000%,6374.34251,1207.86,0.00
