@@ -8,7 +8,7 @@
     "db": "db_web_pm",
     "user": "zhaochun1",
     "password": "zhaochun@GITHUB",
-    "poolSize": 20,
+    "poolSize": 100,
     "idleTimeout": 3
   }
 }

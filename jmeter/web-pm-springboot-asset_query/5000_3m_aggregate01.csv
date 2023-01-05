@@ -1,0 +1,3 @@
+Label,# Samples,Average,Median,90% Line,95% Line,99% Line,Min,Max,Error %,Throughput,Received KB/sec,Sent KB/sec
+HTTP Request asset_query,15761397,55,6,196,267,437,0,7231,0.000%,86195.20718,17845.10,0.00
+TOTAL,15761397,55,6,196,267,437,0,7231,0.000%,86195.20718,17845.10,0.00
