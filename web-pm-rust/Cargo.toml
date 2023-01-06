@@ -9,6 +9,8 @@ edition = "2021"
 #sqlx = { version = "0.6", features = [ "runtime-actix-native-tls" , "mysql" ] }
 actix-web = "4"
 derive_more = "*"
-sea-orm = { version = "0.10.6", features = [ "sqlx-mysql", "runtime-actix-rustls", "macros" ] }
+dotenvy = "0.15"
+sea-orm = { version = "0.10.6", features = ["sqlx-mysql", "runtime-actix-rustls", "macros"] }
 clap = { version = "4.0.32", features = ["derive"] }
 serde = { version = "1.0.136", features = ["derive"] }
+phf = { version = "0.11.1", features = ["macros"] }

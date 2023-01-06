@@ -1,53 +1,63 @@
-use std::error::Error;
+use std::env;
+use std::fmt::Debug;
 
-use actix_web::{
-    error, get, post,
-    web::{self},
-    App, HttpRequest, HttpResponse, HttpServer, Responder, Result
-};
-use sea_orm::entity::prelude::*;
-use sea_orm::sea_query::Mode;
-use sea_orm::{Database, DatabaseConnection};
-use serde::{Deserialize, Serialize};
+use actix_web::{App, HttpServer, web};
+use sea_orm::{ConnectOptions, Database, DatabaseConnection};
 
-#[derive(Clone, Debug, PartialEq, DeriveEntityModel, Serialize, Deserialize)]
-#[sea_orm(table_name = "accounts")]
-pub struct Model {
-    #[sea_orm(primary_key)]
-    pub id: i32,
-    pub act_introduction: Option<String>,
-    pub act_name: Option<String>,
-    pub act_nick_name: Option<String>,
-    pub act_pwd: Option<String>,
-    pub act_register_date: Option<DateTime>,
-    pub act_status: Option<i8>,
-    pub created_at: Option<DateTime>,
-    pub deleted_at: Option<DateTime>,
-    pub updated_at: Option<DateTime>,
+use resource::accounts;
+
+use crate::resource::asset;
+
+mod entity;
+mod resource;
+mod util;
+mod dto;
+
+#[derive(Debug, Clone)]
+pub struct AppState {
+    db: DatabaseConnection,
 }
 
-#[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]
-pub enum Relation {}
-
-impl ActiveModelBehavior for ActiveModel {}
-
-#[get("/account/list")]
-async fn list_accounts() -> Result<impl Responder> {
-    let db: DatabaseConnection =
-        Database::connect("mysql://root:yinjiaolong@localhost:3306/quarkus_test")
-            .await?;
-    let accounts: Vec<Model> = Entity::find().all(&db).await?;
-    // HttpResponse::Ok().json(accounts)
-    return Ok(HttpResponse::Ok().json(accounts))
+fn get_env_u32(key: &str, default_value: u32) -> u32 {
+    return match env::var_os(key) {
+        Some(value) => {
+            let temp = value.into_string().expect(format!("{} in .env file can not parse to String", key).as_str());
+            temp.parse().expect(format!("{} in .env file can not parse to specified type", key).as_str())
+        }
+        None => default_value
+    };
 }
 
 #[actix_web::main]
-async fn main() {
-    let address = "0.0.0.0:8082";
-    HttpServer::new(|| App::new().service(list_accounts))
-        .bind(address)
-        .unwrap()
+async fn main() -> std::io::Result<()> {
+    dotenvy::dotenv().ok();
+    let db_url = env::var("db_url").expect("db_url is not set in .env file");
+    let max_connections = get_env_u32("max_connections", 5);
+    let min_connections = get_env_u32("min_connections", 5);
+    let mut opt = ConnectOptions::new(db_url);
+    opt.max_connections(max_connections)
+        .min_connections(min_connections);
+    let db = Database::connect(opt).await.unwrap();
+    let app_state = AppState { db };
+    let port = get_env_u32("port", 8080);
+    let address = format!("0.0.0.0:{}", port);
+    // let mut server = HttpServer::new(move || {
+    //     App::new()
+    //         .service(list_accounts)
+    //         .app_data(web::Data::new(app_state.clone()))
+    //         .default_service(web::route().to(not_found)))
+    // });
+    HttpServer::new(move || App::new()
+        .app_data(web::Data::new(app_state.clone()))
+        .service(accounts::list_accounts)
+        .service(accounts::add_account)
+        .service(accounts::query_account)
+        .service(asset::list_asset)
+        .service(asset::query_asset)
+        .service(asset::modify_asset))
+        .bind(address)?
         .run()
-        .await
-        .unwrap();
+        .await?;
+
+    Ok(())
 }
