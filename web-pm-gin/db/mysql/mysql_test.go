@@ -70,6 +70,16 @@ func TestInsert(t *testing.T) {
 	}
 }
 
+func TestTruncateTable(t *testing.T) {
+	mysqlClient, err := ConnectMysqlByDefault("localhost", "3307", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
+	if err != nil {
+		zclog.Errorln(err)
+		return
+	}
+	mysqlClient.Exec("TRUNCATE TABLE accounts")
+
+}
+
 func TestInsert1000(t *testing.T) {
 	mysqlClient, err := ConnectMysqlByDefault("localhost", "3307", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
 	if err != nil {
