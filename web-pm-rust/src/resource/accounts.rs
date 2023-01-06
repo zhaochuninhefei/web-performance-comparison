@@ -30,6 +30,6 @@ pub async fn add_account(data: web::Data<AppState>, web::Json(mut request): web:
     let db = &data.db;
     request.act_register_date = Some(app_util::now());
     let id = Account::save(db, request).await;
-    let result = ResponseMsg { resCd: "1".to_string(), resMsg: format!("新增账户ID:{}", id) };
+    let result = ResponseMsg { res_cd: "1".to_string(), res_msg: format!("新增账户ID:{}", id) };
     Ok(HttpResponse::Ok().json(result))
 }

@@ -50,5 +50,5 @@ pub async fn query_asset(web::Query(request): web::Query<QueryRequest>) -> Resul
 #[post("/asset/modify")]
 pub async fn modify_asset(web::Json(asset): web::Json<AssetRequest>) -> Result<impl Responder> {
     println!("修改目标：{}", asset);
-    Ok(HttpResponse::Ok().json(ResponseMsg { resCd: "1".to_string(), resMsg: format!("{}", asset) }))
+    Ok(HttpResponse::Ok().json(ResponseMsg { res_cd: "1".to_string(), res_msg: format!("{}", asset) }))
 }
