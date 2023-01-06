@@ -15,3 +15,6 @@ web-pm-vertx/target/
 web-pm-vertx/Dockerfile
 web-pm-vertx-java/.idea/
 web-pm-vertx-java/target/
+jmeter/*/*_report/
+jmeter/*/*.log
+jmeter/*/*.jtl
