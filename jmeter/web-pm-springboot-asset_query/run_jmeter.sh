@@ -2,7 +2,7 @@
 
 set -e
 
-jmx_name=web-pm-springboot-account_list.jmx
+jmx_name=web-pm-springboot-asset_query.jmx
 prefix_all=5000_3m
 
 if [ ! "$1" == "" ]
