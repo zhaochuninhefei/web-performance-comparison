@@ -29,8 +29,8 @@ for((i=1;i<4;i++)); do
     echo "执行测试计划"
     ./run_jmeter.sh ${test_target}-account_add.jmx ${prefix_all}_${i}
     echo
-    echo "等待2分钟"
-    sleep 120s
+    echo "等待1分钟"
+    sleep 60s
 done
 
 cd ../
@@ -63,8 +63,8 @@ for((i=1;i<4;i++)); do
     echo "执行测试计划"
     ./run_jmeter.sh ${test_target}-account_list.jmx ${prefix_all}_${i}
     echo
-    echo "等待2分钟"
-    sleep 120s
+    echo "等待1分钟"
+    sleep 60s
 done
 
 cd ../
@@ -86,8 +86,8 @@ for((i=1;i<4;i++)); do
     echo "执行测试计划"
     ./run_jmeter.sh ${test_target}-account_query.jmx ${prefix_all}_${i}
     echo
-    echo "等待2分钟"
-    sleep 120s
+    echo "等待1分钟"
+    sleep 60s
 done
 
 cd ../
@@ -111,8 +111,8 @@ for((i=1;i<4;i++)); do
     if [ ! "${i}" == "3" ]
     then
         echo
-        echo "等待2分钟"
-        sleep 120s
+        echo "等待1分钟"
+        sleep 60s
     fi
 done
 

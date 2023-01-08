@@ -3,7 +3,7 @@
 set -e
 
 work_dir=$(pwd)
-test_target=web-pm-dotnet
+test_target=web-pm-rust
 prefix_all=5000_3m
 
 
