@@ -6,6 +6,9 @@ web-performance-comparison
 - java + springboot + mybatis
 - kotlin + quarkus + hibernate
 - kotlin + vertx
+- java + vertx
+- dotnet
+- rust
 
 > 本项目只是个玩票性质的web性能比较，专业的还是去看techempower的测试结果：
 > 
@@ -34,8 +37,10 @@ web-performance-comparison
 ├── db                  数据库相关资源
 ├── deploy              docker编排文件目录
 ├── jmeter              JMeter测试计划与结果
+├── web-pm-dotnet       dotnet WEB测试项目
 ├── web-pm-gin          go+gin+gorm WEB测试项目
 ├── web-pm-quarkus      kotlin+quarkus+hibernate WEB测试项目
+├── web-pm-rust         rust WEB测试项目
 ├── web-pm-springboot   java+springboot+mybatis WEB测试项目
 ├── web-pm-vertx        kotlin+vertx WEB测试项目
 └── web-pm-vertx-java   java+vertx WEB测试项目
@@ -47,7 +52,7 @@ vertx相关代码有改动，之后会重新测试重新比较。
 
 # 感谢
 
-感谢<a href="https://github.com/aaavieri" target="_blank">aaavieri</a>提供了`web-pm-quarkus`、`web-pm-vertx`以及`web-pm-vertx-java`项目。
+感谢<a href="https://github.com/aaavieri" target="_blank">aaavieri</a>提供了`web-pm-dotnet`、`web-pm-quarkus`、`web-pm-rust`、`web-pm-vertx`以及`web-pm-vertx-java`项目。
 
 
 # JetBrains support
