@@ -8,7 +8,7 @@ use crate::util::app_util;
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct QueryRequest {
-    id: i32,
+    id: u64,
 }
 
 #[get("/account/list")]
