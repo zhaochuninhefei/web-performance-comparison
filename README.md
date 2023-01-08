@@ -30,6 +30,8 @@ web-performance-comparison
 - hibernate版本 : 5.6.14.Final
 - vertx版本 : 4.3.7
 - JMeter版本 : 5.1.1
+- dotnet版本 : 6.0.404
+- rust版本 : cargo 1.66.0
 
 # 目录说明
 ```
@@ -48,11 +50,20 @@ web-performance-comparison
 
 # 性能测试报告
 
-vertx相关代码有改动，之后会重新测试重新比较。
+具体的性能测试报告参考:
+
+<a href="./性能测试报告.md" target="_blank">性能测试报告</a>
+
 
 # 感谢
 
-感谢<a href="https://github.com/aaavieri" target="_blank">aaavieri</a>提供了`web-pm-dotnet`、`web-pm-quarkus`、`web-pm-rust`、`web-pm-vertx`以及`web-pm-vertx-java`项目。
+感谢<a href="https://github.com/aaavieri" target="_blank">aaavieri</a>提供了以下web项目的实现:
+
+- `web-pm-dotnet`
+- `web-pm-quarkus`
+- `web-pm-rust`
+- `web-pm-vertx`
+- `web-pm-vertx-java`
 
 
 # JetBrains support
