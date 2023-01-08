@@ -16,7 +16,7 @@ web-performance-comparison
 
 
 # 性能比较思路
-分别使用golang、java以及kotlin的流行web框架开发简单的HttpAPI应用，使用JMeter比较它们的性能表现。
+分别使用golang、java、kotlin的流行web框架，以及dotnet与rust，开发简单的HttpAPI应用，使用JMeter比较它们的性能表现。
 
 语言、框架与工具及其版本信息如下：
 - golang版本 : v1.17.5
@@ -31,7 +31,7 @@ web-performance-comparison
 - vertx版本 : 4.3.7
 - JMeter版本 : 5.1.1
 - dotnet版本 : 6.0.404
-- rust版本 : cargo 1.66.0
+- rust版本 : 1.66.0
 
 # 目录说明
 ```
