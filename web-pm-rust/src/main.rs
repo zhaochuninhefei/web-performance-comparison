@@ -23,7 +23,8 @@ fn get_env<F: FromStr>(key: &str, default_value: F) -> F {
     return match env::var_os(key) {
         Some(value) => {
             let temp = value.into_string().expect(format!("{} in .env file can not parse to String", key).as_str());
-            temp.parse().map_err(|_e|Error).expect(format!("{} in .env file can not parse to specified type", key).as_str())
+            temp.parse().map_err(|_e|Error)
+                .expect(format!("{} in .env file can not parse to specified type: {}", key, std::any::type_name::<F>()).as_str())
         }
         None => default_value
     };
