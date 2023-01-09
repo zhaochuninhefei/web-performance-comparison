@@ -3,12 +3,12 @@
 set -e
 
 echo
-read -r -p "请选择编译方式: 1:uber-jar;2:native (默认 2:native ):" build_mode
-if [ ! "${build_mode}" == "1" ]
+read -r -p "请选择编译方式: 1:uber-jar;2:native (默认 1:uber-jar ):" build_mode
+if [ ! "${build_mode}" == "2" ]
 then
-  build_mode=native
-else
   build_mode=uber-jar
+else
+  build_mode=native
 fi
 
 export JAVA_HOME=/usr/java/jdk-17.0.3+7
