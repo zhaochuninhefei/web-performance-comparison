@@ -1,6 +1,7 @@
 package cn.yjl.vertx.handler
 
-import io.vertx.core.json.JsonObject
+import cn.yjl.vertx.entity.AccountsEntity
+import cn.yjl.vertx.util.toEntity
 import io.vertx.ext.web.RoutingContext
 import io.vertx.kotlin.coroutines.await
 import io.vertx.sqlclient.SqlClient
@@ -14,9 +15,9 @@ class QueryAccountHandler(private val mysqlClient: SqlClient): AbstractHandler {
             .execute(Tuple.of(id.toLong())).await()
         val rows = result.toList()
         if (rows.isNotEmpty()) {
-            context.end(rows[0].toJson().toBuffer()).await()
+            context.end(rows[0].toJson().toEntity(AccountsEntity()).toBuffer()).await()
         } else {
-            context.end(JsonObject().toBuffer()).await()
+            context.end(AccountsEntity().toBuffer()).await()
         }
     }
 

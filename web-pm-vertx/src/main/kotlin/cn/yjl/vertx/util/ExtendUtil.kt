@@ -2,6 +2,7 @@ package cn.yjl.vertx.util
 
 import cn.yjl.vertx.dto.Asset
 import cn.yjl.vertx.dto.ResponseMsg
+import cn.yjl.vertx.entity.AbstractEntity
 import io.vertx.core.json.Json
 import io.vertx.core.json.JsonArray
 import io.vertx.core.json.JsonObject
@@ -36,6 +37,11 @@ fun String.toInstant(): Instant? {
 fun Date.toDbString(): String {
     val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
     return format.format(this)
+}
+
+fun <T: AbstractEntity<T>> JsonObject.toEntity(entity: T): T {
+    entity.map.putAll(this.map)
+    return entity
 }
 
 //suspend fun RoutingContext.endJson(json: Json) {

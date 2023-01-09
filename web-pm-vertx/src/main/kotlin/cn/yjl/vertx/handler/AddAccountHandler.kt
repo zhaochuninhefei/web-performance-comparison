@@ -1,7 +1,9 @@
 package cn.yjl.vertx.handler
 
 import cn.yjl.vertx.dto.ResponseMsg
+import cn.yjl.vertx.entity.AccountsEntity
 import cn.yjl.vertx.util.toDbString
+import cn.yjl.vertx.util.toEntity
 import cn.yjl.vertx.util.toJson
 import io.vertx.ext.web.RoutingContext
 import io.vertx.kotlin.coroutines.await
@@ -13,17 +15,17 @@ import java.util.*
 class AddAccountHandler(private val mysqlClient: SqlClient): AbstractHandler {
 
     override suspend fun handle(context: RoutingContext) {
-        val account = context.body().asJsonObject()
+        val account = context.body().asJsonObject().toEntity(AccountsEntity())
         val now = Date().toDbString()
         val params = Tuple.of(
-            account.getString("createdAt", null),
-            account.getString("updatedAt", null),
-            account.getString("deletedAt", null),
-            account.getString("actName", ""),
-            account.getString("actPwd", ""),
-            account.getString("actNickName"),
-            account.getString("actIntroduction"),
-            account.getInteger("actStatus"),
+            account.createdAt,
+            account.updatedAt,
+            account.deletedAt,
+            account.actName,
+            account.actPwd,
+            account.actNickName,
+            account.actIntroduction,
+            account.actStatus,
             now
         )
         val result = mysqlClient.preparedQuery("""
