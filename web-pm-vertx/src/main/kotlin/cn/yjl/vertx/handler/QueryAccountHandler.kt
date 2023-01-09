@@ -15,7 +15,7 @@ class QueryAccountHandler(private val mysqlClient: SqlClient): AbstractHandler {
             .execute(Tuple.of(id.toLong())).await()
         val rows = result.toList()
         if (rows.isNotEmpty()) {
-            context.end(rows[0].toJson().toEntity(AccountsEntity()).toBuffer()).await()
+            context.end(rows[0].toEntity(AccountsEntity()).toBuffer()).await()
         } else {
             context.end(AccountsEntity().toBuffer()).await()
         }

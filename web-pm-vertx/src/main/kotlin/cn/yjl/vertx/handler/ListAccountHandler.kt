@@ -11,7 +11,7 @@ class ListAccountHandler(private val mysqlClient: SqlClient): AbstractHandler {
 
     override suspend fun handle(context: RoutingContext) {
         val result = mysqlClient.preparedQuery("select * from accounts").execute().await()
-        val jsonResult = result.toList().map { it.toJson() }.map { it.toEntity(AccountsEntity()) }
+        val jsonResult = result.toList().map { it.toEntity(AccountsEntity()) }
         context.end(jsonResult.toJsonArray().toBuffer()).await()
     }
 

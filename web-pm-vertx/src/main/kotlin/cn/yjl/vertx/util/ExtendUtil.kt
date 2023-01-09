@@ -3,13 +3,13 @@ package cn.yjl.vertx.util
 import cn.yjl.vertx.dto.Asset
 import cn.yjl.vertx.dto.ResponseMsg
 import cn.yjl.vertx.entity.AbstractEntity
-import io.vertx.core.json.Json
 import io.vertx.core.json.JsonArray
 import io.vertx.core.json.JsonObject
-import io.vertx.ext.web.RoutingContext
+import io.vertx.sqlclient.Row
+import io.vertx.sqlclient.impl.Utils
 import java.text.SimpleDateFormat
 import java.time.Instant
-import java.util.Date
+import java.util.*
 
 fun List<JsonObject>.toJsonArray(): JsonArray {
     val jsonArray = JsonArray()
@@ -41,6 +41,18 @@ fun Date.toDbString(): String {
 
 fun <T: AbstractEntity<T>> JsonObject.toEntity(entity: T): T {
     entity.map.putAll(this.map)
+    return entity
+}
+
+fun <T: AbstractEntity<T>> Row.toEntity(entity: T): T {
+    val size = size()
+
+    for (pos in 0 until size) {
+        val name = getColumnName(pos)
+        val value = this.getValue(pos)
+        entity.put(name, Utils.toJson(value))
+    }
+
     return entity
 }
 
