@@ -1,8 +1,7 @@
 package cn.yjl.vertx.handler
 
 import cn.yjl.vertx.dto.ResponseMsg
-import cn.yjl.vertx.entity.AccountsEntity
-import cn.yjl.vertx.util.toDbString
+import cn.yjl.vertx.entity.Accounts
 import cn.yjl.vertx.util.toEntity
 import cn.yjl.vertx.util.toJson
 import io.vertx.ext.web.RoutingContext
@@ -10,13 +9,13 @@ import io.vertx.kotlin.coroutines.await
 import io.vertx.mysqlclient.MySQLClient
 import io.vertx.sqlclient.SqlClient
 import io.vertx.sqlclient.Tuple
-import java.util.*
+import java.time.LocalDateTime
 
 class AddAccountHandler(private val mysqlClient: SqlClient): AbstractHandler {
 
     override suspend fun handle(context: RoutingContext) {
-        val account = context.body().asJsonObject().toEntity(AccountsEntity())
-        val now = Date().toDbString()
+        val account = context.body().asJsonObject().toEntity<Accounts>()
+//        val now = Date().toDbString()
         val params = Tuple.of(
             account.createdAt,
             account.updatedAt,
@@ -26,7 +25,7 @@ class AddAccountHandler(private val mysqlClient: SqlClient): AbstractHandler {
             account.actNickName,
             account.actIntroduction,
             account.actStatus,
-            now
+            LocalDateTime.now()
         )
         val result = mysqlClient.preparedQuery("""
             insert into accounts (id, created_at, updated_at, deleted_at, act_name, act_pwd, act_nick_name, act_introduction, act_status, act_register_date)
