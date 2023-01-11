@@ -112,25 +112,33 @@
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
                 <version>${kotlin.version}</version>
+                <configuration>
+                    <jvmTarget>11</jvmTarget>
+                    <compilerPlugins>
+                        <plugin>kotlinx-serialization</plugin>
+                    </compilerPlugins>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jetbrains.kotlin</groupId>
+                        <artifactId>kotlin-maven-serialization</artifactId>
+                        <version>${kotlin.version}</version>
+                    </dependency>
+                </dependencies>
                 <executions>
                     <execution>
                         <id>compile</id>
-                        <phase>compile</phase>
                         <goals>
                             <goal>compile</goal>
                         </goals>
                     </execution>
                     <execution>
                         <id>test-compile</id>
-                        <phase>test-compile</phase>
                         <goals>
                             <goal>test-compile</goal>
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <jvmTarget>1.8</jvmTarget>
-                </configuration>
             </plugin>
         </plugins>
     </build>
@@ -139,38 +147,6 @@
             <id>jar</id>
             <build>
                 <plugins>
-                    <plugin>
-                        <groupId>org.jetbrains.kotlin</groupId>
-                        <artifactId>kotlin-maven-plugin</artifactId>
-                        <version>${kotlin.version}</version>
-                        <configuration>
-                            <jvmTarget>11</jvmTarget>
-                            <compilerPlugins>
-                              <plugin>kotlinx-serialization</plugin>
-                            </compilerPlugins>
-                        </configuration>
-                        <dependencies>
-                          <dependency>
-                            <groupId>org.jetbrains.kotlin</groupId>
-                            <artifactId>kotlin-maven-serialization</artifactId>
-                            <version>${kotlin.version}</version>
-                          </dependency>
-                        </dependencies>
-                        <executions>
-                            <execution>
-                                <id>compile</id>
-                                <goals>
-                                    <goal>compile</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>test-compile</id>
-                                <goals>
-                                    <goal>test-compile</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
                     <plugin>
                         <artifactId>maven-shade-plugin</artifactId>
                         <version>${maven-shade-plugin.version}</version>
