@@ -1,16 +1,31 @@
 package cn.yjl.vertx
 
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer
 import io.vertx.core.DeploymentOptions
 import io.vertx.core.json.JsonObject
+import io.vertx.core.json.jackson.DatabindCodec
 import io.vertx.kotlin.coroutines.CoroutineVerticle
 import io.vertx.mysqlclient.MySQLConnectOptions
 import io.vertx.mysqlclient.MySQLPool
 import io.vertx.sqlclient.PoolOptions
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.concurrent.TimeUnit
 
 class MainVerticle : CoroutineVerticle() {
 
     override suspend fun start() {
+        val mapper = DatabindCodec.mapper()
+
+        val module = JavaTimeModule()
+        val dateTimeDeserializer = LocalDateTimeDeserializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+        val dateTimeSerializer = LocalDateTimeSerializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+
+        module.addDeserializer(LocalDateTime::class.java, dateTimeDeserializer)
+        module.addSerializer(LocalDateTime::class.java, dateTimeSerializer)
+        mapper.registerModule(module)
         val mysqlConf = config.getJsonObject("mysql", JsonObject())
         val connectOptions = MySQLConnectOptions()
             .setPort(mysqlConf.getInteger("port", 3306))
