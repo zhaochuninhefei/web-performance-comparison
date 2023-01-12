@@ -3,15 +3,11 @@ package cn.yjl.vertx.util
 import cn.yjl.vertx.dto.Asset
 import cn.yjl.vertx.dto.ResponseMsg
 import cn.yjl.vertx.entity.AbstractEntity
-import cn.yjl.vertx.entity.Accounts
-import io.vertx.core.Future
 import io.vertx.core.json.JsonArray
 import io.vertx.core.json.JsonObject
-import io.vertx.ext.web.RoutingContext
-import io.vertx.sqlclient.Row
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
+//import kotlinx.serialization.decodeFromString
+//import kotlinx.serialization.encodeToString
+//import kotlinx.serialization.json.Json
 import java.text.SimpleDateFormat
 import java.time.Instant
 import java.time.LocalDateTime
@@ -55,9 +51,9 @@ fun <T: AbstractEntity<T>> JsonObject.toEntity(entity: T): T {
     return entity
 }
 
-inline fun <reified T> JsonObject.toEntity(): T {
-    return Json.decodeFromString(this.toString())
-}
+//inline fun <reified T> JsonObject.toEntity(): T {
+//    return Json.decodeFromString(this.toString())
+//}
 
 //inline fun <reified T> Row.toEntity(): T {
 //    val size = size()
@@ -71,9 +67,9 @@ inline fun <reified T> JsonObject.toEntity(): T {
 //    return Json.decodeFromString(json.toString())
 //}
 
-inline fun <reified T> RoutingContext.end(data: T): Future<Void> {
-    return this.response().end(Json.encodeToString(data))
-}
+//inline fun <reified T> RoutingContext.end(data: T): Future<Void> {
+//    return this.response().end(Json.encodeToString(data))
+//}
 
 fun LocalDateTime.format(): String = this.format(DATE_TIME_FORMATTER)
 

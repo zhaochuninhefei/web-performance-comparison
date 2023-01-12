@@ -1,13 +1,11 @@
 package cn.yjl.vertx.entity
 
 import cn.yjl.vertx.util.LocalDateTimeAsStringSerializer
-import cn.yjl.vertx.util.toEntity
 import io.vertx.sqlclient.Row
-import kotlinx.serialization.Serializable
 import java.time.LocalDateTime
 
 @Serializable
-data class Accounts(
+data class `Accounts.bk`(
     var id: Long = 0L,
     var actIntroduction: String? = "",
     var actName: String? = "",
@@ -24,10 +22,10 @@ data class Accounts(
     var updatedAt: LocalDateTime? = null,
 ) {
     companion object {
-        fun fromRow(row: Row): Accounts {
+        fun fromRow(row: Row): `Accounts.bk` {
             val size = row.size()
 
-            val result = Accounts()
+            val result = `Accounts.bk`()
             for (pos in 0 until size) {
                 result.id = row.getLong("id")
                 result.actIntroduction = row.getString("act_introduction")
