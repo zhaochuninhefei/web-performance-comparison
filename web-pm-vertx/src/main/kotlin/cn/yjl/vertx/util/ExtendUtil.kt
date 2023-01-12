@@ -3,6 +3,7 @@ package cn.yjl.vertx.util
 import cn.yjl.vertx.dto.Asset
 import cn.yjl.vertx.dto.ResponseMsg
 import cn.yjl.vertx.entity.AbstractEntity
+import cn.yjl.vertx.entity.Accounts
 import io.vertx.core.Future
 import io.vertx.core.json.JsonArray
 import io.vertx.core.json.JsonObject
@@ -58,17 +59,17 @@ inline fun <reified T> JsonObject.toEntity(): T {
     return Json.decodeFromString(this.toString())
 }
 
-inline fun <reified T> Row.toEntity(): T {
-    val size = size()
-
-    val json = JsonObject()
-    for (pos in 0 until size) {
-        val name = toCamelString(getColumnName(pos))
-        val value = this.getValue(pos)
-        json.put(name, value)
-    }
-    return Json.decodeFromString(json.toString())
-}
+//inline fun <reified T> Row.toEntity(): T {
+//    val size = size()
+//
+//    val json = JsonObject()
+//    for (pos in 0 until size) {
+//        val name = toCamelString(getColumnName(pos))
+//        val value = this.getValue(pos)
+//        json.put(name, value)
+//    }
+//    return Json.decodeFromString(json.toString())
+//}
 
 inline fun <reified T> RoutingContext.end(data: T): Future<Void> {
     return this.response().end(Json.encodeToString(data))
