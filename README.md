@@ -18,6 +18,10 @@ web-performance-comparison
 # 性能比较思路
 分别使用golang、java、kotlin的流行web框架，以及dotnet与rust，开发简单的HttpAPI应用，使用JMeter比较它们的性能表现。
 
+- 数据库统一使用MySQL8，并使用相同database的相同表。
+- HttpAPI实现相同的四个API: 单表插入、全表查询(1000件)、主键查询(1000件)、以及一个没有数据库读写的简单内存数据读取API。
+
+# 语言、框架与工具及其版本信息
 语言、框架与工具及其版本信息如下：
 - golang版本 : v1.17.5
 - gin版本 : v1.8.1
