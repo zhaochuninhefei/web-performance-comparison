@@ -6,7 +6,6 @@ web-performance-comparison
 - java + springboot + mybatis
 - kotlin + quarkus + hibernate
 - kotlin + vertx
-- java + vertx
 - dotnet
 - rust
 
@@ -48,8 +47,7 @@ web-performance-comparison
 ├── web-pm-quarkus      kotlin+quarkus+hibernate WEB测试项目
 ├── web-pm-rust         rust WEB测试项目
 ├── web-pm-springboot   java+springboot+mybatis WEB测试项目
-├── web-pm-vertx        kotlin+vertx WEB测试项目
-└── web-pm-vertx-java   java+vertx WEB测试项目
+└── web-pm-vertx        kotlin+vertx WEB测试项目
 ```
 
 # 性能测试报告
