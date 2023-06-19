@@ -1,6 +1,7 @@
 package com.zhaochuninhefei.webpmwebflux.controller;
 
 import com.zhaochuninhefei.webpmwebflux.dto.Post;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,5 +29,19 @@ public class SampleController {
         WebClient webClient = WebClient.create();
         //noinspection HttpUrlsUsage
         return webClient.get().uri("http://jsonplaceholder.typicode.com/posts").retrieve().bodyToFlux(Post.class);
+    }
+
+    // Flux返回的是一个分批次的流,在浏览器访问`http://localhost:8080/sample/flux`即可看到分批返回的效果
+    //  与Mono相比，Mono是一次请求一次返回，Flux则是一次请求多次返回。
+    @GetMapping(value = "/flux", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public Flux<String> flux() {
+        return Flux.fromArray(new String[]{"a", "b", "c", "d"}).map(s -> {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return "<letter:" + s + ">";
+        });
     }
 }
