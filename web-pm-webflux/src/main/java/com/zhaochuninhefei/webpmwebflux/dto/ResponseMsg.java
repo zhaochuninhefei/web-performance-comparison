@@ -3,9 +3,12 @@ package com.zhaochuninhefei.webpmwebflux.dto;
 /**
  * @author zhaochun
  */
-public class ResponseMsg {
+@SuppressWarnings("unused")
+public class ResponseMsg<T> {
     private String resCd;
     private String resMsg;
+
+    private T data;
 
     public String getResCd() {
         return resCd;
@@ -21,5 +24,13 @@ public class ResponseMsg {
 
     public void setResMsg(String resMsg) {
         this.resMsg = resMsg;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
     }
 }

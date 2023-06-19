@@ -52,11 +52,11 @@ public class AssetHandler {
         return astMp.get(id);
     }
 
-    private ResponseMsg modifyAssetDto(Asset asset) {
+    private ResponseMsg<Asset> modifyAssetDto(Asset asset) {
         // 打印当前线程ID
         System.out.println("modifyAssetDto线程ID:" + Thread.currentThread().getId());
         System.out.println("修改目标: " + asset.toString());
-        ResponseMsg responseMsg = new ResponseMsg();
+        ResponseMsg<Asset> responseMsg = new ResponseMsg<>();
         responseMsg.setResCd("1");
         responseMsg.setResMsg(asset.toString());
         return responseMsg;
@@ -110,7 +110,7 @@ public class AssetHandler {
         Mono<Asset> assetMono = serverRequest.bodyToMono(Asset.class);
         // 2. 通过`assetMono.flatMap`为mono定义一个Processor(订阅者+发布者)的实现逻辑，并返回新的mono
         return assetMono.flatMap(asset -> {
-            ResponseMsg responseMsg = modifyAssetDto(asset);
+            ResponseMsg<Asset> responseMsg = modifyAssetDto(asset);
             return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).bodyValue(responseMsg);
         });
         // 3. 该线程返回Mono对象给外层代码，外层通过RouterFunctions.route方法绑定请求uri与mono之间的对应关系，并为该mono完善订阅者处理逻辑并注册订阅者。
