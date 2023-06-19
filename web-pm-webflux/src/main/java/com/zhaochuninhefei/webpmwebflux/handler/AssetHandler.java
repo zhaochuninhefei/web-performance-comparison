@@ -62,6 +62,7 @@ public class AssetHandler {
         return responseMsg;
     }
 
+    @SuppressWarnings("unused")
     public Mono<ServerResponse> queryAllAssets(ServerRequest serverRequest) {
         // 获取当前线程ID
         long curThreadId = Thread.currentThread().getId();
