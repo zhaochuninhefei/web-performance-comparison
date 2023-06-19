@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
 
 /**
  * @author zhaochun
@@ -35,7 +36,7 @@ public class SampleController {
     //  与Mono相比，Mono是一次请求一次返回，Flux则是一次请求多次返回。
     @GetMapping(value = "/flux", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<String> flux() {
-        return Flux.fromArray(new String[]{"a", "b", "c", "d"}).map(s -> {
+        return Flux.fromArray(new String[]{"a", "b", "c", "d"}).publishOn(Schedulers.boundedElastic()).map(s -> {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
