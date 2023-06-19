@@ -36,7 +36,10 @@ public class SampleController {
     //  与Mono相比，Mono是一次请求一次返回，Flux则是一次请求多次返回。
     @GetMapping(value = "/flux", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<String> flux() {
+        System.out.println("flux请求线程ID:" + Thread.currentThread().getId());
+        // `.publishOn(Schedulers.boundedElastic())`的作用是请求调度另外一个线程来执行数据生产
         return Flux.fromArray(new String[]{"a", "b", "c", "d"}).publishOn(Schedulers.boundedElastic()).map(s -> {
+            System.out.println("flux生产数据线程ID:" + Thread.currentThread().getId());
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {

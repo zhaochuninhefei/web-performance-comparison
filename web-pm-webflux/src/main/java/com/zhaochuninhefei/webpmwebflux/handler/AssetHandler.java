@@ -71,8 +71,10 @@ public class AssetHandler {
         //   然后马上执行`Mono.just`传入的方法，发布数据，但此时没有订阅者，数据缓存在Mono中。
         // 2. 之后通过`ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body()`定义了一个Processor(订阅者+发布者)的实现逻辑,
         //   这段逻辑相当于为一个订阅者实现了部分onNext中的实现，并继续返回Mono对象(Mono的泛型发生了变化)。
-        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+        Mono<ServerResponse> mono = ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                 .body(Mono.just(queryAssetList()), Asset.class);
+        System.out.println("mono已创建");
+        return mono;
         // 3. 该线程返回Mono对象给外层代码，外层通过RouterFunctions.route方法绑定请求uri与mono之间的对应关系，并为该mono完善订阅者处理逻辑并注册订阅者。
         // 4. 之后缓存在mono的数据会被发送给订阅者，订阅者通过webflux的线程调度启用的某个线程执行订阅逻辑，包括将数据写入http响应。
     }
@@ -87,8 +89,10 @@ public class AssetHandler {
         // 1. 当前线程通过`Mono.fromSupplier`创建一个Mono对象，这是一个发布者;
         //   但与`Mono.just`不同的是，这里传入的`queryFromMap(id)`不会马上执行，而是在当前线程返回mono对象给外层执行完整订阅之后才会执行。
         // 2. 之后通过`ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body()`定义了一个Processor(订阅者+发布者)的实现逻辑。
-        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+        Mono<ServerResponse> mono = ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                 .body(Mono.fromSupplier(() -> queryFromMap(id)), Asset.class);
+        System.out.println("mono已创建");
+        return mono;
         // 3. 该线程返回Mono对象给外层代码，外层通过RouterFunctions.route方法绑定请求uri与mono之间的对应关系，并为该mono完善订阅者处理逻辑并注册订阅者。
         // 4. 该线程执行`Mono.fromSupplier`传入的`queryFromMap(id)`方法，发布数据。
         // 5. 数据会被发送给订阅者，订阅者通过webflux的线程调度启用的某个线程执行订阅逻辑，包括将数据写入http响应。
