@@ -1,0 +1,10 @@
+logging:
+    level:
+        org:
+            springframework:
+                r2dbc: debug
+spring:
+    r2dbc:
+        password: zhaochun@GITHUB
+        url: r2dbc:mysql://localhost:3307/db_web_pm
+        username: zhaochun1
