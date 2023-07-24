@@ -43,8 +43,10 @@ public class AccountService {
         Mono<ResponseMsg<List<AccountPosts>>> result =
                 // 请求查询Accounts全表，返回 Flux<Accounts>
                 accountsRepository.findAll()
-                        // 使用flatMap将每个account转换为Mono<AccountPosts>, 然后扁平化返回 Flux<AccountPosts>
-                        // 内部有阻塞操作 postRepository.findByActId , 因此不能直接使用map方法。
+                        // 使用flatMap, 将Flux<Accounts>转换为Flux<AccountPosts>。
+                        // 这里不能直接使用map将Flux<Accounts>转换为Flux<AccountPosts>,
+                        // 因为转换函数内部有阻塞逻辑(比如查询DB),需要再创建一个反应式流,即该转换函数的返回值类型是Mono<AccountPosts>,而不是AccountPosts,
+                        // 所以不能直接用map做转换, map方法的传入函数的返回值不是Mono或Flux，而是对应数据的类型。
                         .flatMap(account ->
                                 // 请求对每个Account查询对应的Post，返回 Flux<Post>
                                 postRepository.findByActId(account.getId())
@@ -66,8 +68,9 @@ public class AccountService {
 
         // 上面的代码在正常开始时写作:
 //        return accountsRepository.findAll()
-//                .flatMap(account -> postRepository.findByActId(account.getId()).collectList()
-//                        .map(posts -> new AccountPosts(account, posts)))
+//                .flatMap(account -> postRepository.findByActId(account.getId())
+//                                        .collectList()
+//                                        .map(posts -> new AccountPosts(account, posts)))
 //                .collectList()
 //                .map(list -> {
 //                    ResponseMsg<List<AccountPosts>> resp = new ResponseMsg<>();
