@@ -16,3 +16,15 @@ CREATE TABLE `accounts` (
   PRIMARY KEY (`id`),
   KEY `idx_accounts_deleted_at` (`deleted_at`)
 ) ENGINE=InnoDB COMMENT='帐号表';
+
+DROP TABLE `post` ;
+
+CREATE TABLE `post` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `act_id` bigint unsigned NOT NULL COMMENT '所属账户ID',
+  `title` varchar(100) NOT NULL COMMENT '帖子标题',
+  `content` varchar(255) NOT NULL COMMENT '帖子内容',
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `post_unique01` (`act_id`, `title`)
+) ENGINE=InnoDB COMMENT='发帖表';
+
