@@ -8,3 +8,5 @@ spring:
         password: zhaochun@GITHUB
         url: r2dbc:mysql://localhost:3307/db_web_pm
         username: zhaochun1
+server:
+    port: 18088
