@@ -2,14 +2,18 @@ package com.zhaochuninhefei.webpmwebflux.router;
 
 import com.zhaochuninhefei.webpmwebflux.handler.AssetHandler;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
-import org.springframework.web.reactive.function.server.*;
+import org.springframework.web.reactive.function.server.RequestPredicates;
+import org.springframework.web.reactive.function.server.RouterFunction;
+import org.springframework.web.reactive.function.server.RouterFunctions;
+import org.springframework.web.reactive.function.server.ServerResponse;
 
 /**
+ * 采用路由器模式实现httpAPI,暂时禁用
+ *
  * @author zhaochun
  */
-@Configuration
+//@Configuration
 public class WebPmRouter {
     @Bean
     public RouterFunction<ServerResponse> routerAsset(AssetHandler assetHandler) {

@@ -3,7 +3,6 @@ package com.zhaochuninhefei.webpmwebflux.handler;
 import com.zhaochuninhefei.webpmwebflux.dto.Asset;
 import com.zhaochuninhefei.webpmwebflux.dto.ResponseMsg;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
@@ -14,9 +13,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 采用路由器模式实现httpAPI,暂时禁用
+ *
  * @author zhaochun
  */
-@Component
+//@Component
 public class AssetHandler {
     private static final List<Asset> assets = new ArrayList<>();
 
