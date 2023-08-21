@@ -2,11 +2,16 @@ logging:
     level:
         org:
             springframework:
-                r2dbc: debug
+                r2dbc: info
 spring:
     r2dbc:
         password: zhaochun@GITHUB
         url: r2dbc:mysql://localhost:3307/db_web_pm
         username: zhaochun1
+        pool:
+            enabled: true
+            initial-size: 10
+            max-size: 100
+            min-idle: 5
 server:
     port: 18088

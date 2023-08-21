@@ -37,10 +37,15 @@
 <!--			<artifactId>jasync-r2dbc-mysql</artifactId>-->
 <!--			<version>2.1.23</version>-->
 <!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>dev.miku</groupId>-->
+<!--			<artifactId>r2dbc-mysql</artifactId>-->
+<!--			<version>0.8.2.RELEASE</version>-->
+<!--		</dependency>-->
 		<dependency>
-			<groupId>dev.miku</groupId>
+			<groupId>io.asyncer</groupId>
 			<artifactId>r2dbc-mysql</artifactId>
-			<version>0.8.2.RELEASE</version>
+			<version>1.0.2</version>
 		</dependency>
 
 		<dependency>
