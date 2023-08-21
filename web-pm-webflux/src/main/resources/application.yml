@@ -9,10 +9,10 @@ spring:
 #        url: r2dbc:mysql://localhost:3307/db_web_pm
         url: r2dbc:postgresql://localhost:5432/db_web_pm
         username: zhaochun1
-#        pool:
-#            enabled: true
-#            initial-size: 10
-#            max-size: 100
+        pool:
+            enabled: true
+            initial-size: 5
+            max-size: 10
 #            min-idle: 5
 server:
     port: 18088
