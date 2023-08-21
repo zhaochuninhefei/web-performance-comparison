@@ -59,7 +59,8 @@ func TestTruncateTable(t *testing.T) {
 		zclog.Errorln(err)
 		return
 	}
-	mysqlClient.Exec("TRUNCATE TABLE accounts")
+	//goland:noinspection SqlDialectInspection,SqlNoDataSourceInspection
+	mysqlClient.Exec("TRUNCATE TABLE accounts restart identity CASCADE")
 
 }
 
