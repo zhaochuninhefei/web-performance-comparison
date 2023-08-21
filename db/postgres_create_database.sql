@@ -1,3 +1,5 @@
+-- 使用超级用户执行:
+
 CREATE DATABASE db_web_pm;
 
 CREATE USER zhaochun1 WITH PASSWORD 'zhaochun@GITHUB';
@@ -5,7 +7,9 @@ CREATE USER zhaochun1 WITH PASSWORD 'zhaochun@GITHUB';
 GRANT ALL PRIVILEGES ON DATABASE db_web_pm to zhaochun1;
 GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO zhaochun1;
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO zhaochun1;
+GRANT USAGE, CREATE ON SCHEMA public TO zhaochun1;
 
+-- 使用新创建的用户 zhaochun1 执行:
 
 CREATE TABLE accounts (
   id bigserial PRIMARY KEY,
