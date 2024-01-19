@@ -24,7 +24,7 @@ spring:
     password: "${spring_datasource_password:zhaochun@GITHUB}"
   threads:
     virtual:
-      enabled: "${spring_threads_virtual_enabled:trur}"
+      enabled: "${spring_threads_virtual_enabled:true}"
 logging:
   level:
     root: info
