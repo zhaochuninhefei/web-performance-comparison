@@ -3,6 +3,7 @@ package com.zhaochuninhefei.webpmsbtvt.dto;
 /**
  * @author zhaochun
  */
+@SuppressWarnings({"LombokGetterMayBeUsed", "LombokSetterMayBeUsed", "unused"})
 public class Asset {
     private Integer id;
 

@@ -17,9 +17,9 @@ import java.util.Map;
 @Service
 public class AssetService {
 
-    private static List<Asset> assets = new ArrayList<>();
+    private static final List<Asset> assets = new ArrayList<>();
 
-    private static Map<String, Asset> astMp = new HashMap<>();
+    private static final Map<String, Asset> astMp = new HashMap<>();
 
     static {
         Asset ast1 = new Asset();
