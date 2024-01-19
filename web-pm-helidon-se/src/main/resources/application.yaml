@@ -1,12 +1,12 @@
 server:
-  port: 8080
+  port: 18089
   host: 0.0.0.0
 
 mysql:
   source: "jdbc"
   connection:
-    url: "jdbc:mysql://127.0.0.1:3306/quarkus_test"
-    username: "root"
-    password: "yinjiaolong"
+    url: "jdbc:mysql://localhost:3307/db_web_pm"
+    username: "zhaochun1"
+    password: "zhaochun@GITHUB"
   statements:
     ping: "DO 0"

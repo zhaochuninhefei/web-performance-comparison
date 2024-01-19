@@ -9,8 +9,8 @@ spec:
   selector:
     app: web-pm-helidon-se
   ports:
-  - port: 8080
-    targetPort: 8080
+  - port: 18089
+    targetPort: 18089
     name: http
 ---
 kind: Deployment
@@ -33,4 +33,4 @@ spec:
         image: web-pm-helidon-se
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 8080
+        - containerPort: 18089

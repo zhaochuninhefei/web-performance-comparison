@@ -43,6 +43,7 @@
             <groupId>jakarta.json</groupId>
             <artifactId>jakarta.json-api</artifactId>
         </dependency>
+        <!--suppress VulnerableLibrariesLocal -->
         <dependency>
             <groupId>io.helidon.http.media</groupId>
             <artifactId>helidon-http-media-jsonp</artifactId>
