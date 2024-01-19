@@ -12,7 +12,7 @@ import jakarta.json.JsonArray;
 import java.util.List;
 import java.util.Map;
 
-public class AssetService implements HttpService {
+public class AssetService extends BaseHttpService {
 
     private final Asset ast1 = new Asset(1, "asset001", "测试资产001");
     private final Asset ast2 = new Asset(2, "asset002", "测试资产002");
@@ -39,9 +39,8 @@ public class AssetService implements HttpService {
 
     private void modifyAsset(ServerRequest request,
                             ServerResponse response) {
-        Asset asset = request.content().as(Asset.class);
+        Asset asset = Asset.fromEntity(request.content());
         String assetStr = asset.toString();
-        System.out.println(assetStr);
         response.send(new ResponseMsg("1", assetStr).toJson());
     }
 }

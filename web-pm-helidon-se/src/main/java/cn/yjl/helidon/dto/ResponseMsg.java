@@ -8,10 +8,11 @@ import static cn.yjl.helidon.Util.JSON_FACTORY;
 public record ResponseMsg (
         String resCd,
         String resMsg
-)  implements JsonObjectEnable {
+)  implements JsonObjectEnable<ResponseMsg> {
     public JsonObject toJson() {
         return JSON_FACTORY.createObjectBuilder()
                 .add("resCd", resCd)
                 .add("resMsg", resMsg).build();
     }
+
 }

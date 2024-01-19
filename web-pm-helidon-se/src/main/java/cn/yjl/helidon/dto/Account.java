@@ -1,15 +1,17 @@
 package cn.yjl.helidon.dto;
 
+import cn.yjl.helidon.JsonObjectEnable;
 import cn.yjl.helidon.Util;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
 
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 import static cn.yjl.helidon.Util.JSON_FACTORY;
 
 public record Account(
-        Long id,
+        BigInteger id,
         LocalDateTime createdAt,
         LocalDateTime updatedAt,
         LocalDateTime deletedAt,
@@ -19,7 +21,7 @@ public record Account(
         String actIntroduction,
         Byte actStatus,
         LocalDateTime actRegisterDate
-) {
+) implements JsonObjectEnable<Account> {
     public JsonObject toJson() {
         JsonObjectBuilder builder = JSON_FACTORY.createObjectBuilder()
                 .add("id", id);

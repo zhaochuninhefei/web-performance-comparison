@@ -4,6 +4,8 @@ import cn.yjl.helidon.dto.Account;
 import io.helidon.dbclient.DbMapper;
 import io.helidon.dbclient.DbRow;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,7 +17,7 @@ public class AccountMapper implements DbMapper<Account> {
     @Override
     public Account read(DbRow row) {
         return new Account(
-                row.column("id").get(Long.class),
+                row.column("id").get(BigInteger.class),
                 row.column("created_at").get(LocalDateTime.class),
                 row.column("updated_at").get(LocalDateTime.class),
                 row.column("deleted_at").get(LocalDateTime.class),

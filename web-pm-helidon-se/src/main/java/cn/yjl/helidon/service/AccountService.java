@@ -1,12 +1,12 @@
 package cn.yjl.helidon.service;
 
 import cn.yjl.helidon.dto.Account;
+import cn.yjl.helidon.dto.Asset;
 import cn.yjl.helidon.dto.ResponseMsg;
 import io.helidon.common.context.Contexts;
 import io.helidon.config.Config;
 import io.helidon.dbclient.DbClient;
 import io.helidon.webserver.http.HttpRules;
-import io.helidon.webserver.http.HttpService;
 import io.helidon.webserver.http.ServerRequest;
 import io.helidon.webserver.http.ServerResponse;
 import jakarta.json.JsonArray;
@@ -17,7 +17,7 @@ import java.util.Date;
 
 import static cn.yjl.helidon.Util.JSON_FACTORY;
 
-public class AccountService implements HttpService {
+public class AccountService extends BaseHttpService {
 
     private final Config config = Config.global().get("mysql");
 
@@ -34,10 +34,7 @@ public class AccountService implements HttpService {
 
     private void listAccount(ServerRequest request,
                              ServerResponse response) {
-        JsonArray result = dbClient.execute().createQuery("select * from accounts").execute()
-                .map(row -> row.as(Account.class).toJson())
-                .collect(JSON_FACTORY::createArrayBuilder, JsonArrayBuilder::add, JsonArrayBuilder::addAll)
-                .build();
+        JsonArray result = super.convert(dbClient.execute().createQuery("select * from accounts").execute(), Account.class);
         response.send(result);
     }
 
