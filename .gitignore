@@ -108,3 +108,11 @@ web-pm-helidon-se/target/test-classes/application-test.yaml
 web-pm-helidon-se/target/test-classes/cn/yjl/helidon/AbstractMainTest.class
 web-pm-helidon-se/target/test-classes/cn/yjl/helidon/MainIT.class
 web-pm-helidon-se/target/test-classes/cn/yjl/helidon/MainTest.class
+web-pm-helidon-se/.idea/.gitignore
+web-pm-helidon-se/.idea/compiler.xml
+web-pm-helidon-se/.idea/dictionaries
+web-pm-helidon-se/.idea/encodings.xml
+web-pm-helidon-se/.idea/jarRepositories.xml
+web-pm-helidon-se/.idea/misc.xml
+web-pm-helidon-se/.idea/vcs.xml
+web-pm-helidon-se/.idea/inspectionProfiles/Project_Default.xml
