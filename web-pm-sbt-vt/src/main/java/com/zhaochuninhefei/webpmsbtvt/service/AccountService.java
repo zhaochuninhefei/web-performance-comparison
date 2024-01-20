@@ -16,6 +16,7 @@ import java.util.Objects;
 /**
  * @author zhaochun
  */
+@SuppressWarnings({"unused", "CommentedOutCode"})
 @Service
 public class AccountService {
     @Autowired
@@ -48,6 +49,6 @@ public class AccountService {
 //        long id = Objects.requireNonNull(keyHolder.getKey()).longValue();
 //        System.out.println("受影响行数: " + update + ", 新增帐户ID: " + id);
 //        return id;
-        return keyHolder.getKey().longValue();
+        return Objects.requireNonNull(keyHolder.getKey()).longValue();
     }
 }

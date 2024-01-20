@@ -30,7 +30,7 @@ public class AccountController {
 
     @PostMapping("/add")
     public ResponseMsg addNewAccount(@RequestBody Accounts account) {
-        Long newId = accountService.addNewAccountByJdbcClient(account);
+        Long newId = accountService.addNewAccount(account);
         ResponseMsg returnVal = new ResponseMsg();
         returnVal.setResCd("1");
         returnVal.setResMsg("新增帐户ID:" + newId);
