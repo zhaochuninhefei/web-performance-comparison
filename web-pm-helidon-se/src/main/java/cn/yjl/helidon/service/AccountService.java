@@ -28,6 +28,7 @@ public class AccountService extends BaseHttpService {
     @Override
     public void routing(HttpRules rules) {
         rules.get("/list", this::listAccount);
+        rules.get("/query", this::queryAccount);
         rules.post("/add", this::addAccount);
     }
 
@@ -38,14 +39,20 @@ public class AccountService extends BaseHttpService {
         response.send(result);
     }
 
+    private void queryAccount(ServerRequest request,
+                              ServerResponse response) {
+        String id = request.query().get("id");
+        response.send(super.convert(dbClient.execute().createQuery("select * from accounts where id = " + id).execute(), Account.class));
+    }
+
     private void addAccount(ServerRequest request,
                             ServerResponse response) {
 
         JsonObject account = request.content().as(JsonObject.class);
         dbClient.execute().createInsert("""
-                        insert into accounts (id, created_at, updated_at, deleted_at, act_name, act_pwd, act_nick_name, act_introduction, act_status, act_register_date)
-                                    values (null, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                        """).params(
+                insert into accounts (id, created_at, updated_at, deleted_at, act_name, act_pwd, act_nick_name, act_introduction, act_status, act_register_date)
+                            values (null, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """).params(
                 account.getString("createdAt", null),
                 account.getString("updatedAt", null),
                 account.getString("deletedAt", null),
