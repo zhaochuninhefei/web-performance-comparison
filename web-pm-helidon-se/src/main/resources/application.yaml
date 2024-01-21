@@ -5,8 +5,8 @@ server:
 mysql:
   source: "jdbc"
   connection:
-#    url: "jdbc:mysql://localhost:3307/db_web_pm"
-    url: "jdbc:mariadb://localhost:3307/db_web_pm"
+    url: "jdbc:mysql://localhost:3307/db_web_pm"
+#    url: "jdbc:mariadb://localhost:3307/db_web_pm"
     username: "zhaochun1"
     password: "zhaochun@GITHUB"
   statements:
