@@ -4,7 +4,8 @@ set -e
 
 work_dir=$(pwd)
 test_target=web-pm-sbt-vt
-prefix_all=5000_3m
+prefix_all=500_3m
+test_cnt=3
 
 
 # 1. 接口/account/add测试开始
@@ -12,7 +13,7 @@ echo
 echo "接口/account/add测试开始..."
 cd ./${test_target}-account_add
 
-for((i=1;i<4;i++)); do
+for((i=1;i<=test_cnt;i++)); do
     echo "${i}"
     echo
     echo "接口/account/add测试 第${i}轮..."
@@ -29,7 +30,7 @@ for((i=1;i<4;i++)); do
     echo "执行测试计划"
     ./run_jmeter.sh ${test_target}-account_add.jmx ${prefix_all}_${i}
     echo
-    if [ ! "${i}" == "3" ]
+    if [ ! "${i}" == "${test_cnt}" ]
     then
         echo
         echo "等待1分钟"
@@ -57,7 +58,7 @@ echo
 echo "等待5秒"
 sleep 5s
 
-for((i=1;i<4;i++)); do
+for((i=1;i<=test_cnt;i++)); do
     echo "${i}"
     echo
     echo "接口/account/list测试 第${i}轮..."
@@ -67,7 +68,7 @@ for((i=1;i<4;i++)); do
     echo "执行测试计划"
     ./run_jmeter.sh ${test_target}-account_list.jmx ${prefix_all}_${i}
     echo
-    if [ ! "${i}" == "3" ]
+    if [ ! "${i}" == "${test_cnt}" ]
     then
         echo
         echo "等待1分钟"
@@ -84,7 +85,7 @@ echo
 echo "接口/account/query测试开始..."
 cd ./${test_target}-account_query
 
-for((i=1;i<4;i++)); do
+for((i=1;i<=test_cnt;i++)); do
     echo "${i}"
     echo
     echo "接口/account/query测试 第${i}轮..."
@@ -93,7 +94,7 @@ for((i=1;i<4;i++)); do
     echo
     echo "执行测试计划"
     ./run_jmeter.sh ${test_target}-account_query.jmx ${prefix_all}_${i}
-    if [ ! "${i}" == "3" ]
+    if [ ! "${i}" == "${test_cnt}" ]
     then
         echo
         echo "等待1分钟"
@@ -110,7 +111,7 @@ echo "接口/account/query测试结束..."
 # echo "接口/asset/query测试开始..."
 # cd ./${test_target}-asset_query
 
-# for((i=1;i<4;i++)); do
+# for((i=1;i<=test_cnt;i++)); do
 #     echo "${i}"
 #     echo
 #     echo "接口/asset/query测试 第${i}轮..."
@@ -119,7 +120,7 @@ echo "接口/account/query测试结束..."
 #     echo
 #     echo "执行测试计划"
 #     ./run_jmeter.sh ${test_target}-asset_query.jmx ${prefix_all}_${i}
-#     if [ ! "${i}" == "3" ]
+#     if [ ! "${i}" == "${test_cnt}" ]
 #     then
 #         echo
 #         echo "等待1分钟"

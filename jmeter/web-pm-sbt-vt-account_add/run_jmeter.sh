@@ -3,7 +3,7 @@
 set -e
 
 jmx_name=web-pm-sbt-vt-account_add.jmx
-prefix_all=5000_3m
+prefix_all=500_3m
 
 if [ ! "$1" == "" ]
 then
