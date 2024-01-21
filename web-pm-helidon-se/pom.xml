@@ -64,27 +64,27 @@
             <groupId>io.helidon.dbclient</groupId>
             <artifactId>helidon-dbclient-metrics-hikari</artifactId>
         </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+<!--            <version>8.0.30</version>-->
+        </dependency>
 <!--        <dependency>-->
-<!--            <groupId>mysql</groupId>-->
-<!--            <artifactId>mysql-connector-java</artifactId>-->
-<!--&lt;!&ndash;            <version>8.0.30</version>&ndash;&gt;-->
+<!--            <groupId>org.mariadb.jdbc</groupId>-->
+<!--            <artifactId>mariadb-java-client</artifactId>-->
+<!--            <version>3.3.2</version>-->
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <artifactId>checker-qual</artifactId>-->
+<!--                    <groupId>org.checkerframework</groupId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
 <!--        </dependency>-->
-        <dependency>
-            <groupId>org.mariadb.jdbc</groupId>
-            <artifactId>mariadb-java-client</artifactId>
-            <version>3.3.2</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>checker-qual</artifactId>
-                    <groupId>org.checkerframework</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <artifactId>checker-qual</artifactId>
-            <groupId>org.checkerframework</groupId>
-            <version>3.32.0</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <artifactId>checker-qual</artifactId>-->
+<!--            <groupId>org.checkerframework</groupId>-->
+<!--            <version>3.32.0</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>io.helidon.metrics</groupId>
             <artifactId>helidon-metrics-system-meters</artifactId>
