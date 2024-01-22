@@ -21,7 +21,7 @@ for((i=1;i<=test_cnt;i++)); do
     # 清空测试表
     echo
     echo "清空测试表"
-    ../clear_table.sh
+    ../clear_table_maria.sh
     echo
     echo "等待5秒"
     sleep 5s
@@ -50,10 +50,10 @@ cd ./${test_target}-account_list
 # 清空测试表
 echo
 echo "清空测试表"
-../clear_table.sh
+../clear_table_maria.sh
 echo
 echo "插入1000条测试数据"
-../insert_table_1000.sh
+../insert_table_1000_maria.sh
 echo
 echo "等待5秒"
 sleep 5s
