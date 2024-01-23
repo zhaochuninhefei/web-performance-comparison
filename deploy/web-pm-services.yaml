@@ -37,7 +37,7 @@ services:
     ports:
       - "18081:18081"
     volumes: 
-      - "/data/volumes/github.com/zhaochuninhefei/web-performance-comparison/web-pm-springboot/logs:/home/web-pm-springboot/logs"
+      - "/data/volumes/github.com/zhaochuninhefei/web-performance-comparison/web-pm-springboot/logs:/logs"
     deploy:
       resources:
         limits:
@@ -60,7 +60,7 @@ services:
     ports:
       - "18090:18090"
     volumes: 
-      - "/data/volumes/github.com/zhaochuninhefei/web-performance-comparison/web-pm-springboot/logs:/home/web-pm-springboot/logs"
+      - "/data/volumes/github.com/zhaochuninhefei/web-performance-comparison/web-pm-sbt-vt/logs:/logs"
     deploy:
       resources:
         limits:

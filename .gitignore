@@ -24,3 +24,5 @@ web-pm-sbt-vt/.idea/
 web-pm-sbt-vt/target/
 jmeter/web-pm-sbt-vt-account_add -bk_20240120/
 jmeter/web-pm-sbt-vt-account_add-mariadb/
+web-pm-sbt-vt/logs/
+web-pm-springboot/logs/
