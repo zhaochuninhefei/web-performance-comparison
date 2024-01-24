@@ -89,7 +89,7 @@ func TestTruncateMariaTable(t *testing.T) {
 }
 
 func TestInsert1000(t *testing.T) {
-	mysqlClient, err := ConnectMysqlByDefault("192.168.60.60", "3307", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
+	mysqlClient, err := ConnectMysqlByDefault("192.168.60.60", "3306", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
 	if err != nil {
 		zclog.Errorln(err)
 		return
