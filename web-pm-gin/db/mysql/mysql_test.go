@@ -71,7 +71,7 @@ func TestInsert(t *testing.T) {
 }
 
 func TestTruncateTable(t *testing.T) {
-	mysqlClient, err := ConnectMysqlByDefault("localhost", "3307", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
+	mysqlClient, err := ConnectMysqlByDefault("192.168.60.60", "3307", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
 	if err != nil {
 		zclog.Errorln(err)
 		return
@@ -80,7 +80,7 @@ func TestTruncateTable(t *testing.T) {
 }
 
 func TestTruncateMariaTable(t *testing.T) {
-	mysqlClient, err := ConnectMysqlByDefault("localhost", "3308", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
+	mysqlClient, err := ConnectMysqlByDefault("192.168.60.60", "3308", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
 	if err != nil {
 		zclog.Errorln(err)
 		return
@@ -89,7 +89,7 @@ func TestTruncateMariaTable(t *testing.T) {
 }
 
 func TestInsert1000(t *testing.T) {
-	mysqlClient, err := ConnectMysqlByDefault("localhost", "3307", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
+	mysqlClient, err := ConnectMysqlByDefault("192.168.60.60", "3307", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
 	if err != nil {
 		zclog.Errorln(err)
 		return
@@ -111,7 +111,7 @@ func TestInsert1000(t *testing.T) {
 }
 
 func TestInsertMaria1000(t *testing.T) {
-	mysqlClient, err := ConnectMysqlByDefault("localhost", "3308", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
+	mysqlClient, err := ConnectMysqlByDefault("192.168.60.60", "3308", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
 	if err != nil {
 		zclog.Errorln(err)
 		return
