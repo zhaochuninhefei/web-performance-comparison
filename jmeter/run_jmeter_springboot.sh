@@ -53,7 +53,7 @@ echo "清空测试表"
 ../clear_table_maria.sh
 echo
 echo "插入1000条测试数据"
-../insert_table_1000_maria.sh
+../insert_table_100000_maria.sh
 echo
 echo "等待5秒"
 sleep 5s
