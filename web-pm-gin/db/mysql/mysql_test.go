@@ -71,7 +71,7 @@ func TestInsert(t *testing.T) {
 }
 
 func TestTruncateTable(t *testing.T) {
-	mysqlClient, err := ConnectMysqlByDefault("192.168.60.60", "3307", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
+	mysqlClient, err := ConnectMysqlByDefault("192.168.60.60", "3306", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
 	if err != nil {
 		zclog.Errorln(err)
 		return
@@ -130,6 +130,30 @@ func TestInsertMaria1000(t *testing.T) {
 	}
 	result := mysqlClient.Create(&acts)
 	zclog.Infof("Insert 件数: %d", result.RowsAffected)
+}
+
+func TestInsertMaria100000(t *testing.T) {
+	mysqlClient, err := ConnectMysqlByDefault("192.168.60.60", "3308", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
+	if err != nil {
+		zclog.Errorln(err)
+		return
+	}
+	for n := 0; n < 100; n++ {
+		var acts [1000]model.Account
+		for i := 0; i < 1000; i++ {
+			act := model.Account{
+				ActName:         "libai",
+				ActPwd:          "libai@DATANG",
+				ActNickName:     "诗仙太白",
+				ActIntroduction: "李白，唐朝诗人，字太白，号青莲居士，世称诗仙。",
+				ActStatus:       0,
+				ActRegisterDate: time.Now(),
+			}
+			acts[i] = act
+		}
+		result := mysqlClient.Create(&acts)
+		zclog.Infof("Insert 件数: %d", result.RowsAffected)
+	}
 }
 
 func TestInsert1000_mysql5(t *testing.T) {
