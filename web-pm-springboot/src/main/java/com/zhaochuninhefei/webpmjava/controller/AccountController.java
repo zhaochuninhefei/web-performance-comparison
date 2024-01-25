@@ -24,8 +24,8 @@ public class AccountController {
     }
 
     @GetMapping("/query")
-    public Accounts queryAccountByID(@RequestParam Long id) {
-        return accountService.queryActByID(id);
+    public Accounts queryAccountByID() {
+        return accountService.queryActByID();
     }
 
     @PostMapping("/add")
@@ -35,5 +35,10 @@ public class AccountController {
         returnVal.setResCd("1");
         returnVal.setResMsg("新增帐户ID:" + newId);
         return returnVal;
+    }
+
+    @GetMapping("/queryByIdRange")
+    public List<Accounts> queryAccountsByIdRange() {
+        return accountService.queryAccountsByIdRange();
     }
 }
