@@ -46,10 +46,10 @@ if [ -f "./${prefix_all}_aggregate.csv" ]; then
 fi
 
 # 执行jmeter测试计划
-/opt/apache-jmeter-5.1.1/bin/jmeter -n -t "${jmx_name}" -l "${prefix_all}_result_report.jtl" -e -o "${prefix_all}_report"
+/opt/apache-jmeter-5.6.2/bin/jmeter -n -t "${jmx_name}" -l "${prefix_all}_result_report.jtl" -e -o "${prefix_all}_report"
 
 # 绘制PerfMon统计结果
-/opt/apache-jmeter-5.1.1/bin/JMeterPluginsCMD.sh --generate-png "${prefix_all}_monitor_report.png" --input-jtl monitor_report.jtl --plugin-type PerfMon --width 800 --height 600
+/opt/apache-jmeter-5.6.2/bin/JMeterPluginsCMD.sh --generate-png "${prefix_all}_monitor_report.png" --input-jtl monitor_report.jtl --plugin-type PerfMon --width 800 --height 600
 
 # 输出聚合报告
-/opt/apache-jmeter-5.1.1/bin/JMeterPluginsCMD.sh --generate-csv "${prefix_all}_aggregate.csv" --input-jtl "${prefix_all}_result_report.jtl" --plugin-type AggregateReport
+/opt/apache-jmeter-5.6.2/bin/JMeterPluginsCMD.sh --generate-csv "${prefix_all}_aggregate.csv" --input-jtl "${prefix_all}_result_report.jtl" --plugin-type AggregateReport

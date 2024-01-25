@@ -4,7 +4,7 @@ set -e
 
 work_dir=$(pwd)
 test_target=web-pm-sbt-vt
-prefix_all=5000_5m
+prefix_all=500_3m
 test_cnt=3
 
 
@@ -106,31 +106,31 @@ cd ../
 echo
 echo "接口/account/query测试结束..."
 
-# # 4. 接口/asset/query测试开始
-# echo
-# echo "接口/asset/query测试开始..."
-# cd ./${test_target}-asset_query
+# 4. 接口/asset/query测试开始
+echo
+echo "接口/asset/query测试开始..."
+cd ./${test_target}-asset_query
 
-# for((i=1;i<=test_cnt;i++)); do
-#     echo "${i}"
-#     echo
-#     echo "接口/asset/query测试 第${i}轮..."
-#     # 第i轮
-#     # 执行测试计划
-#     echo
-#     echo "执行测试计划"
-#     ./run_jmeter.sh ${test_target}-asset_query.jmx ${prefix_all}_${i}
-#     if [ ! "${i}" == "${test_cnt}" ]
-#     then
-#         echo
-#         echo "等待1分钟"
-#         sleep 60s
-#     fi
-# done
+for((i=1;i<=test_cnt;i++)); do
+    echo "${i}"
+    echo
+    echo "接口/asset/query测试 第${i}轮..."
+    # 第i轮
+    # 执行测试计划
+    echo
+    echo "执行测试计划"
+    ./run_jmeter.sh ${test_target}-asset_query.jmx ${prefix_all}_${i}
+    if [ ! "${i}" == "${test_cnt}" ]
+    then
+        echo
+        echo "等待1分钟"
+        sleep 60s
+    fi
+done
 
-# cd ../
-# echo
-# echo "接口/asset/query测试结束..."
+cd ../
+echo
+echo "接口/asset/query测试结束..."
 
 
 cd "${work_dir}"
