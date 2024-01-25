@@ -38,7 +38,7 @@ public class AccountController {
     }
 
     @GetMapping("/queryByIdRange")
-    public List<Accounts> queryAccountsByIdRange() {
-        return accountService.queryAccountsByIdRange();
+    public List<Accounts> queryAccountsByIdRange(@RequestParam(value = "size", required = false) int size) {
+        return accountService.queryAccountsByIdRange(size);
     }
 }

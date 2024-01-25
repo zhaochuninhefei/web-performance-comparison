@@ -37,10 +37,13 @@ public class AccountService {
         return account.getId();
     }
 
-    public List<Accounts> queryAccountsByIdRange() {
+    public List<Accounts> queryAccountsByIdRange(int size) {
+        if (size <= 0 || size > 100) {
+            size = 20;
+        }
         // 获取一个位于1到900之间的随机整数
-        long startId = random.nextInt(1, 900);
-        long endId = startId + 100;
+        long startId = random.nextInt(1, 99900);
+        long endId = startId + size;
 
         AccountsExample example = new AccountsExample();
         example.createCriteria().andIdBetween(startId, endId);
