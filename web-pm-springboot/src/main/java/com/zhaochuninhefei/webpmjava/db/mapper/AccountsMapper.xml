@@ -443,4 +443,18 @@
       act_register_date = #{actRegisterDate,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <!-- added by developer -->
+  <resultMap id="AmountByCtmLevelMap" type="com.zhaochuninhefei.webpmjava.db.po.AmountByCtmLevel">
+    <result column="ctm_level" jdbcType="INTEGER" property="ctmLevel" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+  </resultMap>
+  <select id="selectAmountByCtmLevel" resultMap="AmountByCtmLevelMap">
+    SELECT c.ctm_level as ctm_level, sum(p.prd_price * o.prd_num) as amount
+    FROM orders o
+           INNER JOIN products p ON(p.id = o.prd_id)
+           INNER JOIN customers c ON(c.id = o.ctm_id)
+    GROUP BY
+      c.ctm_level
+  </select>
 </mapper>

@@ -3,6 +3,7 @@ package com.zhaochuninhefei.webpmjava.service;
 import com.zhaochuninhefei.webpmjava.db.dao.AccountsMapper;
 import com.zhaochuninhefei.webpmjava.db.po.Accounts;
 import com.zhaochuninhefei.webpmjava.db.po.AccountsExample;
+import com.zhaochuninhefei.webpmjava.db.po.AmountByCtmLevel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,5 +49,9 @@ public class AccountService {
         AccountsExample example = new AccountsExample();
         example.createCriteria().andIdBetween(startId, endId);
         return accountsMapper.selectByExample(example);
+    }
+
+    public List<AmountByCtmLevel> queryAmountByCtmLevel() {
+        return accountsMapper.selectAmountByCtmLevel();
     }
 }

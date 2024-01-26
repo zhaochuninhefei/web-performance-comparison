@@ -1,6 +1,7 @@
 package com.zhaochuninhefei.webpmjava.controller;
 
 import com.zhaochuninhefei.webpmjava.db.po.Accounts;
+import com.zhaochuninhefei.webpmjava.db.po.AmountByCtmLevel;
 import com.zhaochuninhefei.webpmjava.dto.ResponseMsg;
 import com.zhaochuninhefei.webpmjava.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,10 @@ public class AccountController {
     @GetMapping("/queryByIdRange")
     public List<Accounts> queryAccountsByIdRange(@RequestParam(value = "size", required = false) int size) {
         return accountService.queryAccountsByIdRange(size);
+    }
+
+    @GetMapping("/queryAmountByCtmLevel")
+    public List<AmountByCtmLevel> queryAmountByCtmLevel() {
+        return accountService.queryAmountByCtmLevel();
     }
 }
