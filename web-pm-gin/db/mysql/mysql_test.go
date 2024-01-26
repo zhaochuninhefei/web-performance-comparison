@@ -195,9 +195,9 @@ func TestInsert1000_mysql5(t *testing.T) {
 	zclog.Infof("Insert 件数: %d", result.RowsAffected)
 }
 
-func TestPrepareCPOIntoMariadb(t *testing.T) {
+func TestPrepareCPO(t *testing.T) {
 	rand.Seed(time.Now().Unix())
-	mysqlClient, err := ConnectMysqlByDefault("localhost", "3308", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
+	mysqlClient, err := ConnectMysqlByDefault("192.168.60.60", "3308", "zhaochun1", "zhaochun@GITHUB", "db_web_pm")
 	if err != nil {
 		zclog.Errorln(err)
 		return
