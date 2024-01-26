@@ -3,6 +3,8 @@ package com.zhaochuninhefei.webpmsbtvt.db.dao;
 import com.zhaochuninhefei.webpmsbtvt.db.po.Accounts;
 import com.zhaochuninhefei.webpmsbtvt.db.po.AccountsExample;
 import java.util.List;
+
+import com.zhaochuninhefei.webpmsbtvt.db.po.AmountByCtmLevel;
 import org.apache.ibatis.annotations.Param;
 
 public interface AccountsMapper {
@@ -95,4 +97,7 @@ public interface AccountsMapper {
      * @return int
      */
     int updateByPrimaryKey(Accounts row);
+
+    // added by developer
+    List<AmountByCtmLevel> selectAmountByCtmLevel();
 }
