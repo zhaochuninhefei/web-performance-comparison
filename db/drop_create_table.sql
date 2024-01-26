@@ -32,7 +32,6 @@ CREATE TABLE `post` (
 
 -- db_web_pm.customers definition
 DROP TABLE `customers` ;
-
 CREATE TABLE `customers` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `created_at` datetime(3) DEFAULT NULL,
@@ -42,7 +41,7 @@ CREATE TABLE `customers` (
   `ctm_email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '客户邮箱',
   `ctm_phone` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '客户手机号',
   `ctm_addr` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '客户地址',
-  `ctm_level` bigint NOT NULL COMMENT '客户级别',
+  `ctm_level` int NOT NULL COMMENT '客户级别',
   PRIMARY KEY (`id`),
   KEY `idx_customers_deleted_at` (`deleted_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='客户表';
@@ -58,7 +57,7 @@ CREATE TABLE `products` (
   `prd_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '产品名',
   `prd_desc` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '产品描述',
   `prd_price` decimal(10,2) NOT NULL COMMENT '产品价格',
-  `prd_type` bigint NOT NULL COMMENT '产品类型',
+  `prd_type` int NOT NULL COMMENT '产品类型',
   PRIMARY KEY (`id`),
   KEY `idx_products_deleted_at` (`deleted_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='产品表';
@@ -75,7 +74,7 @@ CREATE TABLE `orders` (
   `ord_status` tinyint unsigned DEFAULT NULL COMMENT '订单状态',
   `ctm_id` bigint NOT NULL COMMENT '订单客户ID',
   `prd_id` bigint NOT NULL COMMENT '订单产品ID',
-  `prd_num` bigint NOT NULL COMMENT '订单产品数量',
+  `prd_num` int NOT NULL COMMENT '订单产品数量',
   PRIMARY KEY (`id`),
   KEY `idx_orders_deleted_at` (`deleted_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='订单表';
