@@ -100,4 +100,6 @@ public interface AccountsMapper {
 
     // added by developer
     List<AmountByCtmLevel> selectAmountByCtmLevel();
+
+    long countOrdersAll();
 }
