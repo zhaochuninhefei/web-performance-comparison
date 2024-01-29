@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.zhaochuninhefei</groupId>
     <artifactId>web-pm-springboot</artifactId>
-    <version>mariadb.0.3</version>
+    <version>mariadb.0.4</version>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
