@@ -47,4 +47,9 @@ public class AccountController {
     public List<AmountByCtmLevel> queryAmountByCtmLevel() {
         return accountService.queryAmountByCtmLevel();
     }
+
+    @GetMapping("/countOrdersAll")
+    public Long countOrdersAll() {
+        return accountService.countOrdersAll();
+    }
 }

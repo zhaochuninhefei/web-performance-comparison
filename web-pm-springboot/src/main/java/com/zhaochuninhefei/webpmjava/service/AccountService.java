@@ -54,4 +54,8 @@ public class AccountService {
     public List<AmountByCtmLevel> queryAmountByCtmLevel() {
         return accountsMapper.selectAmountByCtmLevel();
     }
+
+    public long countOrdersAll() {
+        return accountsMapper.countOrdersAll();
+    }
 }

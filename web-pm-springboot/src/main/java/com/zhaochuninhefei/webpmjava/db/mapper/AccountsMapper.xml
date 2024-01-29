@@ -457,4 +457,7 @@
     GROUP BY
       c.ctm_level
   </select>
+  <select id="countOrdersAll" resultType="java.lang.Long">
+    select count(*) from orders
+  </select>
 </mapper>
