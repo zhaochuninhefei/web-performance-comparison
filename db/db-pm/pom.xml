@@ -6,7 +6,7 @@
 
     <groupId>com.zhaochuninhefei</groupId>
     <artifactId>db-pm</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.0.1</version>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -40,4 +40,42 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+        <plugins>
+            <!-- 使用 maven-assembly-plugin 将依赖包一起打入jar，并指定主程序为 SM2Util。 -->
+            <!-- 目的是支持直接命令行执行sm2工具: -->
+            <!-- /usr/java/jdk-21.0.1+12/bin/java -jar target/lib-brood-crypto-3.0.0-RELEASE-jar-with-dependencies.jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.6.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.zhaochuninhefei.dbpm.DbpmMain</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.3.0</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>
