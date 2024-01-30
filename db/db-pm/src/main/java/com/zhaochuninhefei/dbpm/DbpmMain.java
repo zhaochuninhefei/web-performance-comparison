@@ -8,6 +8,7 @@ import java.util.List;
 /**
  * @author zhaochun
  */
+@SuppressWarnings("CallToPrintStackTrace")
 public class DbpmMain {
     public static void main(String[] args) {
         var runTimes = 1;
@@ -18,6 +19,10 @@ public class DbpmMain {
                 System.out.println("Usage: java -jar db-pm.jar <run times>");
                 System.exit(1);
             }
+        }
+        var outPath = "out.csv";
+        if (args.length > 1) {
+            outPath = args[1];
         }
 
         var mysqlTester = new MySQLTester();
@@ -30,6 +35,16 @@ public class DbpmMain {
             timeDtos.add(timeDto);
         }
         System.out.println(TimeDto.createInfo(timeDtos));
+        writeToCsv(timeDtos, outPath);
+    }
+
+    private static void writeToCsv(List<TimeDto> timeDtos, String outPath) {
+        var content = TimeDto.createInfo(timeDtos);
+        try (var writer = new java.io.FileWriter(outPath)) {
+            writer.write(content);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
