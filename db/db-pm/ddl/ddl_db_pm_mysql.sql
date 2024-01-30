@@ -15,6 +15,9 @@ CREATE TABLE IF NOT EXISTS `db_pm_mysql`.`tb_order` (
   UNIQUE KEY `tb_order_unique01` (`ord_number`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = '订单表';
 
+CREATE INDEX `tb_order_idx01` ON `db_pm_mysql`.`tb_order` (`custom_number`, `product_number` DESC);
+CREATE INDEX `tb_order_idx02` ON `db_pm_mysql`.`tb_order` (`warehouse_number`, `product_number`);
+
 DROP TABLE IF EXISTS `db_pm_mysql`.`tb_custom`;
 CREATE TABLE IF NOT EXISTS `db_pm_mysql`.`tb_custom` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',
