@@ -1,9 +1,7 @@
-package com.zhaochuninhefei.dbpm.mysql;
+package com.zhaochuninhefei.dbpm;
 
-import com.zhaochuninhefei.dbpm.TimeDto;
-
-import java.sql.Date;
 import java.sql.*;
+import java.sql.Date;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -14,50 +12,61 @@ import java.util.stream.Stream;
  * @author zhaochun
  */
 @SuppressWarnings({"unused", "CallToPrintStackTrace"})
-public class MySQLPerformanceTest {
+public abstract class BaseTester {
 
-    private static final String JDBC_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
-    private static final String JDBC_URL = "jdbc:mysql://localhost:3307/db_pm_mysql?useUnicode=true&characterEncoding=UTF-8&useSSL=false&rewriteBatchedStatements=true";
-    private static final String JDBC_USER = "zhaochun1";
-    private static final String JDBC_PWD = "zhaochun@GITHUB";
+    private static final String SQL_TRUNCATE_ORDER = "truncate tb_order";
+    private static final String SQL_TRUNCATE_CUSTOM = "truncate tb_custom";
+    private static final String SQL_TRUNCATE_PRODUCT = "truncate tb_product";
+    private static final String SQL_TRUNCATE_WAREHOUSE = "truncate tb_warehouse";
 
-    private final TimeDto timeDto = new TimeDto();
+    private static final String SQL_INSERT_TB_ORDER = "insert into tb_order(`ord_number`, `custom_number`, `product_number`, `warehouse_number`, `ord_status`, `order_time`) values(?, ?, ?, ?, ?, ?)";
+    private static final String SQL_INSERT_TB_CUSTOM = "insert into tb_custom(`custom_number`, `custom_name`, `custom_phone`, `custom_address`) values(?, ?, ?, ?)";
+    private static final String SQL_INSERT_TB_PRODUCT = "insert into tb_product(`product_number`, `product_name`) values(?, ?)";
+    private static final String SQL_INSERT_TB_WAREHOUSE = "insert into tb_warehouse(`warehouse_number`, `warehouse_name`) values(?, ?)";
+    private static final String SQL_SELECTORDERS = "SELECT `id`, `ord_number`, `custom_number`, `product_number`, `warehouse_number`, `ord_status`, `order_time` FROM `tb_order`";
+    private static final String SQL_SELECTCUSTOMS = "SELECT `id`, `custom_number`, `custom_name`, `custom_phone`, `custom_address` FROM `tb_custom`";
+    private static final String SQL_SELECTPRODUCTS = "SELECT `id`, `product_number`, `product_name` FROM `tb_product`";
+    private static final String SQL_SELECTWAREHOUSES = "SELECT `id`, `warehouse_number`, `warehouse_name` FROM `tb_warehouse`";
+    private static final String SQL_SELECTORDERJOINCUSTOM = "SELECT a.ord_number, a.ord_status, a.order_time, b.custom_number, b.custom_name FROM tb_order a inner join tb_custom b on(a.custom_number = b.custom_number)";
+    private static final String SQL_SELECTORDERJOINPRODUCT = "SELECT a.ord_number, a.ord_status, a.order_time, b.product_number, b.product_name FROM tb_order a inner join tb_product b on(a.product_number = b.product_number)";
+    private static final String SQL_SELECTORDERJOINWAREHOUSE = "SELECT a.ord_number, a.ord_status, a.order_time, b.warehouse_number, b.warehouse_name FROM tb_order a inner join tb_warehouse b on(a.warehouse_number = b.warehouse_number)";
+    private static final String SQL_SELECTORDERWITHORDERBY = "SELECT custom_number, product_number from tb_order order by custom_number, product_number DESC";
+    private static final String SQL_CREATE_INDEX = "CREATE INDEX `tb_order_idx01` ON `tb_order` (`custom_number`, `product_number` DESC)";
+    private static final String SQL_DROP_INDEX = "DROP INDEX `tb_order_idx01` ON `tb_order`";
 
-    public TimeDto getTimeDto() {
+    public abstract String getJdbcUrl();
+    public abstract String getJdbcUsername();
+    public abstract String getJdbcPassword();
+
+    private TimeDto timeDto;
+
+    public TimeDto runTester(Map<String, Set<Map<String, Object>>> prepareData) {
+        timeDto = new TimeDto();
+
+        this.truncateTables();
+
+        this.insertOrder(prepareData.get("orders"));
+        this.insertCustom(prepareData.get("customs"));
+        this.insertProduct(prepareData.get("products"));
+        this.insertWarehouse(prepareData.get("warehouses"));
+
+        this.selectOrders();
+        this.selectCustoms();
+        this.selectProducts();
+        this.selectWarehouses();
+
+        this.selectOrderJoinCustom();
+        this.selectOrderJoinProduct();
+        this.selectOrderJoinWarehouse();
+
+        this.executeDDL(SQL_CREATE_INDEX);
+        this.selectOrderWithOrderBy();
+        this.executeDDL(SQL_DROP_INDEX);
+
         return timeDto;
     }
 
-    public static void main(String[] args) {
-//        MySQLPerformanceTest me = new MySQLPerformanceTest();
-//        me.executeDDL("CREATE INDEX `tb_order_idx01` ON `db_pm_mysql`.`tb_order` (`custom_number`, `product_number` DESC)");
-//        me.executeDDL("ALTER TABLE `db_pm_mysql`.`tb_order` DROP INDEX `tb_order_idx01`");
-
-//        Map<String, Set<Map<String, Object>>> prepareData = me.prepareData();
-//
-//        me.truncateTables();
-//
-//        DriverManager.drivers().forEach(driver -> System.out.println(driver.getClass().getName()));
-//
-//        me.insertOrder(prepareData.get("orders"));
-//        me.insertCustom(prepareData.get("customs"));
-//        me.insertProduct(prepareData.get("products"));
-//        me.insertWarehouse(prepareData.get("warehouses"));
-//
-//        me.selectOrders();
-//        me.selectCustoms();
-//        me.selectProducts();
-//        me.selectWarehouses();
-//
-//        me.selectOrderJoinCustom();
-//        me.selectOrderJoinProduct();
-//        me.selectOrderJoinWarehouse();
-//
-//        me.selectOrderWithOrderBy();
-//
-//        System.out.println(me.getTimeDto().createStaticsInfo(true));
-    }
-
-    private Map<String, Set<Map<String, Object>>> prepareData() {
+    public static Map<String, Set<Map<String, Object>>> prepareData() {
         LocalDateTime startTime = LocalDateTime.now();
         System.out.println("prepareData startTime: " + startTime);
 
@@ -108,26 +117,21 @@ public class MySQLPerformanceTest {
         System.out.println("prepareData stopTime: " + stopTime);
         Duration duration = Duration.between(startTime, stopTime);
         System.out.println("prepareData 耗时(毫秒):" + duration.toMillis());
-        timeDto.setPrepareDataTime(duration.toMillis());
+//        timeDto.setPrepareDataTime(duration.toMillis());
         return data;
     }
 
-    private void truncateTables() {
+    protected void truncateTables() {
         LocalDateTime startTime = LocalDateTime.now();
         System.out.println("truncateTables startTime: " + startTime);
 
-        String sql_truncate_order = "truncate tb_order";
-        String sql_truncate_custom = "truncate tb_custom";
-        String sql_truncate_product = "truncate tb_product";
-        String sql_truncate_warehouse = "truncate tb_warehouse";
-
-        try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PWD);
+        try (Connection connection = DriverManager.getConnection(getJdbcUrl(), getJdbcUsername(), getJdbcPassword());
              Statement statement = connection.createStatement()
         ) {
-            statement.execute(sql_truncate_order);
-            statement.execute(sql_truncate_custom);
-            statement.execute(sql_truncate_product);
-            statement.execute(sql_truncate_warehouse);
+            statement.execute(SQL_TRUNCATE_ORDER);
+            statement.execute(SQL_TRUNCATE_CUSTOM);
+            statement.execute(SQL_TRUNCATE_PRODUCT);
+            statement.execute(SQL_TRUNCATE_WAREHOUSE);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -139,16 +143,14 @@ public class MySQLPerformanceTest {
         timeDto.setTruncateTime(duration.toMillis());
     }
 
-    private void insertOrder(Set<Map<String, Object>> datas) {
+    protected void insertOrder(Set<Map<String, Object>> datas) {
         List<List<Map<String, Object>>> dataGrps = splitBy1000(datas);
-
-        String sql_insert = "insert into tb_order(`ord_number`, `custom_number`, `product_number`, `warehouse_number`, `ord_status`, `order_time`) values(?, ?, ?, ?, ?, ?)";
 
         LocalDateTime startTime = LocalDateTime.now();
         System.out.println("insertOrder startTime: " + startTime);
         for (List<Map<String, Object>> subDatas : dataGrps) {
-            try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PWD);
-                 PreparedStatement ps = connection.prepareStatement(sql_insert)
+            try (Connection connection = DriverManager.getConnection(getJdbcUrl(), getJdbcUsername(), getJdbcPassword());
+                 PreparedStatement ps = connection.prepareStatement(SQL_INSERT_TB_ORDER)
             ) {
                 for (Map<String, Object> lineData : subDatas) {
                     ps.setObject(1, lineData.get("ord_number"));
@@ -171,16 +173,14 @@ public class MySQLPerformanceTest {
         timeDto.setInsertOrdTime(duration.toMillis());
     }
 
-    private void insertCustom(Set<Map<String, Object>> datas) {
+    protected void insertCustom(Set<Map<String, Object>> datas) {
         List<List<Map<String, Object>>> dataGrps = splitBy1000(datas);
-
-        String sql_insert = "insert into tb_custom(`custom_number`, `custom_name`, `custom_phone`, `custom_address`) values(?, ?, ?, ?)";
 
         LocalDateTime startTime = LocalDateTime.now();
         System.out.println("insertCustom startTime: " + startTime);
         for (List<Map<String, Object>> subDatas : dataGrps) {
-            try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PWD);
-                 PreparedStatement ps = connection.prepareStatement(sql_insert)
+            try (Connection connection = DriverManager.getConnection(getJdbcUrl(), getJdbcUsername(), getJdbcPassword());
+                 PreparedStatement ps = connection.prepareStatement(SQL_INSERT_TB_CUSTOM)
             ) {
                 for (Map<String, Object> lineData : subDatas) {
                     ps.setObject(1, lineData.get("custom_number"));
@@ -201,16 +201,14 @@ public class MySQLPerformanceTest {
         timeDto.setInsertCstTime(duration.toMillis());
     }
 
-    private void insertProduct(Set<Map<String, Object>> datas) {
+    protected void insertProduct(Set<Map<String, Object>> datas) {
         List<List<Map<String, Object>>> dataGrps = splitBy1000(datas);
-
-        String sql_insert = "insert into tb_product(`product_number`, `product_name`) values(?, ?)";
 
         LocalDateTime startTime = LocalDateTime.now();
         System.out.println("insertProduct startTime: " + startTime);
         for (List<Map<String, Object>> subDatas : dataGrps) {
-            try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PWD);
-                 PreparedStatement ps = connection.prepareStatement(sql_insert)
+            try (Connection connection = DriverManager.getConnection(getJdbcUrl(), getJdbcUsername(), getJdbcPassword());
+                 PreparedStatement ps = connection.prepareStatement(SQL_INSERT_TB_PRODUCT)
             ) {
                 for (Map<String, Object> lineData : subDatas) {
                     ps.setObject(1, lineData.get("product_number"));
@@ -229,16 +227,14 @@ public class MySQLPerformanceTest {
         timeDto.setInsertPrdTime(duration.toMillis());
     }
 
-    private void insertWarehouse(Set<Map<String, Object>> datas) {
+    protected void insertWarehouse(Set<Map<String, Object>> datas) {
         List<List<Map<String, Object>>> dataGrps = splitBy1000(datas);
-
-        String sql_insert = "insert into tb_warehouse(`warehouse_number`, `warehouse_name`) values(?, ?)";
 
         LocalDateTime startTime = LocalDateTime.now();
         System.out.println("insertWarehouse startTime: " + startTime);
         for (List<Map<String, Object>> subDatas : dataGrps) {
-            try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PWD);
-                 PreparedStatement ps = connection.prepareStatement(sql_insert)
+            try (Connection connection = DriverManager.getConnection(getJdbcUrl(), getJdbcUsername(), getJdbcPassword());
+                 PreparedStatement ps = connection.prepareStatement(SQL_INSERT_TB_WAREHOUSE)
             ) {
                 for (Map<String, Object> lineData : subDatas) {
                     ps.setObject(1, lineData.get("warehouse_number"));
@@ -257,9 +253,8 @@ public class MySQLPerformanceTest {
         timeDto.setInsertWhsTime(duration.toMillis());
     }
 
-    private void selectOrders() {
-        String sql = "SELECT `id`, `ord_number`, `custom_number`, `product_number`, `warehouse_number`, `ord_status`, `order_time` FROM `tb_order`";
-        long[] tmp = executeQuery(sql, "selectOrders");
+    protected void selectOrders() {
+        long[] tmp = executeQuery(SQL_SELECTORDERS, "selectOrders");
         timeDto.setSelectOrdConnTime(tmp[0]);
         timeDto.setSelectOrdExecTime(tmp[1]);
         timeDto.setSelectOrdLoopTime(tmp[2]);
@@ -267,9 +262,8 @@ public class MySQLPerformanceTest {
         timeDto.setOrdSize(tmp[4]);
     }
 
-    private void selectCustoms() {
-        String sql = "SELECT `id`, `custom_number`, `custom_name`, `custom_phone`, `custom_address` FROM `tb_custom`";
-        long[] tmp = executeQuery(sql, "selectCustoms");
+    protected void selectCustoms() {
+        long[] tmp = executeQuery(SQL_SELECTCUSTOMS, "selectCustoms");
         timeDto.setSelectCstConnTime(tmp[0]);
         timeDto.setSelectCstExecTime(tmp[1]);
         timeDto.setSelectCstLoopTime(tmp[2]);
@@ -277,9 +271,8 @@ public class MySQLPerformanceTest {
         timeDto.setCstSize(tmp[4]);
     }
 
-    private void selectProducts() {
-        String sql = "SELECT `id`, `product_number`, `product_name` FROM `tb_product`";
-        long[] tmp = executeQuery(sql, "selectProducts");
+    protected void selectProducts() {
+        long[] tmp = executeQuery(SQL_SELECTPRODUCTS, "selectProducts");
         timeDto.setSelectPrdConnTime(tmp[0]);
         timeDto.setSelectPrdExecTime(tmp[1]);
         timeDto.setSelectPrdLoopTime(tmp[2]);
@@ -287,9 +280,8 @@ public class MySQLPerformanceTest {
         timeDto.setPrdSize(tmp[4]);
     }
 
-    private void selectWarehouses() {
-        String sql = "SELECT `id`, `warehouse_number`, `warehouse_name` FROM `tb_warehouse`";
-        long[] tmp = executeQuery(sql, "selectWarehouses");
+    protected void selectWarehouses() {
+        long[] tmp = executeQuery(SQL_SELECTWAREHOUSES, "selectWarehouses");
         timeDto.setSelectWhsConnTime(tmp[0]);
         timeDto.setSelectWhsExecTime(tmp[1]);
         timeDto.setSelectWhsLoopTime(tmp[2]);
@@ -297,9 +289,9 @@ public class MySQLPerformanceTest {
         timeDto.setWhsSize(tmp[4]);
     }
 
-    private void selectOrderJoinCustom() {
-        String sql = "SELECT a.ord_number, a.ord_status, a.order_time, b.custom_number, b.custom_name FROM tb_order a inner join tb_custom b on(a.custom_number = b.custom_number)";
-        long[] tmp = executeQuery(sql, "selectOrderJoinCustom");
+    // selectOrderJoinCustom: order join custom with index
+    protected void selectOrderJoinCustom() {
+        long[] tmp = executeQuery(SQL_SELECTORDERJOINCUSTOM, "selectOrderJoinCustom");
         timeDto.setSelectOcConnTime(tmp[0]);
         timeDto.setSelectOcExecTime(tmp[1]);
         timeDto.setSelectOcLoopTime(tmp[2]);
@@ -307,9 +299,9 @@ public class MySQLPerformanceTest {
         timeDto.setOcSize(tmp[4]);
     }
 
-    private void selectOrderJoinProduct() {
-        String sql = "SELECT a.ord_number, a.ord_status, a.order_time, b.product_number, b.product_name FROM tb_order a inner join tb_product b on(a.product_number = b.product_number)";
-        long[] tmp = executeQuery(sql, "selectOrderJoinProduct");
+    // selectOrderJoinProduct: order join product without index
+    protected void selectOrderJoinProduct() {
+        long[] tmp = executeQuery(SQL_SELECTORDERJOINPRODUCT, "selectOrderJoinProduct");
         timeDto.setSelectOpConnTime(tmp[0]);
         timeDto.setSelectOpExecTime(tmp[1]);
         timeDto.setSelectOpLoopTime(tmp[2]);
@@ -317,9 +309,9 @@ public class MySQLPerformanceTest {
         timeDto.setOpSize(tmp[4]);
     }
 
-    private void selectOrderJoinWarehouse() {
-        String sql = "SELECT a.ord_number, a.ord_status, a.order_time, b.warehouse_number, b.warehouse_name FROM tb_order a inner join tb_warehouse b on(a.warehouse_number = b.warehouse_number)";
-        long[] tmp = executeQuery(sql, "selectOrderJoinWarehouse");
+    // selectOrderJoinWarehouse: order join warehouse without index
+    protected void selectOrderJoinWarehouse() {
+        long[] tmp = executeQuery(SQL_SELECTORDERJOINWAREHOUSE, "selectOrderJoinWarehouse");
         timeDto.setSelectOwConnTime(tmp[0]);
         timeDto.setSelectOwExecTime(tmp[1]);
         timeDto.setSelectOwLoopTime(tmp[2]);
@@ -327,9 +319,8 @@ public class MySQLPerformanceTest {
         timeDto.setOwSize(tmp[4]);
     }
 
-    private void selectOrderWithOrderBy() {
-        String sql = "SELECT custom_number, product_number from tb_order order by custom_number, product_number DESC";
-        long[] tmp = executeQuery(sql, "selectOrderWithOrderBy");
+    protected void selectOrderWithOrderBy() {
+        long[] tmp = executeQuery(SQL_SELECTORDERWITHORDERBY, "selectOrderWithOrderBy");
         timeDto.setSelectOobConnTime(tmp[0]);
         timeDto.setSelectOobExecTime(tmp[1]);
         timeDto.setSelectOobLoopTime(tmp[2]);
@@ -337,15 +328,14 @@ public class MySQLPerformanceTest {
         timeDto.setOobSize(tmp[4]);
     }
 
-
-    private long[] executeQuery(String sql, String optName) {
+    protected long[] executeQuery(String sql, String optName) {
         long[] returnValues = new long[5];
 
         LocalDateTime startTime = LocalDateTime.now();
         System.out.println(optName + " startTime: " + startTime);
 
         int size = 0;
-        try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PWD);
+        try (Connection connection = DriverManager.getConnection(getJdbcUrl(), getJdbcUsername(), getJdbcPassword());
              PreparedStatement ps = connection.prepareStatement(sql)
         ) {
             LocalDateTime connStopTime = LocalDateTime.now();
@@ -385,9 +375,9 @@ public class MySQLPerformanceTest {
         return returnValues;
     }
 
-    private void executeDDL(String ddlSql) {
+    protected void executeDDL(String ddlSql) {
         System.out.println("executeDDL: " + ddlSql);
-        try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PWD);
+        try (Connection connection = DriverManager.getConnection(getJdbcUrl(), getJdbcUsername(), getJdbcPassword());
              Statement statement = connection.createStatement();
         ) {
             statement.execute(ddlSql);
@@ -397,7 +387,7 @@ public class MySQLPerformanceTest {
         }
     }
 
-    private List<List<Map<String, Object>>> splitBy1000(Set<Map<String, Object>> datas) {
+    protected List<List<Map<String, Object>>> splitBy1000(Set<Map<String, Object>> datas) {
         List<Map<String, Object>> lstDatas = new ArrayList<>(datas);
         List<List<Map<String, Object>>> dataGroups = new ArrayList<>();
         int remainder = lstDatas.size() % 1000;
@@ -417,5 +407,4 @@ public class MySQLPerformanceTest {
         }
         return dataGroups;
     }
-
 }

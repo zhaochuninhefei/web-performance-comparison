@@ -1,5 +1,7 @@
+-- 使用dba用户 创建database
 CREATE DATABASE `db_pm_mysql` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
 
+-- 使用dba用户 建表
 USE `db_pm_mysql`;
 
 DROP TABLE IF EXISTS `db_pm_mysql`.`tb_order`;
@@ -14,9 +16,6 @@ CREATE TABLE IF NOT EXISTS `db_pm_mysql`.`tb_order` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `tb_order_unique01` (`ord_number`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = '订单表';
-
-CREATE INDEX `tb_order_idx01` ON `db_pm_mysql`.`tb_order` (`custom_number`, `product_number` DESC);
-CREATE INDEX `tb_order_idx02` ON `db_pm_mysql`.`tb_order` (`warehouse_number`, `product_number`);
 
 DROP TABLE IF EXISTS `db_pm_mysql`.`tb_custom`;
 CREATE TABLE IF NOT EXISTS `db_pm_mysql`.`tb_custom` (
@@ -45,6 +44,11 @@ CREATE TABLE IF NOT EXISTS `db_pm_mysql`.`tb_warehouse` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = '仓库表';
 
+-- 使用dba用户 创建用户并授权
 -- create user 'zhaochun1'@'%' identified by 'zhaochun@GITHUB';
-
 grant all privileges on db_pm_mysql.* to 'zhaochun1'@'%' with grant option;
+flush privileges;
+
+-- 使用dba用户 create index
+-- CREATE INDEX `tb_order_idx01` ON `db_pm_mysql`.`tb_order` (`custom_number`, `product_number` DESC);
+-- CREATE INDEX `tb_order_idx02` ON `db_pm_mysql`.`tb_order` (`warehouse_number`, `product_number`);
