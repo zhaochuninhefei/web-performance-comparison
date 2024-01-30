@@ -26,5 +26,5 @@ jmeter/web-pm-sbt-vt-account_add -bk_20240120/
 jmeter/web-pm-sbt-vt-account_add-mariadb/
 web-pm-sbt-vt/logs/
 web-pm-springboot/logs/
-db/db-pm-mysql/.idea/
-db/db-pm-mysql/.gitignore
+db/db-pm/.idea/
+db/db-pm/.gitignore
