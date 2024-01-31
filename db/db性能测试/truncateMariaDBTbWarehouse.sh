@@ -1,7 +1,8 @@
 #!/bin/bash
-set -e
-cur_dir=$(pwd)
-cd ../db-pm || exit
+curdir=$(pwd)
+work_dir=~/work/sources/github.com/zhaochuninhefei/web-performance-comparison/db/db-pm
+
+cd "${work_dir}" || exit
 ./run.sh -type p -method truncateMariaDBTbWarehouse
 
-cd "${cur_dir}" || exit
+cd "${curdir}" || exit
