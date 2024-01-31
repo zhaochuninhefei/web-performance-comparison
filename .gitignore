@@ -28,3 +28,6 @@ web-pm-sbt-vt/logs/
 web-pm-springboot/logs/
 db/db-pm/.idea/
 db/db-pm/.gitignore
+db/db性能测试/*/*_report/
+db/db性能测试/*/*.log
+db/db性能测试/*/*.jtl
