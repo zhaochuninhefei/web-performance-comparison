@@ -151,6 +151,16 @@ public abstract class BaseTester {
         timeDto.setTruncateTime(duration.toMillis());
     }
 
+    protected void truncateTbWarehouse() {
+        try (Connection connection = DriverManager.getConnection(getJdbcUrl(), getJdbcUsername(), getJdbcPassword());
+             Statement statement = connection.createStatement()
+        ) {
+            statement.execute(SQL_TRUNCATE_WAREHOUSE);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     protected void insertOrder(Set<Map<String, Object>> datas) {
         List<List<Map<String, Object>>> dataGrps = splitBy1000(datas);
 
