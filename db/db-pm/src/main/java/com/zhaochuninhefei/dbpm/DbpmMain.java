@@ -25,7 +25,7 @@ public class DbpmMain {
      * <pre>    -runTimes 指定测试运行次数，仅在singleThreadTest时有效</pre>
      * <pre>    -outFileName 指定输出文件路径，仅在singleThreadTest时有效</pre>
      * <pre>    -method 指定测试方法，仅在prepareData时有效,目前支持:</pre>
-     * <pre>        truncateMysqlTbWarehouse/truncateMariaDBTbWarehouse</pre>
+     * <pre>        truncateMysqlTbWarehouse/truncateMariaDBTbWarehouse/prepareMysqlDataForPT/prepareMariaDBDataForPT</pre>
      * <p></p>
      * <pre>使用范例:</pre>
      * <pre>    1. 单线程测试:</pre>
@@ -67,6 +67,8 @@ public class DbpmMain {
             switch (method) {
                 case "truncateMysqlTbWarehouse" -> truncateMysqlTbWarehouse();
                 case "truncateMariaDBTbWarehouse" -> truncateMariaDBTbWarehouse();
+                case "prepareMysqlDataForPT" -> prepareMysqlDataForPT();
+                case "prepareMariaDBDataForPT" -> prepareMariaDBDataForPT();
                 default -> {
                     System.out.println("Unsupported method: " + method);
                     formatter.printHelp("DbpmMain", options);
@@ -129,6 +131,16 @@ public class DbpmMain {
     private static void truncateMariaDBTbWarehouse() {
         var tester = new MariaDBTester();
         tester.truncateTbWarehouse();
+    }
+
+    private static void prepareMysqlDataForPT() {
+        var tester = new MySQLTester();
+        tester.prepareDataForPT();
+    }
+
+    private static void prepareMariaDBDataForPT() {
+        var tester = new MariaDBTester();
+        tester.prepareDataForPT();
     }
 
     private static void testMysql(Map<String, Set<Map<String, Object>>> prepareData, int runTimes, String outPath) {

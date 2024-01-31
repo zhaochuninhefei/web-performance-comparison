@@ -75,6 +75,42 @@ public abstract class BaseTester {
         return timeDto;
     }
 
+    protected void truncateTbWarehouse() {
+        try {
+            Class.forName(getJdbcDriverName());
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("准备执行sql: " + SQL_TRUNCATE_WAREHOUSE);
+        try (Connection connection = DriverManager.getConnection(getJdbcUrl(), getJdbcUsername(), getJdbcPassword());
+             Statement statement = connection.createStatement()
+        ) {
+            // 在控制台输出jdbc信息
+            System.out.println(statement.getConnection().getMetaData().getURL());
+            System.out.println(statement.getConnection().getMetaData().getDriverName());
+            statement.execute(SQL_TRUNCATE_WAREHOUSE);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("执行sql: " + SQL_TRUNCATE_WAREHOUSE + " 成功");
+    }
+
+    protected void prepareDataForPT() {
+        System.out.println("prepareDataForPT 开始");
+        var prepareData = prepareData();
+        try {
+            Class.forName(getJdbcDriverName());
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        this.truncateTables();
+        this.insertOrder(prepareData.get("orders"));
+        this.insertCustom(prepareData.get("customs"));
+        this.insertProduct(prepareData.get("products"));
+        this.insertWarehouse(prepareData.get("warehouses"));
+        System.out.println("prepareDataForPT 结束");
+    }
+
     public static Map<String, Set<Map<String, Object>>> prepareData() {
         LocalDateTime startTime = LocalDateTime.now();
         System.out.println("prepareData startTime: " + startTime);
@@ -149,26 +185,6 @@ public abstract class BaseTester {
         Duration duration = Duration.between(startTime, stopTime);
         System.out.println("truncateTables 耗时(毫秒):" + duration.toMillis());
         timeDto.setTruncateTime(duration.toMillis());
-    }
-
-    protected void truncateTbWarehouse() {
-        try {
-            Class.forName(getJdbcDriverName());
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        System.out.println("准备执行sql: " + SQL_TRUNCATE_WAREHOUSE);
-        try (Connection connection = DriverManager.getConnection(getJdbcUrl(), getJdbcUsername(), getJdbcPassword());
-             Statement statement = connection.createStatement()
-        ) {
-            // 在控制台输出jdbc信息
-            System.out.println(statement.getConnection().getMetaData().getURL());
-            System.out.println(statement.getConnection().getMetaData().getDriverName());
-            statement.execute(SQL_TRUNCATE_WAREHOUSE);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        System.out.println("执行sql: " + SQL_TRUNCATE_WAREHOUSE + " 成功");
     }
 
     protected void insertOrder(Set<Map<String, Object>> datas) {
