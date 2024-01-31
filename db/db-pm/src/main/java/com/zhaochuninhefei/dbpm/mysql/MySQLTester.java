@@ -21,4 +21,9 @@ public class MySQLTester extends BaseTester {
     public String getJdbcPassword() {
         return "zhaochun@GITHUB";
     }
+
+    @Override
+    public String getJdbcDriverName() {
+        return "com.mysql.cj.jdbc.Driver";
+    }
 }

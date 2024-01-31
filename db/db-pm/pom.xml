@@ -16,11 +16,11 @@
 
     <dependencies>
         <!-- mysql驱动 -->
-        <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <version>8.2.0</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.mysql</groupId>-->
+<!--            <artifactId>mysql-connector-j</artifactId>-->
+<!--            <version>8.2.0</version>-->
+<!--        </dependency>-->
         <!-- mariadb驱动 -->
         <dependency>
             <groupId>org.mariadb.jdbc</groupId>
@@ -53,9 +53,9 @@
             </resource>
         </resources>
         <plugins>
-            <!-- 使用 maven-assembly-plugin 将依赖包一起打入jar，并指定主程序为 SM2Util。 -->
+            <!-- 使用 maven-assembly-plugin 将依赖包一起打入jar，并指定主程序为 DbpmMain -->
             <!-- 目的是支持直接命令行执行sm2工具: -->
-            <!-- /usr/java/jdk-21.0.1+12/bin/java -jar target/lib-brood-crypto-3.0.0-RELEASE-jar-with-dependencies.jar -->
+            <!-- /usr/java/jdk-21.0.1+12/bin/java -jar target/db-pm-*-jar-with-dependencies.jar -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
