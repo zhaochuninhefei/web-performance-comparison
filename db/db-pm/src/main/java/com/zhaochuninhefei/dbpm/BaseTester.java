@@ -152,13 +152,23 @@ public abstract class BaseTester {
     }
 
     protected void truncateTbWarehouse() {
+        try {
+            Class.forName(getJdbcDriverName());
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("准备执行sql: " + SQL_TRUNCATE_WAREHOUSE);
         try (Connection connection = DriverManager.getConnection(getJdbcUrl(), getJdbcUsername(), getJdbcPassword());
              Statement statement = connection.createStatement()
         ) {
+            // 在控制台输出jdbc信息
+            System.out.println(statement.getConnection().getMetaData().getURL());
+            System.out.println(statement.getConnection().getMetaData().getDriverName());
             statement.execute(SQL_TRUNCATE_WAREHOUSE);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println("执行sql: " + SQL_TRUNCATE_WAREHOUSE + " 成功");
     }
 
     protected void insertOrder(Set<Map<String, Object>> datas) {
