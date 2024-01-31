@@ -97,6 +97,7 @@ public abstract class BaseTester {
 
     protected void prepareDataForPT() {
         System.out.println("prepareDataForPT 开始");
+        timeDto = new TimeDto();
         var prepareData = prepareData();
         try {
             Class.forName(getJdbcDriverName());
