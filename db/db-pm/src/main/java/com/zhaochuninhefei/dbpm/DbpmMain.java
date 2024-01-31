@@ -29,14 +29,14 @@ public class DbpmMain {
         }
 
         var prepareData = BaseTester.prepareData();
-//        System.out.println("===== 开始mysql测试 =====");
-//        testMysql(prepareData, runTimes, "mysql_"+outPath);
-//        System.out.println("===== mysql测试结束, 等待10秒 =====");
-//        try {
-//            Thread.sleep(10000);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
+        System.out.println("===== 开始mysql测试 =====");
+        testMysql(prepareData, runTimes, "mysql_"+outPath);
+        System.out.println("===== mysql测试结束, 等待10秒 =====");
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         System.out.println("===== 开始mariadb测试 =====");
         testMariaDB(prepareData, runTimes, "mariadb_"+outPath);
     }

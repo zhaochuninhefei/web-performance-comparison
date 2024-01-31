@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 /**
  * @author zhaochun
  */
-@SuppressWarnings({"unused", "CallToPrintStackTrace"})
+@SuppressWarnings({"unused", "CallToPrintStackTrace", "SqlSourceToSinkFlow"})
 public abstract class BaseTester {
 
     protected static final String SQL_TRUNCATE_ORDER = "truncate tb_order";
@@ -35,13 +35,21 @@ public abstract class BaseTester {
     protected static final String SQL_DROP_INDEX_TB_ORDER_IDX01 = "DROP INDEX `tb_order_idx01` ON `tb_order`";
 
     public abstract String getJdbcUrl();
+
     public abstract String getJdbcUsername();
+
     public abstract String getJdbcPassword();
+
     public abstract String getJdbcDriverName();
 
     protected TimeDto timeDto;
 
     public TimeDto runTester(Map<String, Set<Map<String, Object>>> prepareData) {
+        try {
+            Class.forName(getJdbcDriverName());
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         timeDto = new TimeDto();
 
         this.truncateTables();
@@ -125,8 +133,6 @@ public abstract class BaseTester {
     protected void truncateTables() {
         LocalDateTime startTime = LocalDateTime.now();
         System.out.println("truncateTables startTime: " + startTime);
-
-
         try (Connection connection = DriverManager.getConnection(getJdbcUrl(), getJdbcUsername(), getJdbcPassword());
              Statement statement = connection.createStatement()
         ) {
@@ -384,7 +390,7 @@ public abstract class BaseTester {
         System.out.println("executeDDL: " + ddlSql);
 
         try (Connection connection = DriverManager.getConnection(getJdbcUrl(), getJdbcUsername(), getJdbcPassword());
-             Statement statement = connection.createStatement();
+             Statement statement = connection.createStatement()
         ) {
             statement.execute(ddlSql);
             System.out.println("executeDDL success");

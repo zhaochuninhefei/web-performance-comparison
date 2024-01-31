@@ -35,6 +35,11 @@ public class MariaDBTester extends BaseTester {
 
     @Override
     public TimeDto runTester(Map<String, Set<Map<String, Object>>> prepareData) {
+        try {
+            Class.forName(getJdbcDriverName());
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         timeDto = new TimeDto();
 
         this.truncateTables();
