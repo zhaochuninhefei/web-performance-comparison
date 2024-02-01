@@ -18,7 +18,7 @@
         <stringProp name="connectionProperties"></stringProp>
         <stringProp name="dataSource">mariadblocal</stringProp>
         <stringProp name="dbUrl">jdbc:mariadb://localhost:3308/db_pm_mariadb?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&amp;rewriteBatchedStatements=true</stringProp>
-        <stringProp name="driver">com.mysql.cj.jdbc.Driver</stringProp>
+        <stringProp name="driver">org.mariadb.jdbc.Driver</stringProp>
         <stringProp name="initQuery"></stringProp>
         <boolProp name="keepAlive">true</boolProp>
         <stringProp name="password">zhaochun@GITHUB</stringProp>
