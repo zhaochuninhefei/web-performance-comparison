@@ -17,7 +17,7 @@ public class DbpmMain {
     /**
      * DbpmMain 启动主程序
      *
-     * <p>DbpmMain参数:</p>
+     * <pre>DbpmMain参数:</pre>
      * <pre>    -type 指定运行类型</pre>
      * <pre>        s: singleThreadTest,单线程测试;</pre>
      * <pre>        p: prepareData,准备性能测试数据(用于jmeter测试前的数据准备)</pre>
@@ -26,12 +26,12 @@ public class DbpmMain {
      * <pre>    -outFileName 指定输出文件路径，仅在singleThreadTest时有效</pre>
      * <pre>    -method 指定测试方法，仅在prepareData时有效,目前支持:</pre>
      * <pre>        truncateMysqlTbWarehouse/truncateMariaDBTbWarehouse/prepareMysqlDataForPT/prepareMariaDBDataForPT</pre>
-     * <p></p>
+     * <pre></pre>
      * <pre>使用范例:</pre>
      * <pre>    1. 单线程测试:</pre>
      * <pre>        java -jar ./target/db-pm-*-jar-with-dependencies.jar -type s -database all -runTimes 3 -outFileName out.csv</pre>
      * <pre>    2. 准备性能测试数据:</pre>
-     * <pre>        java -jar ./target/db-pm-*-jar-with-dependencies.jar -type p  -method truncateMysqlTbWarehouse</pre>
+     * <pre>        java -jar ./target/db-pm-*-jar-with-dependencies.jar -type p -method truncateMysqlTbWarehouse</pre>
      *
      * @param args DbpmMain参数
      */
