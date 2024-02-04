@@ -121,6 +121,7 @@ public class DbpmMain {
             case "all" -> {
                 testMysql(prepareData, runTimes, "mysql_" + outFileName);
                 testMariaDB(prepareData, runTimes, "mariadb_" + outFileName);
+                testPostgres(prepareData, runTimes, "postgres_" + outFileName);
             }
         }
     }
