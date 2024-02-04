@@ -19,20 +19,20 @@ public abstract class BaseTester {
     protected static final String SQL_TRUNCATE_PRODUCT = "truncate tb_product";
     protected static final String SQL_TRUNCATE_WAREHOUSE = "truncate tb_warehouse";
 
-    protected static final String SQL_INSERT_TB_ORDER = "insert into tb_order(`ord_number`, `custom_number`, `product_number`, `warehouse_number`, `ord_status`, `order_time`) values(?, ?, ?, ?, ?, ?)";
-    protected static final String SQL_INSERT_TB_CUSTOM = "insert into tb_custom(`custom_number`, `custom_name`, `custom_phone`, `custom_address`) values(?, ?, ?, ?)";
-    protected static final String SQL_INSERT_TB_PRODUCT = "insert into tb_product(`product_number`, `product_name`) values(?, ?)";
-    protected static final String SQL_INSERT_TB_WAREHOUSE = "insert into tb_warehouse(`warehouse_number`, `warehouse_name`) values(?, ?)";
-    protected static final String SQL_SELECTORDERS = "SELECT `id`, `ord_number`, `custom_number`, `product_number`, `warehouse_number`, `ord_status`, `order_time` FROM `tb_order`";
-    protected static final String SQL_SELECTCUSTOMS = "SELECT `id`, `custom_number`, `custom_name`, `custom_phone`, `custom_address` FROM `tb_custom`";
-    protected static final String SQL_SELECTPRODUCTS = "SELECT `id`, `product_number`, `product_name` FROM `tb_product`";
-    protected static final String SQL_SELECTWAREHOUSES = "SELECT `id`, `warehouse_number`, `warehouse_name` FROM `tb_warehouse`";
+    protected static final String SQL_INSERT_TB_ORDER = "insert into tb_order(ord_number, custom_number, product_number, warehouse_number, ord_status, order_time) values(?, ?, ?, ?, ?, ?)";
+    protected static final String SQL_INSERT_TB_CUSTOM = "insert into tb_custom(custom_number, custom_name, custom_phone, custom_address) values(?, ?, ?, ?)";
+    protected static final String SQL_INSERT_TB_PRODUCT = "insert into tb_product(product_number, product_name) values(?, ?)";
+    protected static final String SQL_INSERT_TB_WAREHOUSE = "insert into tb_warehouse(warehouse_number, warehouse_name) values(?, ?)";
+    protected static final String SQL_SELECTORDERS = "SELECT id, ord_number, custom_number, product_number, warehouse_number, ord_status, order_time FROM tb_order";
+    protected static final String SQL_SELECTCUSTOMS = "SELECT id, custom_number, custom_name, custom_phone, custom_address FROM tb_custom";
+    protected static final String SQL_SELECTPRODUCTS = "SELECT id, product_number, product_name FROM tb_product";
+    protected static final String SQL_SELECTWAREHOUSES = "SELECT id, warehouse_number, warehouse_name FROM tb_warehouse";
     protected static final String SQL_SELECTORDERJOINCUSTOM = "SELECT a.ord_number, a.ord_status, a.order_time, b.custom_number, b.custom_name FROM tb_order a inner join tb_custom b on(a.custom_number = b.custom_number)";
     protected static final String SQL_SELECTORDERJOINPRODUCT = "SELECT a.ord_number, a.ord_status, a.order_time, b.product_number, b.product_name FROM tb_order a inner join tb_product b on(a.product_number = b.product_number)";
     protected static final String SQL_SELECTORDERJOINWAREHOUSE = "SELECT a.ord_number, a.ord_status, a.order_time, b.warehouse_number, b.warehouse_name FROM tb_order a inner join tb_warehouse b on(a.warehouse_number = b.warehouse_number)";
     protected static final String SQL_SELECTORDERWITHORDERBY = "SELECT custom_number, product_number from tb_order order by custom_number, product_number DESC";
-    protected static final String SQL_CREATE_INDEX_TB_ORDER_IDX01 = "CREATE INDEX `tb_order_idx01` ON `tb_order` (`custom_number`, `product_number` DESC)";
-    protected static final String SQL_DROP_INDEX_TB_ORDER_IDX01 = "DROP INDEX `tb_order_idx01` ON `tb_order`";
+    protected static final String SQL_CREATE_INDEX_TB_ORDER_IDX01 = "CREATE INDEX tb_order_idx01 ON tb_order (custom_number, product_number DESC)";
+    protected static final String SQL_DROP_INDEX_TB_ORDER_IDX01 = "DROP INDEX tb_order_idx01 ON tb_order";
 
     public abstract String getJdbcUrl();
 
