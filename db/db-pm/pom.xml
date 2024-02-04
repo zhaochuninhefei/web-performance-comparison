@@ -33,10 +33,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- postgres驱动 -->
         <dependency>
-            <artifactId>checker-qual</artifactId>
-            <groupId>org.checkerframework</groupId>
-            <version>3.32.0</version>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.7.1</version>
         </dependency>
 
         <dependency>
