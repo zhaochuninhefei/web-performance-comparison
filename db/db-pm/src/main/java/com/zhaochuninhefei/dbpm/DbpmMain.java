@@ -20,12 +20,17 @@ public class DbpmMain {
      * DbpmMain 启动主程序
      *
      * <pre>DbpmMain参数:</pre>
-     * <pre>    -type 指定运行类型</pre>
+     * <pre>    -type 指定运行类型, 可选: s|p, 默认s</pre>
      * <pre>        s: singleThreadTest,单线程测试;</pre>
      * <pre>        p: prepareData,准备性能测试数据(用于jmeter测试前的数据准备)</pre>
-     * <pre>    -database 指定数据库类型, all|mysql|mariadb|postgres|tidb, all: 所有数据库测试; mysql: 测试mysql; mariadb: 测试mariadb; postgres: 测试postgres; tidb: 测试TiDB。仅在singleThreadTest时有效</pre>
-     * <pre>    -runTimes 指定测试运行次数，仅在singleThreadTest时有效</pre>
-     * <pre>    -outFileName 指定输出文件路径，仅在singleThreadTest时有效</pre>
+     * <pre>    -database 指定数据库类型, 可选: all|mysql|mariadb|postgres|tidb, 默认all。仅在singleThreadTest时有效</pre>
+     * <pre>        all: 所有数据库</pre>
+     * <pre>        mysql: 测试mysql</pre>
+     * <pre>        mariadb: 测试mariadb</pre>
+     * <pre>        postgres: 测试postgres</pre>
+     * <pre>        tidb: 测试TiDB</pre>
+     * <pre>    -runTimes 指定测试运行次数，默认1。仅在singleThreadTest时有效</pre>
+     * <pre>    -outFileName 指定输出文件名，默认"out.csv"。仅在singleThreadTest时有效</pre>
      * <pre>    -method 指定测试方法，仅在prepareData时有效,目前支持:</pre>
      * <pre>        truncateMysqlTbWarehouse</pre>
      * <pre>        truncateMariaDBTbWarehouse</pre>
