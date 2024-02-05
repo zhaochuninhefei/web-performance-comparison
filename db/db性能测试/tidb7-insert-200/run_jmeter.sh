@@ -3,7 +3,7 @@
 set -e
 
 jmx_name=tidb7-insert-200.jmx
-prefix_all=20_2m
+prefix_all=200_2m
 
 if [ ! "$1" == "" ]
 then
