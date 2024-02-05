@@ -27,7 +27,14 @@ public class DbpmMain {
      * <pre>    -runTimes 指定测试运行次数，仅在singleThreadTest时有效</pre>
      * <pre>    -outFileName 指定输出文件路径，仅在singleThreadTest时有效</pre>
      * <pre>    -method 指定测试方法，仅在prepareData时有效,目前支持:</pre>
-     * <pre>        truncateMysqlTbWarehouse/truncateMariaDBTbWarehouse/prepareMysqlDataForPT/prepareMariaDBDataForPT</pre>
+     * <pre>        truncateMysqlTbWarehouse</pre>
+     * <pre>        truncateMariaDBTbWarehouse</pre>
+     * <pre>        truncatePostgresTbWarehouse</pre>
+     * <pre>        truncateTiDBTbWarehouse</pre>
+     * <pre>        prepareMysqlDataForPT</pre>
+     * <pre>        prepareMariaDBDataForPT</pre>
+     * <pre>        preparePostgresDataForPT</pre>
+     * <pre>        prepareTiDBDataForPT</pre>
      * <pre></pre>
      * <pre>使用范例:</pre>
      * <pre>    1. 单线程测试:</pre>
@@ -69,8 +76,12 @@ public class DbpmMain {
             switch (method) {
                 case "truncateMysqlTbWarehouse" -> truncateMysqlTbWarehouse();
                 case "truncateMariaDBTbWarehouse" -> truncateMariaDBTbWarehouse();
+                case "truncatePostgresTbWarehouse" -> truncatePostgresTbWarehouse();
+                case "truncateTiDBTbWarehouse" -> truncateTiDBTbWarehouse();
                 case "prepareMysqlDataForPT" -> prepareMysqlDataForPT();
                 case "prepareMariaDBDataForPT" -> prepareMariaDBDataForPT();
+                case "preparePostgresDataForPT" -> preparePostgresDataForPT();
+                case "prepareTiDBDataForPT" -> prepareTiDBDataForPT();
                 default -> {
                     System.out.println("Unsupported method: " + method);
                     formatter.printHelp("DbpmMain", options);
@@ -139,6 +150,16 @@ public class DbpmMain {
         tester.truncateTbWarehouse();
     }
 
+    private static void truncatePostgresTbWarehouse() {
+        var tester = new PostgresTester();
+        tester.truncateTbWarehouse();
+    }
+
+    private static void truncateTiDBTbWarehouse() {
+        var tester = new TiDBTester();
+        tester.truncateTbWarehouse();
+    }
+
     private static void prepareMysqlDataForPT() {
         var tester = new MySQLTester();
         tester.prepareDataForPT();
@@ -146,6 +167,16 @@ public class DbpmMain {
 
     private static void prepareMariaDBDataForPT() {
         var tester = new MariaDBTester();
+        tester.prepareDataForPT();
+    }
+
+    private static void preparePostgresDataForPT() {
+        var tester = new PostgresTester();
+        tester.prepareDataForPT();
+    }
+
+    private static void prepareTiDBDataForPT() {
+        var tester = new TiDBTester();
         tester.prepareDataForPT();
     }
 
