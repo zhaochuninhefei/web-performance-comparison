@@ -3,6 +3,7 @@ package com.zhaochuninhefei.dbpm;
 import com.zhaochuninhefei.dbpm.mariadb.MariaDBTester;
 import com.zhaochuninhefei.dbpm.mysql.MySQLTester;
 import com.zhaochuninhefei.dbpm.postgres.PostgresTester;
+import com.zhaochuninhefei.dbpm.tidb.TiDBTester;
 import org.apache.commons.cli.*;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class DbpmMain {
      * <pre>    -type 指定运行类型</pre>
      * <pre>        s: singleThreadTest,单线程测试;</pre>
      * <pre>        p: prepareData,准备性能测试数据(用于jmeter测试前的数据准备)</pre>
-     * <pre>    -database 指定数据库类型, all|mysql|mariadb|postgres, all: 所有数据库测试; mysql: 测试mysql; mariadb: 测试mariadb; postgres: 测试postgres。仅在singleThreadTest时有效</pre>
+     * <pre>    -database 指定数据库类型, all|mysql|mariadb|postgres|tidb, all: 所有数据库测试; mysql: 测试mysql; mariadb: 测试mariadb; postgres: 测试postgres; tidb: 测试TiDB。仅在singleThreadTest时有效</pre>
      * <pre>    -runTimes 指定测试运行次数，仅在singleThreadTest时有效</pre>
      * <pre>    -outFileName 指定输出文件路径，仅在singleThreadTest时有效</pre>
      * <pre>    -method 指定测试方法，仅在prepareData时有效,目前支持:</pre>
@@ -118,10 +119,12 @@ public class DbpmMain {
             case "mysql" -> testMysql(prepareData, runTimes, "mysql_" + outFileName);
             case "mariadb" -> testMariaDB(prepareData, runTimes, "mariadb_" + outFileName);
             case "postgres" -> testPostgres(prepareData, runTimes, "postgres_" + outFileName);
+            case "tidb" -> testTiDB(prepareData, runTimes, "tidb_" + outFileName);
             case "all" -> {
                 testMysql(prepareData, runTimes, "mysql_" + outFileName);
                 testMariaDB(prepareData, runTimes, "mariadb_" + outFileName);
                 testPostgres(prepareData, runTimes, "postgres_" + outFileName);
+                testTiDB(prepareData, runTimes, "tidb_" + outFileName);
             }
         }
     }
@@ -201,6 +204,25 @@ public class DbpmMain {
         System.out.println(TimeDto.createInfo(timeDtos));
         writeToCsv(timeDtos, outPath);
         System.out.println("==== postgres测试结束 =====");
+    }
+
+    private static void testTiDB(Map<String, Set<Map<String, Object>>> prepareData, int runTimes, String outPath) {
+        System.out.println("===== 准备tidb测试, 等待10秒 =====");
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("===== 开始tidb测试 =====");
+        var tidbTester = new TiDBTester();
+        List<TimeDto> timeDtos = new ArrayList<>();
+        for (int i = 0; i < runTimes; i++) {
+            TimeDto timeDto = tidbTester.runTester(prepareData);
+            timeDtos.add(timeDto);
+        }
+        System.out.println(TimeDto.createInfo(timeDtos));
+        writeToCsv(timeDtos, outPath);
+        System.out.println("==== tidb测试结束 =====");
     }
 
     private static void writeToCsv(List<TimeDto> timeDtos, String outPath) {
