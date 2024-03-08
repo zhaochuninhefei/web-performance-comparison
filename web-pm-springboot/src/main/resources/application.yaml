@@ -1,5 +1,8 @@
 mybatis:
   mapper-locations: "${mybatis_mapper_locations:classpath:com/zhaochuninhefei/webpmjava/db/mapper/*.xml}"
+#  configuration:
+#    cache-enabled: false
+#    local-cache-scope: statement
 
 server:
   port: "${server_port:18081}"
@@ -18,8 +21,8 @@ spring:
   application:
     name: "${spring_application_name:web-pm-springboot}"
   datasource:
-#    driver-class-name: "${spring_datasource_driver_class_name:com.mysql.cj.jdbc.Driver}"
-    driver-class-name: "${spring_datasource_driver_class_name:org.mariadb.jdbc.Driver}"
+    driver-class-name: "${spring_datasource_driver_class_name:com.mysql.cj.jdbc.Driver}"
+#    driver-class-name: "${spring_datasource_driver_class_name:org.mariadb.jdbc.Driver}"
     hikari:
       auto-commit: "${web_pm_hikari_auto_commit:true}"
       connection-test-query: "${web_pm_hikari_connection_test_query:SELECT 1}"
@@ -29,8 +32,8 @@ spring:
       maximum-pool-size: "${web_pm_hikari_maximum_pool_size:100}"
       minimum-idle: "${web_pm_hikari_minimum_idle:5}"
       pool-name: "${web_pm_hikari_pool_name:HikariCP-web-pm-springboot}"
-#    url: "${spring_datasource_url:jdbc:mysql://localhost:3307/db_web_pm?useUnicode=true&characterEncoding=UTF-8&useSSL=false&rewriteBatchedStatements=true}"
-    url: "${spring_datasource_url:jdbc:mariadb://localhost:3308/db_web_pm?useUnicode=true&characterEncoding=UTF-8&useSSL=false&rewriteBatchedStatements=true}"
+    url: "${spring_datasource_url:jdbc:mysql://localhost:3307/db_web_pm?useUnicode=true&characterEncoding=UTF-8&useSSL=false&rewriteBatchedStatements=true}"
+#    url: "${spring_datasource_url:jdbc:mariadb://localhost:3308/db_web_pm?useUnicode=true&characterEncoding=UTF-8&useSSL=false&rewriteBatchedStatements=true}"
 #    url: "${spring_datasource_url:jdbc:postgresql://localhost:5432/db_web_pm}"
     type: "${spring_datasource_type:com.zaxxer.hikari.HikariDataSource}"
     username: "${spring_datasource_username:zhaochun1}"
@@ -38,5 +41,6 @@ spring:
 logging:
   level:
     root: info
+    com.zhaochuninhefei.webpmjava: DEBUG
   file:
     path: "${logging_file_path:./logs/web-pm-springboot.log}"
