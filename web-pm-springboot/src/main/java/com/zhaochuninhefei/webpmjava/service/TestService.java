@@ -4,6 +4,7 @@ import com.zhaochuninhefei.webpmjava.db.dao.AccountsMapper;
 import com.zhaochuninhefei.webpmjava.db.dao.PostMapper;
 import com.zhaochuninhefei.webpmjava.db.po.Accounts;
 import com.zhaochuninhefei.webpmjava.db.po.Post;
+import com.zhaochuninhefei.webpmjava.db.po.PostExample;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,9 +36,12 @@ public class TestService {
         System.out.println("postMapper.selectByPrimaryKey second time");
         Post post2 = postMapper.selectByPrimaryKey(2L);
 
-//        System.out.println("postMapper.updateByPrimaryKey");
-//        post1.setContent(post1.getContent()+".");
-//        postMapper.updateByPrimaryKey(post1);
+        System.out.println("postMapper.updateByPrimaryKey");
+        post1.setContent(post1.getContent()+".");
+        post1.setTitle("3");
+        PostExample postExample = new PostExample();
+        postExample.createCriteria().andIdEqualTo(post1.getId());
+        postMapper.updateTest(post1, postExample);
 
         System.out.println("accountsMapper.selectByPrimaryKey third time");
         Accounts account3 = accountsMapper.selectByPrimaryKey(1L);

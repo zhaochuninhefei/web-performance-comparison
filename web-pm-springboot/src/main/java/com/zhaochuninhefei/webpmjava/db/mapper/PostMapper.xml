@@ -194,4 +194,25 @@
       content = #{content,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <update id="updateTest" parameterType="map">
+    update post
+    <set>
+      <if test="row.id != null">
+        id = #{row.id,jdbcType=BIGINT},
+      </if>
+      <if test="row.actId != null">
+        act_id = #{row.actId,jdbcType=BIGINT},
+      </if>
+      <if test='row.title=="3"'>
+        title = #{row.title,jdbcType=VARCHAR},
+      </if>
+      <if test="row.content != null">
+        content = #{row.content,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
 </mapper>

@@ -99,4 +99,6 @@ public interface PostMapper {
      * @return int
      */
     int updateByPrimaryKey(Post row);
+
+    int updateTest(@Param("row") Post row, @Param("example") PostExample example);
 }
