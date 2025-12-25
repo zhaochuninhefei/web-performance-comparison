@@ -1,0 +1,80 @@
+package com.zhaochuninhefei.webpmjava.service;
+
+import com.zhaochuninhefei.webpmjava.db.dao.AccountsMapper;
+import com.zhaochuninhefei.webpmjava.db.po.Accounts;
+import com.zhaochuninhefei.webpmjava.db.po.AccountsExample;
+import com.zhaochuninhefei.webpmjava.db.po.AmountByCtmLevel;
+import org.springframework.jdbc.core.simple.JdbcClient;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Objects;
+import java.util.random.RandomGenerator;
+import java.util.random.RandomGeneratorFactory;
+
+@SuppressWarnings({"unused", "CommentedOutCode"})
+@Service
+public class AccountService {
+    private final AccountsMapper accountsMapper;
+
+    private final JdbcClient jdbcClient;
+
+    RandomGenerator random = RandomGeneratorFactory.of("Random").create();
+
+    public AccountService(AccountsMapper accountsMapper, JdbcClient jdbcClient) {
+        this.accountsMapper = accountsMapper;
+        this.jdbcClient = jdbcClient;
+    }
+
+    public List<Accounts> queryAllAccounts() {
+        AccountsExample example = new AccountsExample();
+        return accountsMapper.selectByExample(example);
+    }
+
+    public Accounts queryActByID() {
+        long id = random.nextInt(1, 1000);
+        return accountsMapper.selectByPrimaryKey(id);
+    }
+
+    public Long addNewAccount(Accounts account) {
+        account.setActRegisterDate(LocalDateTime.now());
+        accountsMapper.insert(account);
+        return account.getId();
+    }
+
+    public Long addNewAccountByJdbcClient(Accounts account) {
+        account.setActRegisterDate(LocalDateTime.now());
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        int update = jdbcClient.sql("insert into accounts (created_at, updated_at, deleted_at, act_name, act_pwd, act_nick_name, act_introduction, act_status, act_register_date) values (now(), now(), ?, ?, ?, ?, ?, ?, ?)")
+                .params(account.getDeletedAt(), account.getActName(), account.getActPwd(), account.getActNickName(), account.getActIntroduction(), account.getActStatus(), account.getActRegisterDate())
+                .update(keyHolder);
+//        long id = Objects.requireNonNull(keyHolder.getKey()).longValue();
+//        System.out.println("受影响行数: " + update + ", 新增帐户ID: " + id);
+//        return id;
+        return Objects.requireNonNull(keyHolder.getKey()).longValue();
+    }
+
+    public List<Accounts> queryAccountsByIdRange(int size) {
+        if (size <= 0 || size > 100) {
+            size = 20;
+        }
+        // 获取一个位于1到900之间的随机整数
+        long startId = random.nextInt(1, 99900);
+        long endId = startId + size;
+
+        AccountsExample example = new AccountsExample();
+        example.createCriteria().andIdBetween(startId, endId);
+        return accountsMapper.selectByExample(example);
+    }
+
+    public List<AmountByCtmLevel> queryAmountByCtmLevel() {
+        return accountsMapper.selectAmountByCtmLevel();
+    }
+
+    public long countOrdersAll() {
+        return accountsMapper.countOrdersAll();
+    }
+}
