@@ -17,7 +17,7 @@ spring:
       max-lifetime: "${web_pm_hikari_max_lifetime:1800000}"
       maximum-pool-size: "${web_pm_hikari_maximum_pool_size:100}"
       minimum-idle: "${web_pm_hikari_minimum_idle:5}"
-      pool-name: "${web_pm_hikari_pool_name:HikariCP-web-pm-springboot}"
+      pool-name: "${web_pm_hikari_pool_name:HikariCP-web-pm-sbt4}"
     url: "${spring_datasource_url:jdbc:mysql://localhost:3307/db_web_pm?useUnicode=true&characterEncoding=UTF-8&useSSL=false&rewriteBatchedStatements=true}"
     type: "${spring_datasource_type:com.zaxxer.hikari.HikariDataSource}"
     username: "${spring_datasource_username:zhaochun1}"
@@ -29,4 +29,4 @@ logging:
   level:
     root: info
   file:
-    path: "${logging_file_path:./logs/web-pm-sbt-vt.log}"
+    path: "${logging_file_path:./logs/web-pm-sbt4.log}"
