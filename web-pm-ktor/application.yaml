@@ -1,0 +1,11 @@
+ktor:
+    deployment:
+        port: 8081
+    mysql:
+        host: 127.0.0.1
+        port: 3306
+        db: quarkus_test
+        user: root
+        password: yinjiaolong
+        poolSize: 5
+        idleTimeoutMinute: 3
