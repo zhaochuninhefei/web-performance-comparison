@@ -1,9 +1,10 @@
 #!/bin/bash
 
 set -e
-
+export JAVA_HOME=/usr/java/jdk1.8.0_131
+export PATH=${JAVA_HOME}/bin:$PATH
 jmx_name=web-pm-springboot-account_list.jmx
-prefix_all=500_3m
+prefix_all=5000_3m
 
 if [ ! "$1" == "" ]
 then

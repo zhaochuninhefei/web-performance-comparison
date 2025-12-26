@@ -41,6 +41,6 @@ spring:
 logging:
   level:
     root: info
-    com.zhaochuninhefei.webpmjava: DEBUG
+    com.zhaochuninhefei.webpmjava: info
   file:
     path: "${logging_file_path:./logs/web-pm-springboot.log}"
